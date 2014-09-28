@@ -1,0 +1,649 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		411EE27F19D76AAE00A4622A /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 411EE28019D76AAE00A4622A /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				411EE28319D76AC200A4622A /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		411EE27C19D7634F00A4622A /* ContactsJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 411EE27719D7634E00A4622A /* ContactsJSONParser.m */; };
+		411EE27D19D7634F00A4622A /* ContactsXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 411EE27919D7634E00A4622A /* ContactsXMLParser.m */; };
+		411EE27E19D7634F00A4622A /* DataSourceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 411EE27B19D7634F00A4622A /* DataSourceFactory.m */; };
+		411EE28919D76E4800A4622A /* _Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 411EE28619D76E4800A4622A /* _Contact.m */; };
+		411EE28A19D76E4800A4622A /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 411EE28819D76E4800A4622A /* Contact.m */; };
+		41874DCF19D75EDA00CED9D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DCE19D75EDA00CED9D6 /* main.m */; };
+		41874DE919D75EDA00CED9D6 /* LGCDDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DE819D75EDA00CED9D6 /* LGCDDataSourceTests.m */; };
+		41874E0719D75FC000CED9D6 /* LGDataUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DF619D75FC000CED9D6 /* LGDataUpdateOperation.m */; };
+		41874E0819D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DF919D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.m */; };
+		41874E0919D75FC000CED9D6 /* LGDataUpdateOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DFB19D75FC000CED9D6 /* LGDataUpdateOperationManager.m */; };
+		41874E0A19D75FC000CED9D6 /* LGAbstractCDJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DFF19D75FC000CED9D6 /* LGAbstractCDJSONParser.m */; };
+		41874E0B19D75FC000CED9D6 /* LGAbstractCDXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0119D75FC000CED9D6 /* LGAbstractCDXMLParser.m */; };
+		41874E0C19D75FC000CED9D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0419D75FC000CED9D6 /* AppDelegate.m */; };
+		41874E0D19D75FC000CED9D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0619D75FC000CED9D6 /* ViewController.m */; };
+		41874E1019D761F700CED9D6 /* LGModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0E19D761F700CED9D6 /* LGModel.xcdatamodeld */; };
+		E121F651CBD5FC1E5ED4630D /* libPods-LGCDDataSource.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB43F640B1178ACEDB4D98C7 /* libPods-LGCDDataSource.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		41874DE319D75EDA00CED9D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 41874DC119D75EDA00CED9D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 41874DC819D75EDA00CED9D6;
+			remoteInfo = LGCDDataSource;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1ECEC14D83A6CBCA1DF2271A /* Pods-LGCDDataSource.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGCDDataSource.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGCDDataSource/Pods-LGCDDataSource.debug.xcconfig"; sourceTree = "<group>"; };
+		20ADC1AC969473D390D6953D /* Pods-LGCDDataSource.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGCDDataSource.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGCDDataSource/Pods-LGCDDataSource.release.xcconfig"; sourceTree = "<group>"; };
+		411EE27619D7634E00A4622A /* ContactsJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsJSONParser.h; sourceTree = "<group>"; };
+		411EE27719D7634E00A4622A /* ContactsJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsJSONParser.m; sourceTree = "<group>"; };
+		411EE27819D7634E00A4622A /* ContactsXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsXMLParser.h; sourceTree = "<group>"; };
+		411EE27919D7634E00A4622A /* ContactsXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsXMLParser.m; sourceTree = "<group>"; };
+		411EE27A19D7634E00A4622A /* DataSourceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceFactory.h; sourceTree = "<group>"; };
+		411EE27B19D7634F00A4622A /* DataSourceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceFactory.m; sourceTree = "<group>"; };
+		411EE28519D76E4800A4622A /* _Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Contact.h; sourceTree = "<group>"; };
+		411EE28619D76E4800A4622A /* _Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Contact.m; sourceTree = "<group>"; };
+		411EE28719D76E4800A4622A /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		411EE28819D76E4800A4622A /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		41874DC919D75EDA00CED9D6 /* LGCDDataSource.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGCDDataSource.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		41874DCD19D75EDA00CED9D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41874DCE19D75EDA00CED9D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		41874DE219D75EDA00CED9D6 /* LGCDDataSourceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LGCDDataSourceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		41874DE719D75EDA00CED9D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41874DE819D75EDA00CED9D6 /* LGCDDataSourceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGCDDataSourceTests.m; sourceTree = "<group>"; };
+		41874DF519D75FC000CED9D6 /* LGDataUpdateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateOperation.h; sourceTree = "<group>"; };
+		41874DF619D75FC000CED9D6 /* LGDataUpdateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateOperation.m; sourceTree = "<group>"; };
+		41874DF719D75FC000CED9D6 /* LGDataUpdateOperationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateOperationDelegate.h; sourceTree = "<group>"; };
+		41874DF819D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LGDataUpdateOperationManager+PromiseKit.h"; sourceTree = "<group>"; };
+		41874DF919D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LGDataUpdateOperationManager+PromiseKit.m"; sourceTree = "<group>"; };
+		41874DFA19D75FC000CED9D6 /* LGDataUpdateOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateOperationManager.h; sourceTree = "<group>"; };
+		41874DFB19D75FC000CED9D6 /* LGDataUpdateOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateOperationManager.m; sourceTree = "<group>"; };
+		41874DFD19D75FC000CED9D6 /* LGCDParserInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGCDParserInterface.h; sourceTree = "<group>"; };
+		41874DFE19D75FC000CED9D6 /* LGAbstractCDJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAbstractCDJSONParser.h; sourceTree = "<group>"; };
+		41874DFF19D75FC000CED9D6 /* LGAbstractCDJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAbstractCDJSONParser.m; sourceTree = "<group>"; };
+		41874E0019D75FC000CED9D6 /* LGAbstractCDXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAbstractCDXMLParser.h; sourceTree = "<group>"; };
+		41874E0119D75FC000CED9D6 /* LGAbstractCDXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAbstractCDXMLParser.m; sourceTree = "<group>"; };
+		41874E0319D75FC000CED9D6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		41874E0419D75FC000CED9D6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		41874E0519D75FC000CED9D6 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		41874E0619D75FC000CED9D6 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		41874E0F19D761F700CED9D6 /* LGModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LGModel.xcdatamodel; sourceTree = "<group>"; };
+		418DF08819D7EB5300A80A54 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		EB43F640B1178ACEDB4D98C7 /* libPods-LGCDDataSource.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGCDDataSource.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		41874DC619D75EDA00CED9D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E121F651CBD5FC1E5ED4630D /* libPods-LGCDDataSource.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41874DDF19D75EDA00CED9D6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		253105260AD98227616A610F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1ECEC14D83A6CBCA1DF2271A /* Pods-LGCDDataSource.debug.xcconfig */,
+				20ADC1AC969473D390D6953D /* Pods-LGCDDataSource.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		411EE28419D76E4800A4622A /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				411EE28519D76E4800A4622A /* _Contact.h */,
+				411EE28619D76E4800A4622A /* _Contact.m */,
+				411EE28719D76E4800A4622A /* Contact.h */,
+				411EE28819D76E4800A4622A /* Contact.m */,
+			);
+			name = ManagedObjects;
+			path = Classes/ManagedObjects;
+			sourceTree = "<group>";
+		};
+		41874DC019D75EDA00CED9D6 = {
+			isa = PBXGroup;
+			children = (
+				41874DCB19D75EDA00CED9D6 /* LGCDDataSource */,
+				41874DE519D75EDA00CED9D6 /* LGCDDataSourceTests */,
+				41874DCA19D75EDA00CED9D6 /* Products */,
+				253105260AD98227616A610F /* Pods */,
+				83ED1AA63FC1C9C4495DEA0B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		41874DCA19D75EDA00CED9D6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				41874DC919D75EDA00CED9D6 /* LGCDDataSource.app */,
+				41874DE219D75EDA00CED9D6 /* LGCDDataSourceTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		41874DCB19D75EDA00CED9D6 /* LGCDDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				41874DF219D75FC000CED9D6 /* Classes */,
+				411EE28419D76E4800A4622A /* ManagedObjects */,
+				41874DCC19D75EDA00CED9D6 /* Supporting Files */,
+			);
+			path = LGCDDataSource;
+			sourceTree = "<group>";
+		};
+		41874DCC19D75EDA00CED9D6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				41874E0E19D761F700CED9D6 /* LGModel.xcdatamodeld */,
+				41874DCD19D75EDA00CED9D6 /* Info.plist */,
+				41874DCE19D75EDA00CED9D6 /* main.m */,
+				418DF08819D7EB5300A80A54 /* PrefixHeader.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		41874DE519D75EDA00CED9D6 /* LGCDDataSourceTests */ = {
+			isa = PBXGroup;
+			children = (
+				41874DE819D75EDA00CED9D6 /* LGCDDataSourceTests.m */,
+				41874DE619D75EDA00CED9D6 /* Supporting Files */,
+			);
+			path = LGCDDataSourceTests;
+			sourceTree = "<group>";
+		};
+		41874DE619D75EDA00CED9D6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				41874DE719D75EDA00CED9D6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		41874DF219D75FC000CED9D6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				41874DF319D75FC000CED9D6 /* Core */,
+				41874E0219D75FC000CED9D6 /* Other */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		41874DF319D75FC000CED9D6 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				41874DF419D75FC000CED9D6 /* DataUpdate */,
+				41874DFC19D75FC000CED9D6 /* Parsers */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		41874DF419D75FC000CED9D6 /* DataUpdate */ = {
+			isa = PBXGroup;
+			children = (
+				41874DF519D75FC000CED9D6 /* LGDataUpdateOperation.h */,
+				41874DF619D75FC000CED9D6 /* LGDataUpdateOperation.m */,
+				41874DF719D75FC000CED9D6 /* LGDataUpdateOperationDelegate.h */,
+				41874DFA19D75FC000CED9D6 /* LGDataUpdateOperationManager.h */,
+				41874DFB19D75FC000CED9D6 /* LGDataUpdateOperationManager.m */,
+				41874DF819D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.h */,
+				41874DF919D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.m */,
+			);
+			path = DataUpdate;
+			sourceTree = "<group>";
+		};
+		41874DFC19D75FC000CED9D6 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				41874DFD19D75FC000CED9D6 /* LGCDParserInterface.h */,
+				41874DFE19D75FC000CED9D6 /* LGAbstractCDJSONParser.h */,
+				41874DFF19D75FC000CED9D6 /* LGAbstractCDJSONParser.m */,
+				41874E0019D75FC000CED9D6 /* LGAbstractCDXMLParser.h */,
+				41874E0119D75FC000CED9D6 /* LGAbstractCDXMLParser.m */,
+			);
+			path = Parsers;
+			sourceTree = "<group>";
+		};
+		41874E0219D75FC000CED9D6 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				41874E0319D75FC000CED9D6 /* AppDelegate.h */,
+				41874E0419D75FC000CED9D6 /* AppDelegate.m */,
+				41874E0519D75FC000CED9D6 /* ViewController.h */,
+				41874E0619D75FC000CED9D6 /* ViewController.m */,
+				411EE27619D7634E00A4622A /* ContactsJSONParser.h */,
+				411EE27719D7634E00A4622A /* ContactsJSONParser.m */,
+				411EE27819D7634E00A4622A /* ContactsXMLParser.h */,
+				411EE27919D7634E00A4622A /* ContactsXMLParser.m */,
+				411EE27A19D7634E00A4622A /* DataSourceFactory.h */,
+				411EE27B19D7634F00A4622A /* DataSourceFactory.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		83ED1AA63FC1C9C4495DEA0B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EB43F640B1178ACEDB4D98C7 /* libPods-LGCDDataSource.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		41874DC819D75EDA00CED9D6 /* LGCDDataSource */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41874DEC19D75EDA00CED9D6 /* Build configuration list for PBXNativeTarget "LGCDDataSource" */;
+			buildPhases = (
+				B4F221AAC91CB03B5204DD8E /* Check Pods Manifest.lock */,
+				41874DC519D75EDA00CED9D6 /* Sources */,
+				41874DC619D75EDA00CED9D6 /* Frameworks */,
+				41874DC719D75EDA00CED9D6 /* Resources */,
+				27BE7D544C8A80C5A4688CC9 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LGCDDataSource;
+			productName = LGCDDataSource;
+			productReference = 41874DC919D75EDA00CED9D6 /* LGCDDataSource.app */;
+			productType = "com.apple.product-type.application";
+		};
+		41874DE119D75EDA00CED9D6 /* LGCDDataSourceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41874DEF19D75EDA00CED9D6 /* Build configuration list for PBXNativeTarget "LGCDDataSourceTests" */;
+			buildPhases = (
+				41874DDE19D75EDA00CED9D6 /* Sources */,
+				41874DDF19D75EDA00CED9D6 /* Frameworks */,
+				41874DE019D75EDA00CED9D6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				41874DE419D75EDA00CED9D6 /* PBXTargetDependency */,
+			);
+			name = LGCDDataSourceTests;
+			productName = LGCDDataSourceTests;
+			productReference = 41874DE219D75EDA00CED9D6 /* LGCDDataSourceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		41874DC119D75EDA00CED9D6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Luka Gabric";
+				TargetAttributes = {
+					411EE27F19D76AAE00A4622A = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					41874DC819D75EDA00CED9D6 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					41874DE119D75EDA00CED9D6 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = 41874DC819D75EDA00CED9D6;
+					};
+				};
+			};
+			buildConfigurationList = 41874DC419D75EDA00CED9D6 /* Build configuration list for PBXProject "LGCDDataSource" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 41874DC019D75EDA00CED9D6;
+			productRefGroup = 41874DCA19D75EDA00CED9D6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				41874DC819D75EDA00CED9D6 /* LGCDDataSource */,
+				41874DE119D75EDA00CED9D6 /* LGCDDataSourceTests */,
+				411EE27F19D76AAE00A4622A /* Mogenerator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		41874DC719D75EDA00CED9D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41874DE019D75EDA00CED9D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		27BE7D544C8A80C5A4688CC9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGCDDataSource/Pods-LGCDDataSource-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		411EE28319D76AC200A4622A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/mogenerator -m LGCDDataSource/LGModel.xcdatamodeld/LGModel.xcdatamodel -O LGCDDataSource/Classes/ManagedObjects --template-var arc=true";
+		};
+		B4F221AAC91CB03B5204DD8E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		41874DC519D75EDA00CED9D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41874E0B19D75FC000CED9D6 /* LGAbstractCDXMLParser.m in Sources */,
+				41874E1019D761F700CED9D6 /* LGModel.xcdatamodeld in Sources */,
+				41874E0819D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.m in Sources */,
+				41874E0D19D75FC000CED9D6 /* ViewController.m in Sources */,
+				411EE28A19D76E4800A4622A /* Contact.m in Sources */,
+				411EE28919D76E4800A4622A /* _Contact.m in Sources */,
+				41874E0A19D75FC000CED9D6 /* LGAbstractCDJSONParser.m in Sources */,
+				411EE27E19D7634F00A4622A /* DataSourceFactory.m in Sources */,
+				411EE27C19D7634F00A4622A /* ContactsJSONParser.m in Sources */,
+				41874E0919D75FC000CED9D6 /* LGDataUpdateOperationManager.m in Sources */,
+				41874DCF19D75EDA00CED9D6 /* main.m in Sources */,
+				41874E0719D75FC000CED9D6 /* LGDataUpdateOperation.m in Sources */,
+				411EE27D19D7634F00A4622A /* ContactsXMLParser.m in Sources */,
+				41874E0C19D75FC000CED9D6 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		41874DDE19D75EDA00CED9D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41874DE919D75EDA00CED9D6 /* LGCDDataSourceTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		41874DE419D75EDA00CED9D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 41874DC819D75EDA00CED9D6 /* LGCDDataSource */;
+			targetProxy = 41874DE319D75EDA00CED9D6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		411EE28119D76AAE00A4622A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		411EE28219D76AAE00A4622A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		41874DEA19D75EDA00CED9D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		41874DEB19D75EDA00CED9D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		41874DED19D75EDA00CED9D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1ECEC14D83A6CBCA1DF2271A /* Pods-LGCDDataSource.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = LGCDDataSource/PrefixHeader.pch;
+				INFOPLIST_FILE = LGCDDataSource/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		41874DEE19D75EDA00CED9D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20ADC1AC969473D390D6953D /* Pods-LGCDDataSource.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = LGCDDataSource/PrefixHeader.pch;
+				INFOPLIST_FILE = LGCDDataSource/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		41874DF019D75EDA00CED9D6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LGCDDataSourceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LGCDDataSource.app/LGCDDataSource";
+			};
+			name = Debug;
+		};
+		41874DF119D75EDA00CED9D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LGCDDataSourceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LGCDDataSource.app/LGCDDataSource";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		411EE28019D76AAE00A4622A /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				411EE28119D76AAE00A4622A /* Debug */,
+				411EE28219D76AAE00A4622A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		41874DC419D75EDA00CED9D6 /* Build configuration list for PBXProject "LGCDDataSource" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41874DEA19D75EDA00CED9D6 /* Debug */,
+				41874DEB19D75EDA00CED9D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		41874DEC19D75EDA00CED9D6 /* Build configuration list for PBXNativeTarget "LGCDDataSource" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41874DED19D75EDA00CED9D6 /* Debug */,
+				41874DEE19D75EDA00CED9D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		41874DEF19D75EDA00CED9D6 /* Build configuration list for PBXNativeTarget "LGCDDataSourceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41874DF019D75EDA00CED9D6 /* Debug */,
+				41874DF119D75EDA00CED9D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		41874E0E19D761F700CED9D6 /* LGModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				41874E0F19D761F700CED9D6 /* LGModel.xcdatamodel */,
+			);
+			currentVersion = 41874E0F19D761F700CED9D6 /* LGModel.xcdatamodel */;
+			path = LGModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 41874DC119D75EDA00CED9D6 /* Project object */;
+}

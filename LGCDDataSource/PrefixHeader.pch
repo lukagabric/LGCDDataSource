@@ -1,0 +1,14 @@
+//
+//  PrefixHeader.pch
+//  LGCDDataSource
+//
+//  Created by Luka Gabric on 28/09/14.
+//  Copyright (c) 2014 Luka Gabric. All rights reserved.
+//
+
+#ifndef LGCDDataSource_PrefixHeader_pch
+#define LGCDDataSource_PrefixHeader_pch
+
+#define MR_LOGGING_ENABLED 1
+#import <MagicalRecord/CoreData+MagicalRecord.h>
+#endif

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-LGCDDataSource-MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-LGCDDataSource-MagicalRecord.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-LGCDDataSource-OMGHTTPURLRQ.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-LGCDDataSource-PromiseKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-LGCDDataSource.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>300C25CCB3E5ED586B6A6422</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5D101B20B8A5C375C8890BBC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>636ED5EF310B6131FE251732</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79D94E394E5520666E1E0175</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8297293E6DF94135FB31C15E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
