@@ -38,9 +38,9 @@
 #endif
 
 
-+ (LGDataUpdateOperationManager *)contactsUpdateManagerWithActivityView:(UIView *)activityView
++ (LGDataUpdateOperationGroupManager *)contactsUpdateManagerWithActivityView:(UIView *)activityView
 {
-    LGDataUpdateOperationManager *contactsDataManager = [[LGDataUpdateOperationManager alloc] initWithUpdateOperations:@[[self contactsUpdateOperation]] andGroupId:@"contacts"];
+    LGDataUpdateOperationGroupManager *contactsDataManager = [[LGDataUpdateOperationGroupManager alloc] initWithUpdateOperations:@[[self contactsUpdateOperation]] andGroupId:@"contacts"];
     contactsDataManager.activityView = activityView;
     
     return contactsDataManager;

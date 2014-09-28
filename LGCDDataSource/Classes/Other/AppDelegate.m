@@ -8,13 +8,13 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "CoreData+MagicalRecord.h"
 
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelVerbose];
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"LGModel"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

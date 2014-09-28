@@ -5,7 +5,7 @@
 
 
 #import "LGCDParserInterface.h"
-#import "LGDataUpdateOperationManager.h"
+#import "LGDataUpdateOperationGroupManager.h"
 #import "LGDataUpdateOperationDelegate.h"
 
 

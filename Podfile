@@ -6,7 +6,7 @@ inhibit_all_warnings!
 source 'https://github.com/CocoaPods/Specs.git'
 
 target "LGCDDataSource" do
-    pod 'MagicalRecord', :git => 'https://github.com/magicalpanda/MagicalRecord.git'
+    pod 'MagicalRecord'
     pod 'MBProgressHUD'
     pod 'PromiseKit'
 end

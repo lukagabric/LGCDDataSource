@@ -9,20 +9,20 @@
 #import <Foundation/Foundation.h>
 
 
-NSDate * MR_adjustDateForDST(NSDate *date);
-NSDate * MR_dateFromString(NSString *value, NSString *format);
-NSDate * MR_dateFromNumber(NSNumber *value, BOOL milliseconds);
-NSNumber * MR_numberFromString(NSString *value);
-NSString * MR_attributeNameFromString(NSString *value);
-NSString * MR_primaryKeyNameFromString(NSString *value);
+NSDate * adjustDateForDST(NSDate *date);
+NSDate * dateFromString(NSString *value, NSString *format);
+NSNumber * numberFromString(NSString *value);
+NSString * attributeNameFromString(NSString *value);
+NSString * primaryKeyNameFromString(NSString *value);
 
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
-UIColor * MR_colorFromString(NSString *serializedColor);
+UIColor * UIColorFromString(NSString *serializedColor);
+
 #else
 #import <AppKit/AppKit.h>
-NSColor * MR_colorFromString(NSString *serializedColor);
-#endif
+NSColor * NSColorFromString(NSString *serializedColor);
 
-NSInteger* MR_newColorComponentsFromString(NSString *serializedColor);
+#endif
 extern id (*colorFromString)(NSString *);
+

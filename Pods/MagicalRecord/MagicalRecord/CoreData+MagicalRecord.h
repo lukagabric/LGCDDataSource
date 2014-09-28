@@ -1,25 +1,21 @@
-//
-//  CoreData+MagicalRecord.h
-//
-//  Created by Saul Mora on 28/07/10.
-//  Copyright 2010 Magical Panda Software, LLC All rights reserved.
-//
+
+#ifndef NS_BLOCKS_AVAILABLE
+    #warning MagicalRecord requires blocks
+#endif
 
 #ifdef __OBJC__
+//    #if !( __has_feature(objc_arc) && __has_feature(objc_arc_weak) )
+//        #error MagicalRecord now requires ARC to be enabled
+//    #endif
 
-    #import <Foundation/Foundation.h>
+    #import <CoreFoundation/CoreFoundation.h>
     #import <CoreData/CoreData.h>
-
-    #ifndef NS_BLOCKS_AVAILABLE
-    #warning MagicalRecord requires blocks
-    #endif
 
     #ifdef MR_SHORTHAND
     #import "MagicalRecordShorthand.h"
     #endif
 
     #import "MagicalRecord.h"
-    #import "MagicalRecordDeprecated.h"
     #import "MagicalRecord+Actions.h"
     #import "MagicalRecord+ErrorHandling.h"
     #import "MagicalRecord+Options.h"

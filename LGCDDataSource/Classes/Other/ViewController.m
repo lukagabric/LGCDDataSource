@@ -8,6 +8,7 @@
 
 
 #import "ViewController.h"
+#import "CoreData+MagicalRecord.h"
 #import "DataSourceFactory.h"
 #import "Contact.h"
 #import "LGDataUpdateOperationManager+PromiseKit.h"
@@ -15,8 +16,8 @@
 
 @implementation ViewController
 {
-    LGDataUpdateOperationManager *_updateManager;
-    LGDataUpdateOperationManager *_updateManagerPromise;
+    LGDataUpdateOperationGroupManager *_updateManager;
+    LGDataUpdateOperationGroupManager *_updateManagerPromise;
 }
 
 

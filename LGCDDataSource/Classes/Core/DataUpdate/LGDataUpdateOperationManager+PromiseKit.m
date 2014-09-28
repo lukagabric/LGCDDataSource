@@ -7,7 +7,7 @@
 #import "LGDataUpdateOperationManager+PromiseKit.h"
 
 
-@implementation LGDataUpdateOperationManager (PromiseKit)
+@implementation LGDataUpdateOperationGroupManager (PromiseKit)
 
 
 - (PMKPromise *)dataUpdatePromise

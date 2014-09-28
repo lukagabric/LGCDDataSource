@@ -1,7 +1,7 @@
 PODS:
-  - MagicalRecord (2.3.0-beta.3):
+  - MagicalRecord (2.2):
     - MagicalRecord/Core
-  - MagicalRecord/Core (2.3.0-beta.3)
+  - MagicalRecord/Core (2.2)
   - MBProgressHUD (0.9)
   - OMGHTTPURLRQ (2.0.1):
     - OMGHTTPURLRQ/RQ
@@ -44,16 +44,12 @@ PODS:
     - PromiseKit/Promise
 
 DEPENDENCIES:
-  - MagicalRecord (from `https://github.com/magicalpanda/MagicalRecord.git`)
+  - MagicalRecord
   - MBProgressHUD
   - PromiseKit
 
-EXTERNAL SOURCES:
-  MagicalRecord:
-    :git: https://github.com/magicalpanda/MagicalRecord.git
-
 SPEC CHECKSUMS:
-  MagicalRecord: 23dfe0350eab4767cc1ce7d247af4e4cd54ee72c
+  MagicalRecord: 2b471584fc9e3137f3d0a56967917baa4979e224
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   OMGHTTPURLRQ: 4297af2a7f7ca7adb3f8331203001e0fd2dae16f
   PromiseKit: 7a18d7b8d41a156cda0268c3cb065d272d5aa554

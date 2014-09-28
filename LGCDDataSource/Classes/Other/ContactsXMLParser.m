@@ -5,6 +5,7 @@
 
 
 #import "ContactsXMLParser.h"
+#import "CoreData+MagicalRecord.h"
 #import "Contact.h"
 
 
@@ -16,7 +17,7 @@
 
 - (void)didStartElement
 {
-    ifElement(@"contact") _contact = [Contact MR_createEntityInContext:_context];
+    ifElement(@"contact") _contact = [Contact MR_createInContext:_context];
 ;
 }
 

@@ -5,6 +5,7 @@
 
 
 #import "ContactsJSONParser.h"
+#import "CoreData+MagicalRecord.h"
 #import "Contact.h"
 
 
@@ -13,7 +14,7 @@
 
 - (void)bindObject
 {
-    Contact *contact = [Contact MR_createEntityInContext:_context];
+    Contact *contact = [Contact MR_createInContext:_context];
     bindStrJ(contact.firstName, @"firstName");
     bindStrJ(contact.lastName, @"lastName");
     contact.lastNameInitial = [contact.lastName substringToIndex:1];

@@ -37,13 +37,9 @@
             if (![value isKindOfClass:[NSDate class]]) 
             {
                 NSString *dateFormat = [[self userInfo] valueForKey:kMagicalRecordImportCustomDateFormatKey];
-                if ([value isKindOfClass:[NSNumber class]]) {
-                    value = MR_dateFromNumber(value, [dateFormat isEqualToString:kMagicalRecordImportUnixTimeString]);
-                }
-                else {
-                    value = MR_dateFromString([value description], dateFormat ?: kMagicalRecordImportDefaultDateFormatString);
-                }
+                value = dateFromString([value description], dateFormat ?: kMagicalRecordImportDefaultDateFormatString);
             }
+            //            value = adjustDateForDST(value);
         }
         else if (attributeType == NSInteger16AttributeType ||
                  attributeType == NSInteger32AttributeType ||
@@ -52,17 +48,7 @@
                  attributeType == NSDoubleAttributeType ||
                  attributeType == NSFloatAttributeType) {
             if (![value isKindOfClass:[NSNumber class]] && value != [NSNull null]) {
-                value = MR_numberFromString([value description]);
-            }
-        }
-        else if (attributeType == NSBooleanAttributeType) {
-            if (![value isKindOfClass:[NSNumber class]] && value != [NSNull null]) {
-            value = [NSNumber numberWithBool:[value boolValue]];
-            }
-        }
-        else if (attributeType == NSStringAttributeType) {
-            if (![value isKindOfClass:[NSString class]] && value != [NSNull null]) {
-                value = [value description];
+                value = numberFromString([value description]);
             }
         }
     }

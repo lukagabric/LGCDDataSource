@@ -11,19 +11,19 @@
 
 #pragma mark - Data import helper functions
 
-NSString * MR_attributeNameFromString(NSString *value)
+NSString * attributeNameFromString(NSString *value)
 {
     NSString *firstCharacter = [[value substringToIndex:1] capitalizedString];
     return [firstCharacter stringByAppendingString:[value substringFromIndex:1]];
 }
 
-NSString * MR_primaryKeyNameFromString(NSString *value)
+NSString * primaryKeyNameFromString(NSString *value)
 {
     NSString *firstCharacter = [[value substringToIndex:1] lowercaseString];
     return [firstCharacter stringByAppendingFormat:@"%@ID", [value substringFromIndex:1]];
 }
 
-NSDate * MR_adjustDateForDST(NSDate *date)
+NSDate * adjustDateForDST(NSDate *date)
 {
     NSTimeInterval dstOffset = [[NSTimeZone localTimeZone] daylightSavingTimeOffsetForDate:date];
     NSDate *actualDate = [date dateByAddingTimeInterval:dstOffset];
@@ -31,10 +31,10 @@ NSDate * MR_adjustDateForDST(NSDate *date)
     return actualDate;
 }
 
-NSDate * MR_dateFromString(NSString *value, NSString *format)
+NSDate * dateFromString(NSString *value, NSString *format)
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [formatter setTimeZone:[NSTimeZone localTimeZone]];
     [formatter setLocale:[NSLocale currentLocale]];
     [formatter setDateFormat:format];
     
@@ -43,31 +43,18 @@ NSDate * MR_dateFromString(NSString *value, NSString *format)
     return parsedDate;
 }
 
-NSDate * MR_dateFromNumber(NSNumber *value, BOOL milliseconds)
-{
-    NSTimeInterval timeInterval = [value doubleValue];
-    if (milliseconds) {
-        timeInterval = timeInterval / 1000.00;
-    }
-    return [NSDate dateWithTimeIntervalSince1970:timeInterval];
-}
-
-NSNumber * MR_numberFromString(NSString *value) {
+NSNumber * numberFromString(NSString *value) {
     return [NSNumber numberWithDouble:[value doubleValue]];
 }
 
-NSInteger* MR_newColorComponentsFromString(NSString *serializedColor)
+NSInteger* newColorComponentsFromString(NSString *serializedColor);
+NSInteger* newColorComponentsFromString(NSString *serializedColor)
 {
     NSScanner *colorScanner = [NSScanner scannerWithString:serializedColor];
     NSString *colorType;
     [colorScanner scanUpToString:@"(" intoString:&colorType];
     
     NSInteger *componentValues = malloc(4 * sizeof(NSInteger));
-    if (componentValues == NULL)
-    {
-        return NULL;
-    }
-  
     if ([colorType hasPrefix:@"rgba"])
     {
         NSCharacterSet *rgbaCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"(,)"];
@@ -80,20 +67,16 @@ NSInteger* MR_newColorComponentsFromString(NSString *serializedColor)
             componentValue++;
         }
     }
-
+    //else if ([colorType hasPrefix:@"hsba"])
+    //else if ([colorType hasPrefix:@""])
     return componentValues;
 }
 
 #if TARGET_OS_IPHONE
 
-UIColor * MR_colorFromString(NSString *serializedColor)
+UIColor * UIColorFromString(NSString *serializedColor)
 {
-    NSInteger *componentValues = MR_newColorComponentsFromString(serializedColor);
-    if (componentValues == NULL)
-    {
-        return nil;
-    }
-    
+    NSInteger *componentValues = newColorComponentsFromString(serializedColor);
     UIColor *color = [UIColor colorWithRed:(componentValues[0] / 255.0f)
                                      green:(componentValues[1] / 255.0f)
                                       blue:(componentValues[2] / 255.0f)
@@ -102,17 +85,13 @@ UIColor * MR_colorFromString(NSString *serializedColor)
     free(componentValues);
     return color;
 }
+id (*colorFromString)(NSString *) = UIColorFromString;
 
 #else
 
-NSColor * MR_colorFromString(NSString *serializedColor)
+NSColor * NSColorFromString(NSString *serializedColor)
 {
-    NSInteger *componentValues = MR_newColorComponentsFromString(serializedColor);
-    if (componentValues == NULL)
-    {
-        return nil;
-    }
-  
+    NSInteger *componentValues = newColorComponentsFromString(serializedColor);
     NSColor *color = [NSColor colorWithDeviceRed:(componentValues[0] / 255.0f)
                                            green:(componentValues[1] / 255.0f)
                                             blue:(componentValues[2] / 255.0f)
@@ -120,7 +99,7 @@ NSColor * MR_colorFromString(NSString *serializedColor)
     free(componentValues);
     return color;
 }
+id (*colorFromString)(NSString *) = NSColorFromString;
+
 
 #endif
-
-id (*colorFromString)(NSString *) = MR_colorFromString;

@@ -17,8 +17,5 @@
 + (void) setupCoreDataStackWithStoreNamed:(NSString *)storeName;
 + (void) setupCoreDataStackWithAutoMigratingSqliteStoreNamed:(NSString *)storeName;
 
-+ (void) setupCoreDataStackWithStoreAtURL:(NSURL *)storeURL;
-+ (void) setupCoreDataStackWithAutoMigratingSqliteStoreAtURL:(NSURL *)storeURL;
-
 
 @end

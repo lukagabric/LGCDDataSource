@@ -4,11 +4,11 @@
 //
 
 
-#import "LGDataUpdateOperationManager.h"
+#import "LGDataUpdateOperationGroupManager.h"
 #import "PromiseKit.h"
 
 
-@interface LGDataUpdateOperationManager (PromiseKit)
+@interface LGDataUpdateOperationGroupManager (PromiseKit)
 
 
 - (PMKPromise *)dataUpdatePromise;
