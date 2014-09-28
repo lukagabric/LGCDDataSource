@@ -18,6 +18,9 @@
 #define bindBoolFromDictJ(obj, key)    obj = isNull(key) ? NO : [[_currentElement objectForKey:key] boolValue]
 #define isKeyPathNull(key)             [[_currentElement valueForKeyPath:key] isKindOfClass:[NSNull class]]
 #define bindStrKeyPathJ(obj, key)      obj = isKeyPathNull(key) ? nil : [_currentElement valueForKeyPath:key]
+#define bindFloatKeyPathJ(obj, key)    obj = isKeyPathNull(key) ? 0 : [[_currentElement valueForKeyPath:key] floatValue]
+#define bindIntKeyPathJ(obj, key)      obj = isKeyPathNull(key) ? 0 : [[_currentElement valueForKeyPath:key] integerValue]
+#define bindBoolJ(obj, key)            obj = isNull(key) ? 0 : [[_currentElement objectForKey:key] boolValue]
 
 
 @interface LGAbstractCDJSONParser : NSObject <LGCDParserInterface>
