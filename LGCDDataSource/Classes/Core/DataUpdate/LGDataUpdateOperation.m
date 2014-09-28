@@ -6,6 +6,8 @@
 
 #import "LGDataUpdateOperation.h"
 #import <CoreData/CoreData.h>
+#import "CoreData+MagicalRecord.h"
+#import "LGDataUpdateRequest.h"
 
 
 @implementation LGDataUpdateOperation
@@ -20,16 +22,16 @@
 
 - (instancetype)initWithSession:(NSURLSession *)session
                         request:(NSURLRequest *)request
-              requestIdentifier:(NSString *)requestIdentifier
+                      requestId:(NSString *)requestId
                       andParser:(id <LGCDParserInterface>)parser
 {
     self = [super init];
     if (self)
     {
-        NSAssert(session && request && requestIdentifier && parser, @"Dependencies are mandatory");
+        NSAssert(session && request && requestId && parser, @"Dependencies are mandatory");
         
         _parser = parser;
-        _requestIdentifier = [requestIdentifier copy];
+        _requestId = [requestId copy];
         
         __weak typeof(self) weakSelf = self;
         
@@ -77,7 +79,10 @@
     NSError *parsingError;
     
     if ([self isDataNew])
+    {
         parsingError = [self parseData];
+        [self saveRequestInfo];
+    }
     
     if ([self isCancelled]) return;
     
@@ -152,24 +157,6 @@
 }
 
 
-#pragma mark - Check if data is new
-
-
-- (BOOL)isDataNew
-{
-    NSString *previousFingerprint = [[NSUserDefaults standardUserDefaults] objectForKey:_requestIdentifier];
-    NSString *currentFingerprint = self.responseFingerprint;
-    
-    BOOL isDataNew = !previousFingerprint || !currentFingerprint || ![previousFingerprint isEqualToString:currentFingerprint];
-    
-#if DEBUG
-    NSLog(@"Data is %@new for this request.", isDataNew ? @"" : @"NOT ");
-#endif
-    
-    return isDataNew;
-}
-
-
 #pragma mark - Get response fingerprint
 
 
@@ -181,6 +168,13 @@
     
     if (!etagOrLastModified)
         etagOrLastModified = [headers objectForKey:@"Last-Modified"];
+    
+#if DEBUG
+    if (!etagOrLastModified)
+    {
+        NSLog(@"No response fingerprint for request with url: '%@' and identifier: '%@'. Request needs to have a fingerprint (e.g. ETag or Last-Modified) for caching.", [self.response.URL absoluteString], _requestId);
+    }
+#endif
     
     return etagOrLastModified;
 }
@@ -212,6 +206,57 @@
     
     [self didChangeValueForKey:@"isExecuting"];
     [self didChangeValueForKey:@"isFinished"];
+}
+
+
+#pragma mark - Request info
+
+
+- (BOOL)isDataNew
+{
+    __block LGDataUpdateRequest *request = [LGDataUpdateRequest MR_findFirstByAttribute:@"requestId"
+                                                                              withValue:_requestId
+                                                                              inContext:_workerContext];
+    
+    __block NSString *previousFingerprint;
+    
+    if (request)
+    {
+        [_workerContext performBlockAndWait:^{
+            previousFingerprint = request.responseFingerprint;
+        }];
+    }
+
+    NSString *currentFingerprint = self.responseFingerprint;
+    
+    BOOL isDataNew = !previousFingerprint || !currentFingerprint || ![previousFingerprint isEqualToString:currentFingerprint];
+    
+#if DEBUG
+    NSLog(@"Data is %@new for this request.", isDataNew ? @"" : @"NOT ");
+#endif
+    
+    return isDataNew;
+}
+
+
+- (void)saveRequestInfo
+{
+    if (_error) return;
+    
+    __block LGDataUpdateRequest *request = [LGDataUpdateRequest MR_findFirstByAttribute:@"requestId"
+                                                                              withValue:_requestId
+                                                                              inContext:_workerContext];
+    
+    [_workerContext performBlockAndWait:^{
+        if (!request)
+        {
+            request = [LGDataUpdateRequest MR_createInContext:_workerContext];
+            request.requestId = _requestId;
+        }
+        
+        request.responseFingerprint = self.responseFingerprint;
+        request.updateDate = [NSDate date];
+    }];
 }
 
 

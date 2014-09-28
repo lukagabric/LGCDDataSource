@@ -20,20 +20,20 @@
 {
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://lukagabric.com/wp-content/uploads/2014/03/contacts.json"]];
     return [[LGDataUpdateOperation alloc] initWithSession:[NSURLSession sharedSession]
-                                                 request:request
-                                       requestIdentifier:@"ContactsJSON"
-                                               andParser:[ContactsJSONParser new]];
+                                                  request:request
+                                                requestId:@"ContactsJSON"
+                                                andParser:[ContactsJSONParser new]];
 }
 
 #else
 
-+ (LDataUpdateOperation *)contactsUpdateOperation
++ (LGDataUpdateOperation *)contactsUpdateOperation
 {
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://lukagabric.com/wp-content/uploads/2014/03/contacts.xml"]];
-    return [[LDataUpdateOperation alloc] initWithSession:[NSURLSession sharedSession]
-                                                 request:request
-                                       requestIdentifier:@"ContactsXML"
-                                               andParser:[ContactsParser new]];
+    return [[LGDataUpdateOperation alloc] initWithSession:[NSURLSession sharedSession]
+                                                  request:request
+                                                requestId:@"ContactsXML"
+                                                andParser:[ContactsXMLParser new]];
 }
 #endif
 

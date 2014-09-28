@@ -31,6 +31,7 @@
     _updateManager = [DataSourceFactory contactsUpdateManagerWithActivityView:self.view];
 
     [_updateManager updateDataIgnoringCacheIntervalWithCompletionBlock:^(NSError *error, BOOL newData) {
+        NSLog(@"_updateManager: Data %@new", newData ? @"" : @"NOT ");
         NSLog(@"_updateManager: Contacts count = %ld", [Contact MR_countOfEntities]);
     }];
     
@@ -41,6 +42,7 @@
     _updateManagerPromise = [DataSourceFactory contactsUpdateManagerWithActivityView:self.view];
     
     [_updateManagerPromise dataUpdateIgnoringCacheIntervalPromise].then(^(NSNumber *newData) {
+        NSLog(@"_updateManagerPromise: Data %@new", [newData isEqualToNumber:@YES] ? @"" : @"NOT ");
         NSLog(@"_updateManagerPromise: Contacts count = %ld", [Contact MR_countOfEntities]);
     });
 }

@@ -8,9 +8,10 @@
 #import <CoreData/CoreData.h>
 #import "CoreData+MagicalRecord.h"
 #import "MBProgressHUD.h"
+#import "LGDataUpdateGroup.h"
 
 
-#define kDataUpdateOperationGroupLastUpdateTimeFormat @"DataUpdateOperationGroupLastUpdateTimeFormat.groupId.%@"
+#define kDataUpdateOperationGroupLastUpdateDateFormat @"kDataUpdateOperationGroupLastUpdateDateFormat.groupId.%@"
 
 
 @implementation LGDataUpdateOperationGroupManager
@@ -49,6 +50,7 @@ static NSOperationQueue *dataUpdateQueue;
 - (void)initialize
 {
     [self createWorkerContext];
+    
     _saveAfterLoad = YES;
     _cacheValidTime = 900;
     
@@ -149,7 +151,7 @@ static NSOperationQueue *dataUpdateQueue;
     }
     else
     {
-        NSDate *lastUpdateDate = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:kDataUpdateOperationGroupLastUpdateTimeFormat, _groupId]];
+        NSDate *lastUpdateDate = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:kDataUpdateOperationGroupLastUpdateDateFormat, _groupId]];
         
         NSTimeInterval lastUpdateInterval = [lastUpdateDate timeIntervalSinceReferenceDate];
         NSTimeInterval staleAtInterval = lastUpdateInterval + _cacheValidTime;
@@ -211,6 +213,12 @@ static NSOperationQueue *dataUpdateQueue;
     [self freeWorkerContext];
     
     _workerContext = [NSManagedObjectContext MR_contextWithParent:[NSManagedObjectContext MR_defaultContext]];
+    
+#if DEBUG
+    NSString *workingName = [NSString stringWithFormat:@"%@ WORKER CONTEXT", _groupId];
+    [_workerContext MR_setWorkingName:workingName];
+    
+#endif
 }
 
 
@@ -234,23 +242,17 @@ static NSOperationQueue *dataUpdateQueue;
     {
         if ([weakSelf cancelled]) return;
         
-        [_workerContext MR_saveOnlySelfWithCompletion:^(BOOL success, NSError *error) {
-            //saving worker context pushes changes to default context (main), once data is in default it
-            //can be used for UI (main thread) and there is no need to wait for it to be persisted
+        [self setGroupLastUpdateDate];
+        
+        //saving worker context pushes changes to default context (main)
+        [_workerContext MR_saveOnlySelfAndWait];
 
-            [weakSelf loadDidFinishWithError:error canceled:NO forceNewData:error == nil];
-
-            if (error) return;
-            
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
-                //once data is persisted, response fingerprints and update time is stored also
-
-                NSAssert(error == nil, @"Error saving to persistant store");
-                
-                [weakSelf saveResponseFingerprints];
-                [weakSelf saveGroupLastUpdateTime];
-            }];
-        }];
+        //once data is in default it can be used for UI (main thread) and there is
+        //no need to wait for it to be persisted
+        [self loadDidFinishWithError:nil canceled:NO forceNewData:YES];
+        
+        //now write data to disk asynchronously without blocking UI
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:nil];
     }
     else
     {
@@ -258,59 +260,48 @@ static NSOperationQueue *dataUpdateQueue;
         NSLog(@"No need to save because there are no changes in context.");
 #endif
         
-        [self saveGroupLastUpdateTime];
         [self loadDidFinishWithError:nil canceled:NO forceNewData:NO];
     }
 }
 
 
-#pragma mark - saveResponseFingerprints
+#pragma mark - setGroupLastUpdateDate
 
 
-- (void)saveResponseFingerprints
+- (void)setGroupLastUpdateDate
 {
-    for (LGDataUpdateOperation *operation in _updateOperations)
-    {
-        NSString *requestIdentifier = operation.requestIdentifier;
-        
-        NSAssert(requestIdentifier, @"Request needs to have a key for caching.");
-        
-        NSString *responseFingerprint = operation.responseFingerprint;
-        
-        if (responseFingerprint)
+    __block LGDataUpdateGroup *updateGroup = [LGDataUpdateGroup MR_findFirstByAttribute:@"groupId"
+                                                                              withValue:_groupId
+                                                                              inContext:_workerContext];
+
+    [_workerContext performBlockAndWait:^{
+        if (!updateGroup)
         {
-            [[NSUserDefaults standardUserDefaults] setObject:responseFingerprint forKey:requestIdentifier];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-#if DEBUG
-            NSLog(@"Saved response fingerprint: '%@' for request with identifier: '%@'", responseFingerprint, requestIdentifier);
-#endif
+            updateGroup = [LGDataUpdateGroup MR_createInContext:_workerContext];
+            updateGroup.groupId = _groupId;
         }
-        else
-        {
-#if DEBUG
-            NSLog(@"No response fingerprint for request with url: '%@' and identifier: '%@'. Request needs to have a fingerprint (e.g. ETag or Last-Modified) for caching.", [operation.response.URL absoluteString], requestIdentifier);
-#endif
-        }
-    }
-}
-
-
-#pragma mark - Last update time
-
-
-- (void)saveGroupLastUpdateTime
-{
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:[NSString stringWithFormat:kDataUpdateOperationGroupLastUpdateTimeFormat, _groupId]];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        updateGroup.updateDate = [NSDate date];
+    }];
 }
 
 
 - (BOOL)isGroupDataStale
 {
-    NSDate *lastUpdate = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:kDataUpdateOperationGroupLastUpdateTimeFormat, _groupId]];
+    LGDataUpdateGroup *updateGroup = [LGDataUpdateGroup MR_findFirstByAttribute:@"groupId"
+                                                                      withValue:_groupId
+                                                                      inContext:_workerContext];
     
-    return !lastUpdate || [(NSDate *)[lastUpdate dateByAddingTimeInterval:_cacheValidTime] compare:[NSDate date]] != NSOrderedDescending;
+    __block NSDate *updateDate;
+    
+    if (updateGroup)
+    {
+        [_workerContext performBlockAndWait:^{
+            updateDate = updateGroup.updateDate;
+        }];
+    }
+    
+    return !updateGroup || !updateDate || [(NSDate *)[updateDate dateByAddingTimeInterval:_cacheValidTime] compare:[NSDate date]] != NSOrderedDescending;
 }
 
 

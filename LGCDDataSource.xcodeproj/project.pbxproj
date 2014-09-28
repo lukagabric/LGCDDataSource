@@ -36,6 +36,14 @@
 		41874E0C19D75FC000CED9D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0419D75FC000CED9D6 /* AppDelegate.m */; };
 		41874E0D19D75FC000CED9D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0619D75FC000CED9D6 /* ViewController.m */; };
 		41874E1019D761F700CED9D6 /* LGModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0E19D761F700CED9D6 /* LGModel.xcdatamodeld */; };
+		41F5AD0619D86E4000984678 /* _LGDataUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5ACFF19D86E4000984678 /* _LGDataUpdateGroup.m */; };
+		41F5AD0719D86E4000984678 /* _LGDataUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5ACFF19D86E4000984678 /* _LGDataUpdateGroup.m */; };
+		41F5AD0819D86E4000984678 /* _LGDataUpdateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0119D86E4000984678 /* _LGDataUpdateRequest.m */; };
+		41F5AD0919D86E4000984678 /* _LGDataUpdateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0119D86E4000984678 /* _LGDataUpdateRequest.m */; };
+		41F5AD0A19D86E4000984678 /* LGDataUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0319D86E4000984678 /* LGDataUpdateGroup.m */; };
+		41F5AD0B19D86E4000984678 /* LGDataUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0319D86E4000984678 /* LGDataUpdateGroup.m */; };
+		41F5AD0C19D86E4000984678 /* LGDataUpdateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0519D86E4000984678 /* LGDataUpdateRequest.m */; };
+		41F5AD0D19D86E4000984678 /* LGDataUpdateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0519D86E4000984678 /* LGDataUpdateRequest.m */; };
 		E121F651CBD5FC1E5ED4630D /* libPods-LGCDDataSource.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB43F640B1178ACEDB4D98C7 /* libPods-LGCDDataSource.a */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +93,14 @@
 		41874E0519D75FC000CED9D6 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		41874E0619D75FC000CED9D6 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		41874E0F19D761F700CED9D6 /* LGModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LGModel.xcdatamodel; sourceTree = "<group>"; };
+		41F5ACFE19D86E4000984678 /* _LGDataUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _LGDataUpdateGroup.h; sourceTree = "<group>"; };
+		41F5ACFF19D86E4000984678 /* _LGDataUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _LGDataUpdateGroup.m; sourceTree = "<group>"; };
+		41F5AD0019D86E4000984678 /* _LGDataUpdateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _LGDataUpdateRequest.h; sourceTree = "<group>"; };
+		41F5AD0119D86E4000984678 /* _LGDataUpdateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _LGDataUpdateRequest.m; sourceTree = "<group>"; };
+		41F5AD0219D86E4000984678 /* LGDataUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateGroup.h; sourceTree = "<group>"; };
+		41F5AD0319D86E4000984678 /* LGDataUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateGroup.m; sourceTree = "<group>"; };
+		41F5AD0419D86E4000984678 /* LGDataUpdateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateRequest.h; sourceTree = "<group>"; };
+		41F5AD0519D86E4000984678 /* LGDataUpdateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateRequest.m; sourceTree = "<group>"; };
 		EB43F640B1178ACEDB4D98C7 /* libPods-LGCDDataSource.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGCDDataSource.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -119,6 +135,14 @@
 		411EE28419D76E4800A4622A /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
+				41F5ACFE19D86E4000984678 /* _LGDataUpdateGroup.h */,
+				41F5ACFF19D86E4000984678 /* _LGDataUpdateGroup.m */,
+				41F5AD0219D86E4000984678 /* LGDataUpdateGroup.h */,
+				41F5AD0319D86E4000984678 /* LGDataUpdateGroup.m */,
+				41F5AD0019D86E4000984678 /* _LGDataUpdateRequest.h */,
+				41F5AD0119D86E4000984678 /* _LGDataUpdateRequest.m */,
+				41F5AD0419D86E4000984678 /* LGDataUpdateRequest.h */,
+				41F5AD0519D86E4000984678 /* LGDataUpdateRequest.m */,
 				411EE28519D76E4800A4622A /* _Contact.h */,
 				411EE28619D76E4800A4622A /* _Contact.m */,
 				411EE28719D76E4800A4622A /* Contact.h */,
@@ -412,7 +436,11 @@
 				41874E0A19D75FC000CED9D6 /* LGAbstractCDJSONParser.m in Sources */,
 				411EE27E19D7634F00A4622A /* DataSourceFactory.m in Sources */,
 				411EE27C19D7634F00A4622A /* ContactsJSONParser.m in Sources */,
+				41F5AD0819D86E4000984678 /* _LGDataUpdateRequest.m in Sources */,
+				41F5AD0A19D86E4000984678 /* LGDataUpdateGroup.m in Sources */,
+				41F5AD0C19D86E4000984678 /* LGDataUpdateRequest.m in Sources */,
 				41874E0919D75FC000CED9D6 /* LGDataUpdateOperationGroupManager.m in Sources */,
+				41F5AD0619D86E4000984678 /* _LGDataUpdateGroup.m in Sources */,
 				41874DCF19D75EDA00CED9D6 /* main.m in Sources */,
 				41874E0719D75FC000CED9D6 /* LGDataUpdateOperation.m in Sources */,
 				411EE27D19D7634F00A4622A /* ContactsXMLParser.m in Sources */,
@@ -424,7 +452,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41F5AD0919D86E4000984678 /* _LGDataUpdateRequest.m in Sources */,
+				41F5AD0D19D86E4000984678 /* LGDataUpdateRequest.m in Sources */,
 				41874DE919D75EDA00CED9D6 /* LGCDDataSourceTests.m in Sources */,
+				41F5AD0719D86E4000984678 /* _LGDataUpdateGroup.m in Sources */,
+				41F5AD0B19D86E4000984678 /* LGDataUpdateGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

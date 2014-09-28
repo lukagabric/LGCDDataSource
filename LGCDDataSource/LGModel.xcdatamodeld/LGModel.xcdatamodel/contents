@@ -7,7 +7,18 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastNameInitial" optional="YES" attributeType="String" minValueString="1" maxValueString="1" indexed="YES" syncable="YES"/>
     </entity>
+    <entity name="LGDataUpdateGroup" representedClassName="LGDataUpdateGroup" syncable="YES">
+        <attribute name="groupId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="LGDataUpdateRequest" representedClassName="LGDataUpdateRequest" syncable="YES">
+        <attribute name="requestId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="responseFingerprint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Contact" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Contact" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="LGDataUpdateGroup" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="LGDataUpdateRequest" positionX="0" positionY="0" width="128" height="88"/>
     </elements>
 </model>

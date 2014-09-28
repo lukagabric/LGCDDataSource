@@ -14,7 +14,7 @@
 
 - (instancetype)initWithSession:(NSURLSession *)session
                         request:(NSURLRequest *)request
-              requestIdentifier:(NSString *)requestIdentifier
+                      requestId:(NSString *)requestId
                       andParser:(id <LGCDParserInterface>)parser;
 
 
@@ -26,7 +26,7 @@
 @property (readonly, nonatomic) NSData *responseData;
 @property (readonly, nonatomic) NSString *responseFingerprint;
 @property (readonly, nonatomic) NSError *error;
-@property (readonly, nonatomic) NSString *requestIdentifier;
+@property (readonly, nonatomic) NSString *requestId;
 
 
 @end
@@ -43,6 +43,7 @@
 - (BOOL)isDataNew;
 - (BOOL)isResponseValid;
 - (void)finishOperationWithError:(NSError *)error;
+- (void)saveRequestInfo;
 
 
 @end

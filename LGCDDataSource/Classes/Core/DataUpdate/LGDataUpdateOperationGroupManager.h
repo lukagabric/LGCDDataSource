@@ -49,8 +49,7 @@
 - (void)createWorkerContext;
 - (void)freeWorkerContext;
 - (void)performSave;
-- (void)saveResponseFingerprints;
-- (void)saveGroupLastUpdateTime;
+- (void)setGroupLastUpdateDate;
 - (BOOL)isGroupDataStale;
 
 
