@@ -36,7 +36,10 @@
         __weak typeof(self) weakSelf = self;
         
         _task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            [weakSelf taskFinishedWithData:data response:response andError:error];
+            LGDataUpdateOperation *strongSelf = weakSelf;
+            if (!strongSelf) return;
+            
+            [strongSelf taskFinishedWithData:data response:response andError:error];
         }];
     }
     return self;
@@ -96,20 +99,21 @@
 - (NSError *)parseData
 {
     __weak LGDataUpdateOperation *weakSelf = self;
-    __weak NSManagedObjectContext *weakContext = _workerContext;
-    __weak id <LGCDParserInterface> weakParser = _parser;
     __block NSError *error;
     
     [_workerContext performBlockAndWait:^{
-        [weakParser setContext:weakContext];
-        [weakParser parseData:weakSelf.responseData];
+        LGDataUpdateOperation *strongSelf = weakSelf;
+        if (!strongSelf) return;
+
+        [strongSelf.parser setContext:strongSelf.workerContext];
+        [strongSelf.parser parseData:strongSelf.responseData];
         
-        error = [weakParser error];
+        error = [strongSelf.parser error];
         
         if (error)
-            [weakContext reset];
+            [strongSelf.workerContext reset];
         else
-            [weakSelf deleteOrphanedObjectsWithParser:weakParser];
+            [weakSelf deleteOrphanedObjectsWithParser:strongSelf.parser];
     }];
     
     return error;
@@ -214,19 +218,21 @@
 
 - (BOOL)isDataNew
 {
-    LGDataUpdateRequest *request = [LGDataUpdateRequest MR_findFirstByAttribute:@"requestId"
-                                                                      withValue:_requestId
-                                                                      inContext:_workerContext];
-    
     __block NSString *previousFingerprint;
     
-    if (request)
-    {
-        [_workerContext performBlockAndWait:^{
-            previousFingerprint = request.responseFingerprint;
-        }];
-    }
-
+    __weak LGDataUpdateOperation *weakSelf = self;
+    
+    [_workerContext performBlockAndWait:^{
+        LGDataUpdateOperation *strongSelf = weakSelf;
+        if (!strongSelf) return;
+        
+        LGDataUpdateRequest *request = [LGDataUpdateRequest MR_findFirstByAttribute:@"requestId"
+                                                                          withValue:strongSelf.requestId
+                                                                          inContext:strongSelf.workerContext];
+        
+        previousFingerprint = request.responseFingerprint;
+    }];
+    
     NSString *currentFingerprint = self.responseFingerprint;
     
     BOOL isDataNew = !previousFingerprint || !currentFingerprint || ![previousFingerprint isEqualToString:currentFingerprint];
@@ -243,18 +249,23 @@
 {
     if (_error) return;
     
-    __block LGDataUpdateRequest *request = [LGDataUpdateRequest MR_findFirstByAttribute:@"requestId"
-                                                                              withValue:_requestId
-                                                                              inContext:_workerContext];
+    __weak LGDataUpdateOperation *weakSelf = self;
     
     [_workerContext performBlockAndWait:^{
+        LGDataUpdateOperation *strongSelf = weakSelf;
+        if (!strongSelf) return;
+        
+        LGDataUpdateRequest *request = [LGDataUpdateRequest MR_findFirstByAttribute:@"requestId"
+                                                                          withValue:strongSelf.requestId
+                                                                          inContext:strongSelf.workerContext];
+        
         if (!request)
         {
             request = [LGDataUpdateRequest MR_createInContext:_workerContext];
-            request.requestId = _requestId;
+            request.requestId = strongSelf.requestId;
         }
         
-        request.responseFingerprint = self.responseFingerprint;
+        request.responseFingerprint = strongSelf.responseFingerprint;
         request.updateDate = [NSDate date];
     }];
 }

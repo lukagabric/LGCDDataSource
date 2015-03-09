@@ -32,7 +32,7 @@
 
 - (NSString *)entityName
 {
-    return @"Contact";
+    return [Contact entityName];
 }
 
 
