@@ -98,22 +98,18 @@
 
 - (NSError *)parseData
 {
-    __weak LGDataUpdateOperation *weakSelf = self;
     __block NSError *error;
     
     [_workerContext performBlockAndWait:^{
-        LGDataUpdateOperation *strongSelf = weakSelf;
-        if (!strongSelf) return;
-
-        [strongSelf.parser setContext:strongSelf.workerContext];
-        [strongSelf.parser parseData:strongSelf.responseData];
+        [_parser setContext:_workerContext];
+        [_parser parseData:_responseData];
         
-        error = [strongSelf.parser error];
+        error = [_parser error];
         
         if (error)
-            [strongSelf.workerContext reset];
+            [_workerContext reset];
         else
-            [weakSelf deleteOrphanedObjectsWithParser:strongSelf.parser];
+            [self deleteOrphanedObjectsWithParser:_parser];
     }];
     
     return error;

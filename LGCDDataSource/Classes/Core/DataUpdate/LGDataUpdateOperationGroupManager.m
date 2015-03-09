@@ -169,11 +169,7 @@ static NSOperationQueue *dataUpdateQueue;
 
 - (void)cancelLoad
 {
-    if (![[NSThread currentThread] isMainThread])
-    {
-        [self performSelectorOnMainThread:@selector(cancelLoad) withObject:nil waitUntilDone:NO];
-        return;
-    }
+    NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     
     if (_finished || _cancelled) return;
     
