@@ -270,15 +270,20 @@ static NSOperationQueue *dataUpdateQueue;
 
 - (void)setGroupLastUpdateDate
 {
-    __block LGDataUpdateGroup *updateGroup = [LGDataUpdateGroup MR_findFirstByAttribute:@"groupId"
-                                                                              withValue:_groupId
-                                                                              inContext:_workerContext];
-
+    __weak LGDataUpdateOperationGroupManager *weakSelf = self;
+    
     [_workerContext performBlockAndWait:^{
+        LGDataUpdateOperationGroupManager *strongSelf = weakSelf;
+        if (!strongSelf) return;
+        
+        LGDataUpdateGroup *updateGroup = [LGDataUpdateGroup MR_findFirstByAttribute:@"groupId"
+                                                                          withValue:strongSelf.groupId
+                                                                          inContext:strongSelf.workerContext];
+
         if (!updateGroup)
         {
             updateGroup = [LGDataUpdateGroup MR_createInContext:_workerContext];
-            updateGroup.groupId = _groupId;
+            updateGroup.groupId = strongSelf.groupId;
         }
         
         updateGroup.updateDate = [NSDate date];
@@ -288,20 +293,22 @@ static NSOperationQueue *dataUpdateQueue;
 
 - (BOOL)isGroupDataStale
 {
-    LGDataUpdateGroup *updateGroup = [LGDataUpdateGroup MR_findFirstByAttribute:@"groupId"
-                                                                      withValue:_groupId
-                                                                      inContext:_workerContext];
-    
     __block NSDate *updateDate;
     
-    if (updateGroup)
-    {
-        [_workerContext performBlockAndWait:^{
-            updateDate = updateGroup.updateDate;
-        }];
-    }
+    __weak LGDataUpdateOperationGroupManager *weakSelf = self;
     
-    return !updateGroup || !updateDate || [(NSDate *)[updateDate dateByAddingTimeInterval:_cacheValidTime] compare:[NSDate date]] != NSOrderedDescending;
+    [_workerContext performBlockAndWait:^{
+        LGDataUpdateOperationGroupManager *strongSelf = weakSelf;
+        if (!strongSelf) return;
+
+        LGDataUpdateGroup *updateGroup = [LGDataUpdateGroup MR_findFirstByAttribute:@"groupId"
+                                                                          withValue:strongSelf.groupId
+                                                                          inContext:strongSelf.workerContext];
+        
+        updateDate = updateGroup.updateDate;
+    }];
+    
+    return !updateDate || [(NSDate *)[updateDate dateByAddingTimeInterval:_cacheValidTime] compare:[NSDate date]] != NSOrderedDescending;
 }
 
 
