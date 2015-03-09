@@ -30,4 +30,10 @@
 }
 
 
+- (NSString *)entityName
+{
+    return @"Contact";
+}
+
+
 @end

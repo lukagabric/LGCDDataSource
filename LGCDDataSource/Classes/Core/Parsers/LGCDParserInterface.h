@@ -17,6 +17,7 @@
 - (NSSet *)itemsSet;
 - (void)abortParsing;
 - (void)setContext:(NSManagedObjectContext *)context;
+- (NSString *)entityName;
 
 
 @end

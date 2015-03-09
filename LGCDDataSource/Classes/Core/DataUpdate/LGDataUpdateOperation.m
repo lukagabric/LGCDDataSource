@@ -123,7 +123,7 @@
 {
     NSSet *items = [parser itemsSet];
     
-    NSString *entityName = [[[items anyObject] entity] name];
+    NSString *entityName = [parser entityName];
     
     if (!entityName || [entityName length] == 0) return;
     

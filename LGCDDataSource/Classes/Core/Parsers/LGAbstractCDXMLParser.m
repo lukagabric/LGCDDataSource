@@ -177,6 +177,11 @@
 }
 
 
+- (NSString *)entityName {
+    return nil;
+}
+
+
 #pragma mark - abort
 
 
