@@ -270,20 +270,15 @@ static NSOperationQueue *dataUpdateQueue;
 
 - (void)setGroupLastUpdateDate
 {
-    __weak LGDataUpdateOperationGroupManager *weakSelf = self;
-    
     [_workerContext performBlockAndWait:^{
-        LGDataUpdateOperationGroupManager *strongSelf = weakSelf;
-        if (!strongSelf) return;
-        
         LGDataUpdateGroup *updateGroup = [LGDataUpdateGroup MR_findFirstByAttribute:@"groupId"
-                                                                          withValue:strongSelf.groupId
-                                                                          inContext:strongSelf.workerContext];
-
+                                                                          withValue:_groupId
+                                                                          inContext:_workerContext];
+        
         if (!updateGroup)
         {
             updateGroup = [LGDataUpdateGroup MR_createInContext:_workerContext];
-            updateGroup.groupId = strongSelf.groupId;
+            updateGroup.groupId = _groupId;
         }
         
         updateGroup.updateDate = [NSDate date];
@@ -295,15 +290,10 @@ static NSOperationQueue *dataUpdateQueue;
 {
     __block NSDate *updateDate;
     
-    __weak LGDataUpdateOperationGroupManager *weakSelf = self;
-    
     [_workerContext performBlockAndWait:^{
-        LGDataUpdateOperationGroupManager *strongSelf = weakSelf;
-        if (!strongSelf) return;
-
         LGDataUpdateGroup *updateGroup = [LGDataUpdateGroup MR_findFirstByAttribute:@"groupId"
-                                                                          withValue:strongSelf.groupId
-                                                                          inContext:strongSelf.workerContext];
+                                                                          withValue:_groupId
+                                                                          inContext:_workerContext];
         
         updateDate = updateGroup.updateDate;
     }];

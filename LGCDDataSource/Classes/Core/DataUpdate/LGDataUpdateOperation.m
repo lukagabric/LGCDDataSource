@@ -220,15 +220,10 @@
 {
     __block NSString *previousFingerprint;
     
-    __weak LGDataUpdateOperation *weakSelf = self;
-    
     [_workerContext performBlockAndWait:^{
-        LGDataUpdateOperation *strongSelf = weakSelf;
-        if (!strongSelf) return;
-        
         LGDataUpdateRequest *request = [LGDataUpdateRequest MR_findFirstByAttribute:@"requestId"
-                                                                          withValue:strongSelf.requestId
-                                                                          inContext:strongSelf.workerContext];
+                                                                          withValue:_requestId
+                                                                          inContext:_workerContext];
         
         previousFingerprint = request.responseFingerprint;
     }];
@@ -249,23 +244,18 @@
 {
     if (_error) return;
     
-    __weak LGDataUpdateOperation *weakSelf = self;
-    
     [_workerContext performBlockAndWait:^{
-        LGDataUpdateOperation *strongSelf = weakSelf;
-        if (!strongSelf) return;
-        
         LGDataUpdateRequest *request = [LGDataUpdateRequest MR_findFirstByAttribute:@"requestId"
-                                                                          withValue:strongSelf.requestId
-                                                                          inContext:strongSelf.workerContext];
+                                                                          withValue:_requestId
+                                                                          inContext:_workerContext];
         
         if (!request)
         {
             request = [LGDataUpdateRequest MR_createInContext:_workerContext];
-            request.requestId = strongSelf.requestId;
+            request.requestId = _requestId;
         }
         
-        request.responseFingerprint = strongSelf.responseFingerprint;
+        request.responseFingerprint = self.responseFingerprint;
         request.updateDate = [NSDate date];
     }];
 }
