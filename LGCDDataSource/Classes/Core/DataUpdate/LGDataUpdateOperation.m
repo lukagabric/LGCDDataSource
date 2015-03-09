@@ -214,9 +214,9 @@
 
 - (BOOL)isDataNew
 {
-    __block LGDataUpdateRequest *request = [LGDataUpdateRequest MR_findFirstByAttribute:@"requestId"
-                                                                              withValue:_requestId
-                                                                              inContext:_workerContext];
+    LGDataUpdateRequest *request = [LGDataUpdateRequest MR_findFirstByAttribute:@"requestId"
+                                                                      withValue:_requestId
+                                                                      inContext:_workerContext];
     
     __block NSString *previousFingerprint;
     
