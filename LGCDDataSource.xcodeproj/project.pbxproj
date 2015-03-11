@@ -70,6 +70,7 @@
 		411EE28619D76E4800A4622A /* _Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Contact.m; sourceTree = "<group>"; };
 		411EE28719D76E4800A4622A /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		411EE28819D76E4800A4622A /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		412C7AFF1AB0072200CC0206 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		41874DC919D75EDA00CED9D6 /* LGCDDataSource.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGCDDataSource.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41874DCD19D75EDA00CED9D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41874DCE19D75EDA00CED9D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -185,6 +186,7 @@
 		41874DCC19D75EDA00CED9D6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				412C7AFF1AB0072200CC0206 /* Podfile */,
 				41874E0E19D761F700CED9D6 /* LGModel.xcdatamodeld */,
 				41874DCD19D75EDA00CED9D6 /* Info.plist */,
 				41874DCE19D75EDA00CED9D6 /* main.m */,

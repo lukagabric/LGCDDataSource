@@ -151,7 +151,7 @@ static NSOperationQueue *dataUpdateQueue;
     }
     else
     {
-        NSDate *lastUpdateDate = [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:kDataUpdateOperationGroupLastUpdateDateFormat, _groupId]];
+        NSDate *lastUpdateDate = [self groupUpdateDate];
         
         NSTimeInterval lastUpdateInterval = [lastUpdateDate timeIntervalSinceReferenceDate];
         NSTimeInterval staleAtInterval = lastUpdateInterval + _cacheValidTime;
@@ -282,7 +282,7 @@ static NSOperationQueue *dataUpdateQueue;
 }
 
 
-- (BOOL)isGroupDataStale
+- (NSDate *)groupUpdateDate
 {
     __block NSDate *updateDate;
     
@@ -293,6 +293,14 @@ static NSOperationQueue *dataUpdateQueue;
         
         updateDate = updateGroup.updateDate;
     }];
+    
+    return updateDate;
+}
+
+
+- (BOOL)isGroupDataStale
+{
+    NSDate *updateDate = [self groupUpdateDate];
     
     return !updateDate || [(NSDate *)[updateDate dateByAddingTimeInterval:_cacheValidTime] compare:[NSDate date]] != NSOrderedDescending;
 }

@@ -32,6 +32,11 @@ Then is always executed on the main dispatch queue (i.e the main/UI thread).
 - (PMKPromise *(^)(id))then;
 
 /**
+ The provided block is executed in the background on a default global queue.
+ */
+- (PMKPromise *(^)(id))thenInBackground;
+
+/**
  The provided block always runs on the main queue.
 */
 - (PMKPromise *(^)(id))catch;
@@ -105,12 +110,8 @@ Note that passing an `NSError` object is valid usage and will reject this promis
  Currently PromiseKit limits you to THREE parameters to the manifold.
 */
 #define PMKManifold(...) __PMKManifold(__VA_ARGS__, 3, 2, 1)
-#define __PMKManifold(_1, _2, _3, N, ...) [PMKArray:N, _1, _2, _3]
-@interface PMKArray : NSObject
-// returning `id` to avoid compiler issues: https://github.com/mxcl/PromiseKit/issues/76
-+ (id):(NSUInteger)count, ...;
-@end
-
+#define __PMKManifold(_1, _2, _3, N, ...) __PMKArrayWithCount(N, _1, _2, _3)
+extern id __PMKArrayWithCount(NSUInteger, ...);
 
 
 
@@ -129,3 +130,13 @@ PMKPromise *dispatch_promise(id block);
  @see dispatch_promise
  */
 PMKPromise *dispatch_promise_on(dispatch_queue_t q, id block);
+
+
+
+/**
+ Called by PromiseKit in the event of unhandled errors.
+ The default handler NSLogs the error. Note, your handler is executed
+ from an undefined queue, unless you manage thread-safe data, dispatch to
+ a safe queue before doing anything else in your handler.
+*/
+extern void (^PMKUnhandledErrorHandler)(NSError *);

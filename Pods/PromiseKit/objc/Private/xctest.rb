@@ -1,4 +1,11 @@
-FRAMEWORKS = "/Applications/Xcode.app/Contents/Developer/Library/Frameworks"
+FRAMEWORKS = begin
+  attempt1 = "/Applications/Xcode.app/Contents/Developer/Library/Frameworks"
+  if File.directory? "#{attempt1}/XCTest.framework"
+    attempt1
+  else
+    "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks"
+  end
+end
 
 def bold(s); s; end
 def red(s); "\e[31m#{s}\e[0m"; end
@@ -77,10 +84,11 @@ def compile!
   abort unless system <<-EOS
     clang -g -O0 -ObjC -F#{FRAMEWORKS} -I. -fmodules -fobjc-arc \
           -framework XCTest \
-          -isystem/tmp/ChuzzleKit -isystem/tmp/OMGHTTPURLRQ \
+          -isystem/tmp/ChuzzleKit -isystem/tmp/OMGHTTPURLRQ/Sources \
           /tmp/PromiseKitTests.m \
-          NSURLConnection+PromiseKit.m PMKPromise.m PMKPromise+When.m PMKPromise+Until.m \
-          /tmp/ChuzzleKit/*.m /tmp/OMGHTTPURLRQ/*.m \
+          NSURLConnection+PromiseKit.m \
+          PMKPromise.m PMKPromise+Pause.m PMKPromise+When.m PMKPromise+Until.m PMKPromise+Join.m \
+          /tmp/ChuzzleKit/*.m /tmp/OMGHTTPURLRQ/Sources/*.m \
           -Wall -Weverything -Wno-unused-parameter -Wno-missing-field-initializers \
           -Wno-documentation -Wno-gnu-conditional-omitted-operand \
           -Wno-pointer-arith -Wno-disabled-macro-expansion \
@@ -90,6 +98,8 @@ def compile!
           -Wno-format-nonliteral \
           -Wno-incomplete-module -Wno-objc-interface-ivars \
           -Wno-auto-import \
+          -headerpad_max_install_names \
+          -D"PMKLog(...)=" \
           -o /tmp/PromiseKitTests
   EOS
   abort unless system <<-EOS
@@ -104,7 +114,7 @@ prepare!
 compile!
 
 if not ARGV.include? '-d'
-  exit! test!.exitstatus
+  exit! test!.exitstatus || 1
 else
   system "lldb /tmp/PromiseKitTests"
   File.delete("/tmp/PromiseKitTests.m")

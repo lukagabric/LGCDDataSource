@@ -125,7 +125,7 @@
     
     NSString *entityName = [parser entityName];
     
-    if (!entityName || [entityName length] == 0) return;
+    if ([entityName length] == 0) return;
     
     NSFetchRequest *centerRequest = [NSFetchRequest new];
     
