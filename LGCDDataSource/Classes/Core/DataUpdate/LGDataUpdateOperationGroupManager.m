@@ -232,12 +232,10 @@ static NSOperationQueue *dataUpdateQueue;
 
 - (void)performSave
 {
-    __weak typeof(self) weakSelf = self;
+    if ([self cancelled]) return;
     
     if ([_workerContext hasChanges])
     {
-        if ([weakSelf cancelled]) return;
-        
         [self setGroupLastUpdateDate];
         
         //saving worker context pushes changes to default context (main)
