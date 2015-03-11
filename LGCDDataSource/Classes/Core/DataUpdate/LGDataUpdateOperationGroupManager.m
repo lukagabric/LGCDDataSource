@@ -11,9 +11,6 @@
 #import "LGDataUpdateGroup.h"
 
 
-#define kDataUpdateOperationGroupLastUpdateDateFormat @"kDataUpdateOperationGroupLastUpdateDateFormat.groupId.%@"
-
-
 @implementation LGDataUpdateOperationGroupManager
 
 
