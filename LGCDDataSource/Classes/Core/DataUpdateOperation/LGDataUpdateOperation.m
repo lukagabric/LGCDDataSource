@@ -135,7 +135,7 @@
 - (id)parseData {
     __block id dataUpdateResult;
 
-    if (self.dataUpdate) return nil;
+    if (!self.dataUpdate) return nil;
     
     dataUpdateResult = self.dataUpdate(self.responseData, self.response, self.bgContext);
     
