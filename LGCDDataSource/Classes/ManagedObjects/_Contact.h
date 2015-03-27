@@ -8,8 +8,10 @@ extern const struct ContactAttributes {
 	__unsafe_unretained NSString *company;
 	__unsafe_unretained NSString *email;
 	__unsafe_unretained NSString *firstName;
+	__unsafe_unretained NSString *guid;
 	__unsafe_unretained NSString *lastName;
 	__unsafe_unretained NSString *lastNameInitial;
+	__unsafe_unretained NSString *weight;
 } ContactAttributes;
 
 extern const struct ContactRelationships {
@@ -17,6 +19,8 @@ extern const struct ContactRelationships {
 
 extern const struct ContactFetchedProperties {
 } ContactFetchedProperties;
+
+
 
 
 
@@ -68,6 +72,16 @@ extern const struct ContactFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSString* guid;
+
+
+
+//- (BOOL)validateGuid:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* lastName;
 
 
@@ -83,6 +97,20 @@ extern const struct ContactFetchedProperties {
 
 
 //- (BOOL)validateLastNameInitial:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* weight;
+
+
+
+@property int16_t weightValue;
+- (int16_t)weightValue;
+- (void)setWeightValue:(int16_t)value_;
+
+//- (BOOL)validateWeight:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -116,6 +144,12 @@ extern const struct ContactFetchedProperties {
 
 
 
+- (NSString*)primitiveGuid;
+- (void)setPrimitiveGuid:(NSString*)value;
+
+
+
+
 - (NSString*)primitiveLastName;
 - (void)setPrimitiveLastName:(NSString*)value;
 
@@ -124,6 +158,15 @@ extern const struct ContactFetchedProperties {
 
 - (NSString*)primitiveLastNameInitial;
 - (void)setPrimitiveLastNameInitial:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveWeight;
+- (void)setPrimitiveWeight:(NSNumber*)value;
+
+- (int16_t)primitiveWeightValue;
+- (void)setPrimitiveWeightValue:(int16_t)value_;
 
 
 

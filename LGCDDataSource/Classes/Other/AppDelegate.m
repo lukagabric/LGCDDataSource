@@ -9,17 +9,64 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "CoreData+MagicalRecord.h"
-
+#import "ContactsInteractor.h"
+#import "LGDataUpdateInfo.h"
 
 @implementation AppDelegate
+
+/*
+ - (void)deleteOrphanedObjectsWithParser:(id <LGCDParserInterface>)parser
+ {
+ NSSet *items = [parser itemsSet];
+ 
+ NSString *entityName = [[[items anyObject] entity] name];
+ 
+ if (!entityName || [entityName length] == 0) return;
+ 
+ NSFetchRequest *fetchRequest = [NSFetchRequest new];
+ 
+ fetchRequest.entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:_workerContext];
+ fetchRequest.includesPropertyValues = NO;
+ 
+ NSError *error = nil;
+ 
+ NSArray *allObjects = [self.bgContext executeFetchRequest:centerRequest error:&error];
+ 
+ if (error)
+ return;
+ 
+ if ([allObjects count] > 0)
+ {
+ NSMutableSet *setToDelete = [NSMutableSet setWithArray:allObjects];
+ 
+ [setToDelete minusSet:items];
+ 
+ for (NSManagedObject *managedObjectToDelete in setToDelete)
+ {
+ [_workerContext deleteObject:managedObjectToDelete];
+ 
+ #if DEBUG
+ NSLog(@"deleted object - %@", managedObjectToDelete);
+ #endif
+ }
+ }
+ }
+ */
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"LGModel"];
     
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSManagedObjectContext *mainContext = [NSManagedObjectContext MR_defaultContext];
+    
+    self.dataSource = [[LGDataSource alloc] initWithSession:session mainContext:mainContext];
+    ContactsInteractor *contactsInteractor = [[ContactsInteractor alloc] initWithDataSource:self.dataSource];
+    ViewController *viewController = [[ViewController alloc] initWithInteractor:contactsInteractor];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:viewController];
     [self.window makeKeyAndVisible];
     
     return YES;

@@ -21,29 +21,18 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		411EE27C19D7634F00A4622A /* ContactsJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 411EE27719D7634E00A4622A /* ContactsJSONParser.m */; };
-		411EE27D19D7634F00A4622A /* ContactsXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 411EE27919D7634E00A4622A /* ContactsXMLParser.m */; };
-		411EE27E19D7634F00A4622A /* DataSourceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 411EE27B19D7634F00A4622A /* DataSourceFactory.m */; };
-		411EE28919D76E4800A4622A /* _Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 411EE28619D76E4800A4622A /* _Contact.m */; };
-		411EE28A19D76E4800A4622A /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 411EE28819D76E4800A4622A /* Contact.m */; };
+		412687CB1AB32E2F00CB8AB6 /* LGDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 412687BA1AB32E2F00CB8AB6 /* LGDataSource.m */; };
+		412687CC1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 412687BE1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m */; };
+		418130E21AB5555900DACA1D /* _Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 418130DB1AB5555900DACA1D /* _Contact.m */; };
+		418130E31AB5555900DACA1D /* _LGDataUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 418130DD1AB5555900DACA1D /* _LGDataUpdateInfo.m */; };
+		418130E41AB5555900DACA1D /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 418130DF1AB5555900DACA1D /* Contact.m */; };
+		418130E51AB5555900DACA1D /* LGDataUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 418130E11AB5555900DACA1D /* LGDataUpdateInfo.m */; };
 		41874DCF19D75EDA00CED9D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DCE19D75EDA00CED9D6 /* main.m */; };
 		41874DE919D75EDA00CED9D6 /* LGCDDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DE819D75EDA00CED9D6 /* LGCDDataSourceTests.m */; };
-		41874E0719D75FC000CED9D6 /* LGDataUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DF619D75FC000CED9D6 /* LGDataUpdateOperation.m */; };
-		41874E0819D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DF919D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.m */; };
-		41874E0919D75FC000CED9D6 /* LGDataUpdateOperationGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DFB19D75FC000CED9D6 /* LGDataUpdateOperationGroupManager.m */; };
-		41874E0A19D75FC000CED9D6 /* LGAbstractCDJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DFF19D75FC000CED9D6 /* LGAbstractCDJSONParser.m */; };
-		41874E0B19D75FC000CED9D6 /* LGAbstractCDXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0119D75FC000CED9D6 /* LGAbstractCDXMLParser.m */; };
 		41874E0C19D75FC000CED9D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0419D75FC000CED9D6 /* AppDelegate.m */; };
 		41874E0D19D75FC000CED9D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0619D75FC000CED9D6 /* ViewController.m */; };
 		41874E1019D761F700CED9D6 /* LGModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0E19D761F700CED9D6 /* LGModel.xcdatamodeld */; };
-		41F5AD0619D86E4000984678 /* _LGDataUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5ACFF19D86E4000984678 /* _LGDataUpdateGroup.m */; };
-		41F5AD0719D86E4000984678 /* _LGDataUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5ACFF19D86E4000984678 /* _LGDataUpdateGroup.m */; };
-		41F5AD0819D86E4000984678 /* _LGDataUpdateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0119D86E4000984678 /* _LGDataUpdateRequest.m */; };
-		41F5AD0919D86E4000984678 /* _LGDataUpdateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0119D86E4000984678 /* _LGDataUpdateRequest.m */; };
-		41F5AD0A19D86E4000984678 /* LGDataUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0319D86E4000984678 /* LGDataUpdateGroup.m */; };
-		41F5AD0B19D86E4000984678 /* LGDataUpdateGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0319D86E4000984678 /* LGDataUpdateGroup.m */; };
-		41F5AD0C19D86E4000984678 /* LGDataUpdateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0519D86E4000984678 /* LGDataUpdateRequest.m */; };
-		41F5AD0D19D86E4000984678 /* LGDataUpdateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F5AD0519D86E4000984678 /* LGDataUpdateRequest.m */; };
+		41EA912A1AB6C0B6001AF28E /* ContactsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 41EA91291AB6C0B6001AF28E /* ContactsInteractor.m */; };
 		E121F651CBD5FC1E5ED4630D /* libPods-LGCDDataSource.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB43F640B1178ACEDB4D98C7 /* libPods-LGCDDataSource.a */; };
 /* End PBXBuildFile section */
 
@@ -60,48 +49,34 @@
 /* Begin PBXFileReference section */
 		1ECEC14D83A6CBCA1DF2271A /* Pods-LGCDDataSource.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGCDDataSource.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGCDDataSource/Pods-LGCDDataSource.debug.xcconfig"; sourceTree = "<group>"; };
 		20ADC1AC969473D390D6953D /* Pods-LGCDDataSource.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGCDDataSource.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGCDDataSource/Pods-LGCDDataSource.release.xcconfig"; sourceTree = "<group>"; };
-		411EE27619D7634E00A4622A /* ContactsJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsJSONParser.h; sourceTree = "<group>"; };
-		411EE27719D7634E00A4622A /* ContactsJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsJSONParser.m; sourceTree = "<group>"; };
-		411EE27819D7634E00A4622A /* ContactsXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsXMLParser.h; sourceTree = "<group>"; };
-		411EE27919D7634E00A4622A /* ContactsXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsXMLParser.m; sourceTree = "<group>"; };
-		411EE27A19D7634E00A4622A /* DataSourceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceFactory.h; sourceTree = "<group>"; };
-		411EE27B19D7634F00A4622A /* DataSourceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceFactory.m; sourceTree = "<group>"; };
-		411EE28519D76E4800A4622A /* _Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Contact.h; sourceTree = "<group>"; };
-		411EE28619D76E4800A4622A /* _Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Contact.m; sourceTree = "<group>"; };
-		411EE28719D76E4800A4622A /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
-		411EE28819D76E4800A4622A /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		412687B91AB32E2F00CB8AB6 /* LGDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataSource.h; sourceTree = "<group>"; };
+		412687BA1AB32E2F00CB8AB6 /* LGDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataSource.m; sourceTree = "<group>"; };
+		412687BD1AB32E2F00CB8AB6 /* LGDataUpdateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateOperation.h; sourceTree = "<group>"; };
+		412687BE1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateOperation.m; sourceTree = "<group>"; };
+		412687BF1AB32E2F00CB8AB6 /* LGDataUpdateOperation_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateOperation_Internal.h; sourceTree = "<group>"; };
 		412C7AFF1AB0072200CC0206 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		418130C01AB54C7A00DACA1D /* LGContextTransferable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGContextTransferable.h; sourceTree = "<group>"; };
+		418130DA1AB5555900DACA1D /* _Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Contact.h; sourceTree = "<group>"; };
+		418130DB1AB5555900DACA1D /* _Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Contact.m; sourceTree = "<group>"; };
+		418130DC1AB5555900DACA1D /* _LGDataUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _LGDataUpdateInfo.h; sourceTree = "<group>"; };
+		418130DD1AB5555900DACA1D /* _LGDataUpdateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _LGDataUpdateInfo.m; sourceTree = "<group>"; };
+		418130DE1AB5555900DACA1D /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		418130DF1AB5555900DACA1D /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		418130E01AB5555900DACA1D /* LGDataUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateInfo.h; sourceTree = "<group>"; };
+		418130E11AB5555900DACA1D /* LGDataUpdateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateInfo.m; sourceTree = "<group>"; };
 		41874DC919D75EDA00CED9D6 /* LGCDDataSource.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGCDDataSource.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41874DCD19D75EDA00CED9D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41874DCE19D75EDA00CED9D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		41874DE219D75EDA00CED9D6 /* LGCDDataSourceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LGCDDataSourceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41874DE719D75EDA00CED9D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41874DE819D75EDA00CED9D6 /* LGCDDataSourceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGCDDataSourceTests.m; sourceTree = "<group>"; };
-		41874DF519D75FC000CED9D6 /* LGDataUpdateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateOperation.h; sourceTree = "<group>"; };
-		41874DF619D75FC000CED9D6 /* LGDataUpdateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateOperation.m; sourceTree = "<group>"; };
-		41874DF719D75FC000CED9D6 /* LGDataUpdateOperationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateOperationDelegate.h; sourceTree = "<group>"; };
-		41874DF819D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LGDataUpdateOperationManager+PromiseKit.h"; sourceTree = "<group>"; };
-		41874DF919D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LGDataUpdateOperationManager+PromiseKit.m"; sourceTree = "<group>"; };
-		41874DFA19D75FC000CED9D6 /* LGDataUpdateOperationGroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateOperationGroupManager.h; sourceTree = "<group>"; };
-		41874DFB19D75FC000CED9D6 /* LGDataUpdateOperationGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateOperationGroupManager.m; sourceTree = "<group>"; };
-		41874DFD19D75FC000CED9D6 /* LGCDParserInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGCDParserInterface.h; sourceTree = "<group>"; };
-		41874DFE19D75FC000CED9D6 /* LGAbstractCDJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAbstractCDJSONParser.h; sourceTree = "<group>"; };
-		41874DFF19D75FC000CED9D6 /* LGAbstractCDJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAbstractCDJSONParser.m; sourceTree = "<group>"; };
-		41874E0019D75FC000CED9D6 /* LGAbstractCDXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGAbstractCDXMLParser.h; sourceTree = "<group>"; };
-		41874E0119D75FC000CED9D6 /* LGAbstractCDXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGAbstractCDXMLParser.m; sourceTree = "<group>"; };
 		41874E0319D75FC000CED9D6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		41874E0419D75FC000CED9D6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		41874E0519D75FC000CED9D6 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		41874E0619D75FC000CED9D6 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		41874E0F19D761F700CED9D6 /* LGModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LGModel.xcdatamodel; sourceTree = "<group>"; };
-		41F5ACFE19D86E4000984678 /* _LGDataUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _LGDataUpdateGroup.h; sourceTree = "<group>"; };
-		41F5ACFF19D86E4000984678 /* _LGDataUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _LGDataUpdateGroup.m; sourceTree = "<group>"; };
-		41F5AD0019D86E4000984678 /* _LGDataUpdateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _LGDataUpdateRequest.h; sourceTree = "<group>"; };
-		41F5AD0119D86E4000984678 /* _LGDataUpdateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _LGDataUpdateRequest.m; sourceTree = "<group>"; };
-		41F5AD0219D86E4000984678 /* LGDataUpdateGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateGroup.h; sourceTree = "<group>"; };
-		41F5AD0319D86E4000984678 /* LGDataUpdateGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateGroup.m; sourceTree = "<group>"; };
-		41F5AD0419D86E4000984678 /* LGDataUpdateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateRequest.h; sourceTree = "<group>"; };
-		41F5AD0519D86E4000984678 /* LGDataUpdateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateRequest.m; sourceTree = "<group>"; };
+		41EA91281AB6C0B6001AF28E /* ContactsInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsInteractor.h; sourceTree = "<group>"; };
+		41EA91291AB6C0B6001AF28E /* ContactsInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsInteractor.m; sourceTree = "<group>"; };
 		EB43F640B1178ACEDB4D98C7 /* libPods-LGCDDataSource.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGCDDataSource.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -136,21 +111,37 @@
 		411EE28419D76E4800A4622A /* ManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
-				41F5ACFE19D86E4000984678 /* _LGDataUpdateGroup.h */,
-				41F5ACFF19D86E4000984678 /* _LGDataUpdateGroup.m */,
-				41F5AD0219D86E4000984678 /* LGDataUpdateGroup.h */,
-				41F5AD0319D86E4000984678 /* LGDataUpdateGroup.m */,
-				41F5AD0019D86E4000984678 /* _LGDataUpdateRequest.h */,
-				41F5AD0119D86E4000984678 /* _LGDataUpdateRequest.m */,
-				41F5AD0419D86E4000984678 /* LGDataUpdateRequest.h */,
-				41F5AD0519D86E4000984678 /* LGDataUpdateRequest.m */,
-				411EE28519D76E4800A4622A /* _Contact.h */,
-				411EE28619D76E4800A4622A /* _Contact.m */,
-				411EE28719D76E4800A4622A /* Contact.h */,
-				411EE28819D76E4800A4622A /* Contact.m */,
+				418130DA1AB5555900DACA1D /* _Contact.h */,
+				418130DB1AB5555900DACA1D /* _Contact.m */,
+				418130DE1AB5555900DACA1D /* Contact.h */,
+				418130DF1AB5555900DACA1D /* Contact.m */,
+				418130DC1AB5555900DACA1D /* _LGDataUpdateInfo.h */,
+				418130DD1AB5555900DACA1D /* _LGDataUpdateInfo.m */,
+				418130E01AB5555900DACA1D /* LGDataUpdateInfo.h */,
+				418130E11AB5555900DACA1D /* LGDataUpdateInfo.m */,
 			);
 			name = ManagedObjects;
 			path = Classes/ManagedObjects;
+			sourceTree = "<group>";
+		};
+		412687B81AB32E2F00CB8AB6 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				412687B91AB32E2F00CB8AB6 /* LGDataSource.h */,
+				412687BA1AB32E2F00CB8AB6 /* LGDataSource.m */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		412687BC1AB32E2F00CB8AB6 /* DataUpdateOperation */ = {
+			isa = PBXGroup;
+			children = (
+				418130C01AB54C7A00DACA1D /* LGContextTransferable.h */,
+				412687BD1AB32E2F00CB8AB6 /* LGDataUpdateOperation.h */,
+				412687BE1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m */,
+				412687BF1AB32E2F00CB8AB6 /* LGDataUpdateOperation_Internal.h */,
+			);
+			path = DataUpdateOperation;
 			sourceTree = "<group>";
 		};
 		41874DC019D75EDA00CED9D6 = {
@@ -223,36 +214,10 @@
 		41874DF319D75FC000CED9D6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				41874DF419D75FC000CED9D6 /* DataUpdate */,
-				41874DFC19D75FC000CED9D6 /* Parsers */,
+				412687B81AB32E2F00CB8AB6 /* DataSource */,
+				412687BC1AB32E2F00CB8AB6 /* DataUpdateOperation */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		41874DF419D75FC000CED9D6 /* DataUpdate */ = {
-			isa = PBXGroup;
-			children = (
-				41874DF519D75FC000CED9D6 /* LGDataUpdateOperation.h */,
-				41874DF619D75FC000CED9D6 /* LGDataUpdateOperation.m */,
-				41874DF719D75FC000CED9D6 /* LGDataUpdateOperationDelegate.h */,
-				41874DFA19D75FC000CED9D6 /* LGDataUpdateOperationGroupManager.h */,
-				41874DFB19D75FC000CED9D6 /* LGDataUpdateOperationGroupManager.m */,
-				41874DF819D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.h */,
-				41874DF919D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.m */,
-			);
-			path = DataUpdate;
-			sourceTree = "<group>";
-		};
-		41874DFC19D75FC000CED9D6 /* Parsers */ = {
-			isa = PBXGroup;
-			children = (
-				41874DFD19D75FC000CED9D6 /* LGCDParserInterface.h */,
-				41874DFE19D75FC000CED9D6 /* LGAbstractCDJSONParser.h */,
-				41874DFF19D75FC000CED9D6 /* LGAbstractCDJSONParser.m */,
-				41874E0019D75FC000CED9D6 /* LGAbstractCDXMLParser.h */,
-				41874E0119D75FC000CED9D6 /* LGAbstractCDXMLParser.m */,
-			);
-			path = Parsers;
 			sourceTree = "<group>";
 		};
 		41874E0219D75FC000CED9D6 /* Other */ = {
@@ -262,12 +227,8 @@
 				41874E0419D75FC000CED9D6 /* AppDelegate.m */,
 				41874E0519D75FC000CED9D6 /* ViewController.h */,
 				41874E0619D75FC000CED9D6 /* ViewController.m */,
-				411EE27619D7634E00A4622A /* ContactsJSONParser.h */,
-				411EE27719D7634E00A4622A /* ContactsJSONParser.m */,
-				411EE27819D7634E00A4622A /* ContactsXMLParser.h */,
-				411EE27919D7634E00A4622A /* ContactsXMLParser.m */,
-				411EE27A19D7634E00A4622A /* DataSourceFactory.h */,
-				411EE27B19D7634F00A4622A /* DataSourceFactory.m */,
+				41EA91281AB6C0B6001AF28E /* ContactsInteractor.h */,
+				41EA91291AB6C0B6001AF28E /* ContactsInteractor.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -429,24 +390,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41874E0B19D75FC000CED9D6 /* LGAbstractCDXMLParser.m in Sources */,
+				418130E41AB5555900DACA1D /* Contact.m in Sources */,
+				418130E51AB5555900DACA1D /* LGDataUpdateInfo.m in Sources */,
 				41874E1019D761F700CED9D6 /* LGModel.xcdatamodeld in Sources */,
-				41874E0819D75FC000CED9D6 /* LGDataUpdateOperationManager+PromiseKit.m in Sources */,
 				41874E0D19D75FC000CED9D6 /* ViewController.m in Sources */,
-				411EE28A19D76E4800A4622A /* Contact.m in Sources */,
-				411EE28919D76E4800A4622A /* _Contact.m in Sources */,
-				41874E0A19D75FC000CED9D6 /* LGAbstractCDJSONParser.m in Sources */,
-				411EE27E19D7634F00A4622A /* DataSourceFactory.m in Sources */,
-				411EE27C19D7634F00A4622A /* ContactsJSONParser.m in Sources */,
-				41F5AD0819D86E4000984678 /* _LGDataUpdateRequest.m in Sources */,
-				41F5AD0A19D86E4000984678 /* LGDataUpdateGroup.m in Sources */,
-				41F5AD0C19D86E4000984678 /* LGDataUpdateRequest.m in Sources */,
-				41874E0919D75FC000CED9D6 /* LGDataUpdateOperationGroupManager.m in Sources */,
-				41F5AD0619D86E4000984678 /* _LGDataUpdateGroup.m in Sources */,
+				418130E31AB5555900DACA1D /* _LGDataUpdateInfo.m in Sources */,
+				412687CB1AB32E2F00CB8AB6 /* LGDataSource.m in Sources */,
+				418130E21AB5555900DACA1D /* _Contact.m in Sources */,
+				412687CC1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m in Sources */,
 				41874DCF19D75EDA00CED9D6 /* main.m in Sources */,
-				41874E0719D75FC000CED9D6 /* LGDataUpdateOperation.m in Sources */,
-				411EE27D19D7634F00A4622A /* ContactsXMLParser.m in Sources */,
 				41874E0C19D75FC000CED9D6 /* AppDelegate.m in Sources */,
+				41EA912A1AB6C0B6001AF28E /* ContactsInteractor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,11 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41F5AD0919D86E4000984678 /* _LGDataUpdateRequest.m in Sources */,
-				41F5AD0D19D86E4000984678 /* LGDataUpdateRequest.m in Sources */,
 				41874DE919D75EDA00CED9D6 /* LGCDDataSourceTests.m in Sources */,
-				41F5AD0719D86E4000984678 /* _LGDataUpdateGroup.m in Sources */,
-				41F5AD0B19D86E4000984678 /* LGDataUpdateGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

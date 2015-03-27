@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FABB603F-59E7-4185-B26F-9417A03D8AC0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LGCDDataSource</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>861600D67A69C7E935D9D1EBA2525CCDB58D44F1</key>
+		<string>https://github.com/lukagabric/LGCDDataSource.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>LGCDDataSource.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>861600D67A69C7E935D9D1EBA2525CCDB58D44F1</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/lukagabric/LGCDDataSource.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>861600D67A69C7E935D9D1EBA2525CCDB58D44F1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>861600D67A69C7E935D9D1EBA2525CCDB58D44F1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LGCDDataSource</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6244" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1514" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Contact" representedClassName="Contact" syncable="YES">
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="guid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastNameInitial" optional="YES" attributeType="String" minValueString="1" maxValueString="1" indexed="YES" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="LGDataUpdateGroup" representedClassName="LGDataUpdateGroup" syncable="YES">
-        <attribute name="groupId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="updateDate" optional="YES" attributeType="Date" syncable="YES"/>
-    </entity>
-    <entity name="LGDataUpdateRequest" representedClassName="LGDataUpdateRequest" syncable="YES">
+    <entity name="LGDataUpdateInfo" representedClassName="LGDataUpdateInfo" syncable="YES">
+        <attribute name="lastUpdateDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="requestId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="responseFingerprint" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="updateDate" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="LGDataUpdateGroup" positionX="0" positionY="0" width="128" height="75"/>
-        <element name="LGDataUpdateRequest" positionX="0" positionY="0" width="128" height="88"/>
+        <element name="Contact" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="LGDataUpdateInfo" positionX="0" positionY="0" width="128" height="90"/>
     </elements>
 </model>

@@ -6,46 +6,35 @@
 //  Copyright (c) 2014 Luka Gabric. All rights reserved.
 //
 
-
 #import "ViewController.h"
-#import "CoreData+MagicalRecord.h"
-#import "DataSourceFactory.h"
-#import "Contact.h"
-#import "LGDataUpdateOperationManager+PromiseKit.h"
 
+@interface ViewController ()
+
+@property (strong, nonatomic) ContactsInteractor *interactor;
+
+@end
 
 @implementation ViewController
-{
-    LGDataUpdateOperationGroupManager *_updateManager;
-    LGDataUpdateOperationGroupManager *_updateManagerPromise;
+
+- (instancetype)initWithInteractor:(ContactsInteractor *)interactor {
+    self = [super init];
+    if (self) {
+        self.interactor = interactor;
+    }
+    return self;
 }
 
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-
-    if (_updateManager)
-        [_updateManager cancelLoad];
-
-    _updateManager = [DataSourceFactory contactsUpdateManagerWithActivityView:self.view];
-
-    [_updateManager updateDataIgnoringCacheIntervalWithCompletionBlock:^(NSError *error, BOOL newData) {
-        NSLog(@"_updateManager: Data %@new", newData ? @"" : @"NOT ");
-        NSLog(@"_updateManager: Contacts count = %ld", [Contact MR_countOfEntities]);
-    }];
     
+    PMKPromise *updatePromise;
+    [self.interactor contactsWithUpdatePromise:&updatePromise];
     
-    if (_updateManagerPromise)
-        [_updateManagerPromise cancelLoad];
-    
-    _updateManagerPromise = [DataSourceFactory contactsUpdateManagerWithActivityView:self.view];
-    
-    [_updateManagerPromise dataUpdateIgnoringCacheIntervalPromise].then(^(NSNumber *newData) {
-        NSLog(@"_updateManagerPromise: Data %@new", [newData isEqualToNumber:@YES] ? @"" : @"NOT ");
-        NSLog(@"_updateManagerPromise: Contacts count = %ld", [Contact MR_countOfEntities]);
-    });
+    if (updatePromise) {
+        updatePromise.then(^(id result) {
+            NSLog(@"%@", result);
+        });
+    }
 }
-
 
 @end

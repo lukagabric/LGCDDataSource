@@ -7,8 +7,10 @@ const struct ContactAttributes ContactAttributes = {
 	.company = @"company",
 	.email = @"email",
 	.firstName = @"firstName",
+	.guid = @"guid",
 	.lastName = @"lastName",
 	.lastNameInitial = @"lastNameInitial",
+	.weight = @"weight",
 };
 
 const struct ContactRelationships ContactRelationships = {
@@ -43,6 +45,11 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"weightValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"weight"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -71,6 +78,13 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 
 
 
+@dynamic guid;
+
+
+
+
+
+
 @dynamic lastName;
 
 
@@ -80,6 +94,32 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 
 @dynamic lastNameInitial;
 
+
+
+
+
+
+@dynamic weight;
+
+
+
+- (int16_t)weightValue {
+	NSNumber *result = [self weight];
+	return [result shortValue];
+}
+
+- (void)setWeightValue:(int16_t)value_ {
+	[self setWeight:[NSNumber numberWithShort:value_]];
+}
+
+- (int16_t)primitiveWeightValue {
+	NSNumber *result = [self primitiveWeight];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveWeightValue:(int16_t)value_ {
+	[self setPrimitiveWeight:[NSNumber numberWithShort:value_]];
+}
 
 
 

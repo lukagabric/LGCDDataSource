@@ -7,7 +7,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target "LGCDDataSource" do
     pod 'MagicalRecord'
-    pod 'MBProgressHUD'
     pod 'PromiseKit'
 end
 

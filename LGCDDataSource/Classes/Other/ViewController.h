@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Luka Gabric. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ContactsInteractor.h"
 
 @interface ViewController : UIViewController
 
+- (instancetype)initWithInteractor:(ContactsInteractor *)interactor NS_DESIGNATED_INITIALIZER;
 
 @end
 

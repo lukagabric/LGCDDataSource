@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-LGCDDataSource-MBProgressHUD.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-LGCDDataSource-MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3270FB683AE73A5C775965FC</key>
+		<key>087B1AD8AAF3180D8629A729</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3CAB66EA3BB593958C9515B9</key>
+		<key>0BADBC128A4A0D7B149B8A4B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5ED5FE55FE0DFB4C0EF04A15</key>
+		<key>31956C8FE1B34877E377C71C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC0EEE9D14F7C8C5E63535DE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D89770500DCEC6FF2FA1160F</key>
+		<key>BAAF6F1F91C869535D1F8C71</key>
 		<dict>
 			<key>primary</key>
 			<true/>
