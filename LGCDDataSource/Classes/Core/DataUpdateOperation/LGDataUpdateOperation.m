@@ -44,7 +44,9 @@
             LGDataUpdateOperation *strongSelf = weakSelf;
             if (!strongSelf) return;
 
-            [self taskFinishedWithData:data response:response andError:error];
+            [strongSelf.bgContext performBlockAndWait:^{
+                [self taskFinishedWithData:data response:response andError:error];
+            }];
         }];
     }
     return self;
@@ -61,52 +63,50 @@
 #pragma mark - Task finished
 
 - (void)taskFinishedWithData:(NSData *)data response:(NSURLResponse *)response andError:(NSError *)error {
-    [self.bgContext performBlockAndWait:^{
-        self.dataUpdateInfo = [self existingInfo] ?: [self newInfo];
-        
-        if ([self isCancelled]) return;
-        
-        self.responseData = data;
-        self.response = response;
-        self.error = error;
-        
-        if ([self isCancelled]) return;
-        
-        if (self.error) {
-            [self finishOperation];
-            return;
-        }
-        
-        self.error = [self validateResponse];
-        
-        if (self.error) {
-            [self finishOperation];
-            return;
-        }
-        
-        if ([self isCancelled]) return;
-        
-        if ([self isDataNew]) {
-            self.dataUpdateInfo.responseFingerprint = self.responseFingerprint;
+    if ([self isCancelled]) return;
+    
+    self.responseData = data;
+    self.response = response;
+    self.error = error;
+    self.dataUpdateInfo = [self existingInfo] ?: [self newInfo];
 
-            id result = [self parseData];
-            
-            if ([result isKindOfClass:[NSError class]]) {
-                self.error = result;
-                [self finishOperation];
-                return;
-            }
-            else {
-                self.dataUpdateResult = result;
-            }
-        }
-
-        self.dataUpdateInfo.lastUpdateDate = [NSDate date];
-
-        if ([self isCancelled]) return;
-        
+    if ([self isCancelled]) return;
+    
+    if (self.error) {
         [self finishOperation];
-    }];
+        return;
+    }
+    
+    self.error = [self validateResponse];
+    
+    if (self.error) {
+        [self finishOperation];
+        return;
+    }
+    
+    if ([self isCancelled]) return;
+    
+    if ([self isDataNew]) {
+        self.dataUpdateInfo.responseFingerprint = self.responseFingerprint;
+        
+        id result = [self parseData];
+        
+        if ([result isKindOfClass:[NSError class]]) {
+            self.error = result;
+            [self finishOperation];
+            return;
+        }
+        else {
+            self.dataUpdateResult = result;
+        }
+    }
+    
+    self.dataUpdateInfo.lastUpdateDate = [NSDate date];
+    
+    if ([self isCancelled]) return;
+    
+    self.error = [self saveContexts];
+    [self finishOperation];
 }
 
 #pragma mark - Check if response is valid
@@ -258,17 +258,11 @@
 }
 
 - (void)finishOperation {
-    if (!self.error) {
-        self.error = [self saveContexts];
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(finishOperation) withObject:nil waitUntilDone:NO];
+        return;
     }
     
-    if (self.error) {
-        self.reject(self.error);
-    }
-    else {
-        self.fulfill(self.dataUpdateResult);
-    }
-
     [self willChangeValueForKey:@"isFinished"];
     [self willChangeValueForKey:@"isExecuting"];
     
@@ -277,6 +271,13 @@
     
     [self didChangeValueForKey:@"isExecuting"];
     [self didChangeValueForKey:@"isFinished"];
+    
+    if (self.error) {
+        self.reject(self.error);
+    }
+    else {
+        self.fulfill(self.dataUpdateResult);
+    }
 }
 
 - (BOOL)isExecuting {
