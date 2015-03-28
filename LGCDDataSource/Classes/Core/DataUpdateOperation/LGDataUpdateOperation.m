@@ -137,7 +137,7 @@
 
     if (!self.dataUpdate) return nil;
     
-    dataUpdateResult = self.dataUpdate(self.responseData, self.response, self.bgContext);
+    dataUpdateResult = self.dataUpdate(self.serializedResponseData ?: self.responseData, self.response, self.bgContext);
     
     if ([dataUpdateResult respondsToSelector:@selector(transferredToContext:)]) {
         [self.mainContext performBlockAndWait:^{
@@ -146,6 +146,14 @@
     }
     
     return dataUpdateResult;
+}
+
+#pragma mark - Response serializer
+
+- (id)serializedResponseData {
+    return [NSJSONSerialization JSONObjectWithData:self.responseData
+                                           options:kNilOptions
+                                             error:nil];
 }
 
 #pragma mark - Get response fingerprint

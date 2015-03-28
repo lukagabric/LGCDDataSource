@@ -7,6 +7,7 @@
 //
 
 #import "ContactsInteractor.h"
+#import "Contact.h"
 
 @interface ContactsInteractor ()
 
@@ -25,12 +26,13 @@
 }
 
 - (NSFetchedResultsController *)contactsWithUpdatePromise:(PMKPromise **)promise {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://lukagabric.com/wp-content/uploads/2014/03/contacts.json"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://lukagabric.com/wp-content/contacts-api/contacts"]];
     *promise = [self.dataSource updateDataPromiseWithRequest:request
                                                    requestId:@"ContactsJSON"
                                                staleInterval:10
-                                                  dataUpdate:^id(NSData *data, NSURLResponse *response, NSManagedObjectContext *context) {
-                                                      return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                                  dataUpdate:^id(NSDictionary *data, NSURLResponse *response, NSManagedObjectContext *context) {
+                                                      
+                                                      return [Contact parseHeavyContactsData:data];
                                                   }];
     return nil;
 }

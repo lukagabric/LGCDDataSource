@@ -4,10 +4,11 @@
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="guid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="guid" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastNameInitial" optional="YES" attributeType="String" minValueString="1" maxValueString="1" indexed="YES" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="childContacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="parentContact" inverseEntity="Contact" syncable="YES"/>
+        <relationship name="parentContact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="childContacts" inverseEntity="Contact" syncable="YES"/>
     </entity>
     <entity name="LGDataUpdateInfo" representedClassName="LGDataUpdateInfo" syncable="YES">
         <attribute name="lastUpdateDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -15,7 +16,7 @@
         <attribute name="responseFingerprint" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Contact" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="Contact" positionX="0" positionY="0" width="128" height="165"/>
         <element name="LGDataUpdateInfo" positionX="0" positionY="0" width="128" height="90"/>
     </elements>
 </model>

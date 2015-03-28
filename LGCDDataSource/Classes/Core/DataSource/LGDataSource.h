@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, LGContentWeight) {
     LGContentWeightHeavy,
 };
 
-typedef id(^LGDataUpdate)(NSData *data, NSURLResponse *response, NSManagedObjectContext *context);
+typedef id(^LGDataUpdate)(id data, NSURLResponse *response, NSManagedObjectContext *context);
 
 @interface LGDataSource : NSObject
 

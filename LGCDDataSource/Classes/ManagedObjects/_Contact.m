@@ -9,11 +9,12 @@ const struct ContactAttributes ContactAttributes = {
 	.firstName = @"firstName",
 	.guid = @"guid",
 	.lastName = @"lastName",
-	.lastNameInitial = @"lastNameInitial",
 	.weight = @"weight",
 };
 
 const struct ContactRelationships ContactRelationships = {
+	.childContacts = @"childContacts",
+	.parentContact = @"parentContact",
 };
 
 const struct ContactFetchedProperties ContactFetchedProperties = {
@@ -92,13 +93,6 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 
 
 
-@dynamic lastNameInitial;
-
-
-
-
-
-
 @dynamic weight;
 
 
@@ -124,6 +118,23 @@ const struct ContactFetchedProperties ContactFetchedProperties = {
 
 
 
+
+@dynamic childContacts;
+
+	
+- (NSMutableSet*)childContactsSet {
+	[self willAccessValueForKey:@"childContacts"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"childContacts"];
+  
+	[self didAccessValueForKey:@"childContacts"];
+	return result;
+}
+	
+
+@dynamic parentContact;
+
+	
 
 
 

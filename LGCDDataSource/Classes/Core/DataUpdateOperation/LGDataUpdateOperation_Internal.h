@@ -18,8 +18,9 @@
 @property (strong, nonatomic) NSURLSessionDataTask *task;
 @property (strong, nonatomic) NSURLResponse *response;
 @property (strong, nonatomic) NSData *responseData;
+@property (readonly, nonatomic) id serializedResponseData;
 @property (strong, nonatomic) id dataUpdateResult;
-@property (strong, nonatomic) NSString *responseFingerprint;
+@property (readonly, nonatomic) NSString *responseFingerprint;
 @property (strong, nonatomic) NSError *error;
 @property (strong, nonatomic) NSString *requestId;
 @property (strong, nonatomic) PMKPromise *promise;

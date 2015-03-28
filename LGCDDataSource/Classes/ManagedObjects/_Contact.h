@@ -10,17 +10,19 @@ extern const struct ContactAttributes {
 	__unsafe_unretained NSString *firstName;
 	__unsafe_unretained NSString *guid;
 	__unsafe_unretained NSString *lastName;
-	__unsafe_unretained NSString *lastNameInitial;
 	__unsafe_unretained NSString *weight;
 } ContactAttributes;
 
 extern const struct ContactRelationships {
+	__unsafe_unretained NSString *childContacts;
+	__unsafe_unretained NSString *parentContact;
 } ContactRelationships;
 
 extern const struct ContactFetchedProperties {
 } ContactFetchedProperties;
 
-
+@class Contact;
+@class Contact;
 
 
 
@@ -92,16 +94,6 @@ extern const struct ContactFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* lastNameInitial;
-
-
-
-//- (BOOL)validateLastNameInitial:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 @property (nonatomic, strong) NSNumber* weight;
 
 
@@ -116,10 +108,29 @@ extern const struct ContactFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSSet *childContacts;
+
+- (NSMutableSet*)childContactsSet;
+
+
+
+
+@property (nonatomic, strong) Contact *parentContact;
+
+//- (BOOL)validateParentContact:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
 @interface _Contact (CoreDataGeneratedAccessors)
+
+- (void)addChildContacts:(NSSet*)value_;
+- (void)removeChildContacts:(NSSet*)value_;
+- (void)addChildContactsObject:(Contact*)value_;
+- (void)removeChildContactsObject:(Contact*)value_;
 
 @end
 
@@ -156,12 +167,6 @@ extern const struct ContactFetchedProperties {
 
 
 
-- (NSString*)primitiveLastNameInitial;
-- (void)setPrimitiveLastNameInitial:(NSString*)value;
-
-
-
-
 - (NSNumber*)primitiveWeight;
 - (void)setPrimitiveWeight:(NSNumber*)value;
 
@@ -169,6 +174,16 @@ extern const struct ContactFetchedProperties {
 - (void)setPrimitiveWeightValue:(int16_t)value_;
 
 
+
+
+
+- (NSMutableSet*)primitiveChildContacts;
+- (void)setPrimitiveChildContacts:(NSMutableSet*)value;
+
+
+
+- (Contact*)primitiveParentContact;
+- (void)setPrimitiveParentContact:(Contact*)value;
 
 
 @end
