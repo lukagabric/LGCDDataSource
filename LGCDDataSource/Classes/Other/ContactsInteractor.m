@@ -30,7 +30,7 @@
     *promise = [self.dataSource updateDataPromiseWithRequest:request
                                                    requestId:@"ContactsJSON"
                                                staleInterval:10
-                                                  dataUpdate:^id(NSDictionary *data, NSURLResponse *response, NSManagedObjectContext *context) {
+                                                  dataUpdate:^id(NSArray *data, NSURLResponse *response, NSManagedObjectContext *context) {
                                                       
                                                       return [Contact parseHeavyContactsData:data];
                                                   }];

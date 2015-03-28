@@ -2,6 +2,6 @@
 
 @interface Contact : _Contact {}
 
-+ (NSArray *)parseHeavyContactsData:(NSDictionary *)data;
++ (NSArray *)parseHeavyContactsData:(NSArray *)data;
 
 @end

@@ -8,7 +8,7 @@
 
 @implementation Contact
 
-+ (NSArray *)parseHeavyContactsData:(NSDictionary *)data {
++ (NSArray *)parseHeavyContactsData:(NSArray *)data {
     return nil;
 }
 
