@@ -23,6 +23,8 @@
 /* Begin PBXBuildFile section */
 		412687CB1AB32E2F00CB8AB6 /* LGDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 412687BA1AB32E2F00CB8AB6 /* LGDataSource.m */; };
 		412687CC1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 412687BE1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m */; };
+		413008B21AC7F26C008D6D1A /* NSManagedObject+LGDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 413008B11AC7F26C008D6D1A /* NSManagedObject+LGDataSource.m */; };
+		413DD7E21AC7E47F00055312 /* NSArray+LGDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 413DD7E11AC7E47F00055312 /* NSArray+LGDataSource.m */; };
 		418130E21AB5555900DACA1D /* _Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 418130DB1AB5555900DACA1D /* _Contact.m */; };
 		418130E31AB5555900DACA1D /* _LGDataUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 418130DD1AB5555900DACA1D /* _LGDataUpdateInfo.m */; };
 		418130E41AB5555900DACA1D /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 418130DF1AB5555900DACA1D /* Contact.m */; };
@@ -55,7 +57,12 @@
 		412687BE1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateOperation.m; sourceTree = "<group>"; };
 		412687BF1AB32E2F00CB8AB6 /* LGDataUpdateOperation_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateOperation_Internal.h; sourceTree = "<group>"; };
 		412C7AFF1AB0072200CC0206 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
-		418130C01AB54C7A00DACA1D /* LGContextTransferable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGContextTransferable.h; sourceTree = "<group>"; };
+		413008B01AC7F26C008D6D1A /* NSManagedObject+LGDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+LGDataSource.h"; sourceTree = "<group>"; };
+		413008B11AC7F26C008D6D1A /* NSManagedObject+LGDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+LGDataSource.m"; sourceTree = "<group>"; };
+		413DD7E01AC7E47F00055312 /* NSArray+LGDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LGDataSource.h"; sourceTree = "<group>"; };
+		413DD7E11AC7E47F00055312 /* NSArray+LGDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LGDataSource.m"; sourceTree = "<group>"; };
+		413DD7E41AC7E5C200055312 /* LGContextTransferable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGContextTransferable.h; sourceTree = "<group>"; };
+		413DD7E51AC7E5DF00055312 /* LGDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataImport.h; sourceTree = "<group>"; };
 		418130DA1AB5555900DACA1D /* _Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Contact.h; sourceTree = "<group>"; };
 		418130DB1AB5555900DACA1D /* _Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Contact.m; sourceTree = "<group>"; };
 		418130DC1AB5555900DACA1D /* _LGDataUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _LGDataUpdateInfo.h; sourceTree = "<group>"; };
@@ -136,12 +143,31 @@
 		412687BC1AB32E2F00CB8AB6 /* DataUpdateOperation */ = {
 			isa = PBXGroup;
 			children = (
-				418130C01AB54C7A00DACA1D /* LGContextTransferable.h */,
 				412687BD1AB32E2F00CB8AB6 /* LGDataUpdateOperation.h */,
 				412687BE1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m */,
 				412687BF1AB32E2F00CB8AB6 /* LGDataUpdateOperation_Internal.h */,
 			);
 			path = DataUpdateOperation;
+			sourceTree = "<group>";
+		};
+		413DD7DF1AC7E47300055312 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				413DD7E01AC7E47F00055312 /* NSArray+LGDataSource.h */,
+				413DD7E11AC7E47F00055312 /* NSArray+LGDataSource.m */,
+				413008B01AC7F26C008D6D1A /* NSManagedObject+LGDataSource.h */,
+				413008B11AC7F26C008D6D1A /* NSManagedObject+LGDataSource.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		413DD7E31AC7E5A500055312 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				413DD7E41AC7E5C200055312 /* LGContextTransferable.h */,
+				413DD7E51AC7E5DF00055312 /* LGDataImport.h */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		41874DC019D75EDA00CED9D6 = {
@@ -214,6 +240,8 @@
 		41874DF319D75FC000CED9D6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				413DD7E31AC7E5A500055312 /* Protocols */,
+				413DD7DF1AC7E47300055312 /* Extensions */,
 				412687B81AB32E2F00CB8AB6 /* DataSource */,
 				412687BC1AB32E2F00CB8AB6 /* DataUpdateOperation */,
 			);
@@ -393,6 +421,7 @@
 				418130E41AB5555900DACA1D /* Contact.m in Sources */,
 				418130E51AB5555900DACA1D /* LGDataUpdateInfo.m in Sources */,
 				41874E1019D761F700CED9D6 /* LGModel.xcdatamodeld in Sources */,
+				413008B21AC7F26C008D6D1A /* NSManagedObject+LGDataSource.m in Sources */,
 				41874E0D19D75FC000CED9D6 /* ViewController.m in Sources */,
 				418130E31AB5555900DACA1D /* _LGDataUpdateInfo.m in Sources */,
 				412687CB1AB32E2F00CB8AB6 /* LGDataSource.m in Sources */,
@@ -400,6 +429,7 @@
 				412687CC1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m in Sources */,
 				41874DCF19D75EDA00CED9D6 /* main.m in Sources */,
 				41874E0C19D75FC000CED9D6 /* AppDelegate.m in Sources */,
+				413DD7E21AC7E47F00055312 /* NSArray+LGDataSource.m in Sources */,
 				41EA912A1AB6C0B6001AF28E /* ContactsInteractor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

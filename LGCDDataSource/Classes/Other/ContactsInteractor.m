@@ -32,7 +32,7 @@
                                                staleInterval:10
                                                   dataUpdate:^id(NSArray *data, NSURLResponse *response, NSManagedObjectContext *context) {
                                                       
-                                                      return [Contact parseHeavyContactsData:data];
+                                                      return [Contact parseHeavyContactsData:data inContext:context];
                                                   }];
     return nil;
 }
