@@ -16,13 +16,14 @@
     if (!mappings) return;
     
     for (NSString *dictKey in dictionary) {
-        id rawValue = dictionary[dictKey];
+        NSString *attributeKey = mappings[dictKey];
+        if (!attributeKey) continue;
         
-        if (rawValue != [NSNull null]) {
-            NSString *attributeKey = mappings[dictKey];
-            id value = [self transformedRawValue:rawValue forKey:attributeKey];
-            [self setValue:value forKey:attributeKey];
-        }
+        id rawValue = dictionary[dictKey];
+        if (rawValue == [NSNull null]) continue;
+        
+        id value = [self transformedRawValue:rawValue forKey:attributeKey];
+        [self setValue:value forKey:attributeKey];
     }
 }
 
