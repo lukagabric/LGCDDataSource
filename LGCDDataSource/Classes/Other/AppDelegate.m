@@ -11,6 +11,7 @@
 #import "CoreData+MagicalRecord.h"
 #import "ContactsInteractor.h"
 #import "LGDataUpdateInfo.h"
+#import "Contact.h"
 
 @implementation AppDelegate
 
@@ -56,6 +57,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"LGModel"];
+    
+    __unused NSArray *contacts = [Contact MR_findAll];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSManagedObjectContext *mainContext = [NSManagedObjectContext MR_defaultContext];

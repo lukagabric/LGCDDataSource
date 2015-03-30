@@ -10,8 +10,8 @@
 
 @implementation NSManagedObject (LGDataSource)
 
-- (void)mergeObjectWithDictionary:(NSDictionary *)dictionary {
-    NSDictionary *mappings = [[self class] dataUpdateMappings];
+- (void)lg_mergeWithDictionary:(NSDictionary *)dictionary {
+    NSDictionary *mappings = [[self class] lg_dataUpdateMappings];
     
     if (!mappings) return;
     
@@ -22,12 +22,12 @@
         id rawValue = dictionary[dictKey];
         if (rawValue == [NSNull null]) continue;
         
-        id value = [self transformedRawValue:rawValue forKey:attributeKey];
+        id value = [self lg_transformedRawValue:rawValue forKey:attributeKey];
         [self setValue:value forKey:attributeKey];
     }
 }
 
-- (id)transformedRawValue:(id)rawValue forKey:(NSString *)key {
+- (id)lg_transformedRawValue:(id)rawValue forKey:(NSString *)key {
     NSDictionary *attributes = self.entity.attributesByName;
 
     NSAttributeDescription *attributeDescription = [attributes valueForKey:key];
@@ -37,7 +37,7 @@
     
     if ([rawValue isKindOfClass:[NSString class]]) {
         if (attributeType == NSDateAttributeType) {
-            value = [[self class] dateFromString:rawValue];
+            value = [[self class] lg_dateFromString:rawValue];
         }
         else if (attributeType == NSInteger16AttributeType ||
                  attributeType == NSInteger32AttributeType ||
@@ -52,13 +52,11 @@
     return value;
 }
 
-#pragma mark - LGDataImport
-
-+ (NSDictionary *)dataUpdateMappings {
++ (NSDictionary *)lg_dataUpdateMappings {
     return nil;
 }
 
-+ (NSDateFormatter *)dateFormatter {
++ (NSDateFormatter *)lg_dateFormatter {
     static NSDateFormatter *dateFormatter;
     
     if (!dateFormatter) {
@@ -69,8 +67,8 @@
     return dateFormatter;
 }
 
-+ (NSDate *)dateFromString:(NSString *)dateString {
-    NSDateFormatter *formatter = [self dateFormatter];
++ (NSDate *)lg_dateFromString:(NSString *)dateString {
+    NSDateFormatter *formatter = [self lg_dateFormatter];
     return [formatter dateFromString:dateString];
 }
 

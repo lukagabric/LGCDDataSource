@@ -2,6 +2,7 @@
 #import "NSManagedObject+LGDataSource.h"
 #import <CoreData+MagicalRecord.h>
 #import "LGDataSource.h"
+#import "NSArray+LGDataSource.h"
 
 @interface Contact ()
 
@@ -10,17 +11,6 @@
 @implementation Contact
 
 #pragma mark - Parsing
-
-+ (NSMutableDictionary *)array:(NSArray *)array indexedByKeyPath:(NSString *)keyPath {
-    NSMutableDictionary *indexedDictionary = [NSMutableDictionary new];
-    
-    for (id object in array) {
-        if (object == [NSNull null]) continue;
-        [indexedDictionary setValue:object forKey:[object valueForKeyPath:keyPath]];
-    }
-    
-    return indexedDictionary;
-}
 
 + (NSArray *)parseHeavyContactsData:(NSArray *)data inContext:(NSManagedObjectContext *)context {
     NSArray *dataContactIds = [data valueForKey:@"id"];
@@ -39,21 +29,21 @@
         [contacts addObject:newContact];
     }
     
-    NSDictionary *contactsById = [self array:contacts indexedByKeyPath:@"guid"];
+    NSDictionary *contactsById = [contacts lg_indexedByKeyPath:@"guid"];
     
     for (NSDictionary *dictionary in data) {
         NSString *guid = dictionary[@"id"];
         Contact *contact = contactsById[guid];
         contact.weightValue = LGContentWeightHeavy;
-        [contact mergeObjectWithDictionary:dictionary];
+        [contact lg_mergeWithDictionary:dictionary];
     }
     
     return contacts;
 }
 
-#pragma mark - LGDataImport
+#pragma mark - Mappings
 
-+ (NSDictionary *)dataUpdateMappings {
++ (NSDictionary *)lg_dataUpdateMappings {
     static NSDictionary *mappings;
     
     if (!mappings) {

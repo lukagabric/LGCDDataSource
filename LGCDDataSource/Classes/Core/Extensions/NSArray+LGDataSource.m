@@ -10,6 +10,8 @@
 
 @implementation NSArray (LGDataSource)
 
+#pragma mark - LGContextTransferable
+
 - (id)transferredToContext:(NSManagedObjectContext *)context {
     NSMutableArray *transferredObjects = [NSMutableArray new];
     
@@ -26,5 +28,25 @@
     
     return transferredObjects;
 }
+
+#pragma mark - Indexed Array
+
+- (NSMutableDictionary *)lg_indexedByKeyPath:(NSString *)keyPath {
+    NSMutableDictionary *indexedDictionary = [NSMutableDictionary new];
+    
+    for (id object in self) {
+        if (object == [NSNull null]) continue;
+        
+        id key = [object valueForKeyPath:keyPath];
+        
+        if (key) {
+            [indexedDictionary setValue:object forKey:key];
+        }
+    }
+    
+    return indexedDictionary;
+}
+
+#pragma mark -
 
 @end

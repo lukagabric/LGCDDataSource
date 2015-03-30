@@ -62,7 +62,6 @@
 		413DD7E01AC7E47F00055312 /* NSArray+LGDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LGDataSource.h"; sourceTree = "<group>"; };
 		413DD7E11AC7E47F00055312 /* NSArray+LGDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LGDataSource.m"; sourceTree = "<group>"; };
 		413DD7E41AC7E5C200055312 /* LGContextTransferable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGContextTransferable.h; sourceTree = "<group>"; };
-		413DD7E51AC7E5DF00055312 /* LGDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataImport.h; sourceTree = "<group>"; };
 		418130DA1AB5555900DACA1D /* _Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Contact.h; sourceTree = "<group>"; };
 		418130DB1AB5555900DACA1D /* _Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Contact.m; sourceTree = "<group>"; };
 		418130DC1AB5555900DACA1D /* _LGDataUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _LGDataUpdateInfo.h; sourceTree = "<group>"; };
@@ -165,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				413DD7E41AC7E5C200055312 /* LGContextTransferable.h */,
-				413DD7E51AC7E5DF00055312 /* LGDataImport.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";

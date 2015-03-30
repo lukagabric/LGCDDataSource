@@ -7,10 +7,14 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "LGDataImport.h"
 
-@interface NSManagedObject (LGDataSource) <LGDataImport>
+@interface NSManagedObject (LGDataSource)
 
-- (void)mergeObjectWithDictionary:(NSDictionary *)dictionary;
++ (NSDictionary *)lg_dataUpdateMappings;
++ (NSDateFormatter *)lg_dateFormatter;
++ (NSDate *)lg_dateFromString:(NSString *)dateString;
+
+- (id)lg_transformedRawValue:(id)rawValue forKey:(NSString *)key;
+- (void)lg_mergeWithDictionary:(NSDictionary *)dictionary;
 
 @end

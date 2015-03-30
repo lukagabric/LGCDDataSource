@@ -10,4 +10,6 @@
 
 @interface NSArray (LGDataSource) <LGContextTransferable>
 
+- (NSMutableDictionary *)lg_indexedByKeyPath:(NSString *)keyPath;
+
 @end
