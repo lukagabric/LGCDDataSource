@@ -11,10 +11,14 @@
 @implementation NSManagedObject (LGDataSource)
 
 - (void)lg_mergeWithDictionary:(NSDictionary *)dictionary {
+    if (![self lg_isUpdateDataValid:dictionary]) return;
+    
     NSDictionary *mappings = [[self class] lg_dataUpdateMappings];
     
     if (!mappings) return;
     
+    NSDictionary *attributes = self.entity.attributesByName;
+
     for (NSString *dictKey in dictionary) {
         NSString *attributeKey = mappings[dictKey];
         if (!attributeKey) continue;
@@ -22,14 +26,18 @@
         id rawValue = dictionary[dictKey];
         if (rawValue == [NSNull null]) continue;
         
-        id value = [self lg_transformedRawValue:rawValue forKey:attributeKey];
-        [self setValue:value forKey:attributeKey];
+        id value = [self lg_transformedRawValue:rawValue forKey:attributeKey withAttributes:attributes];
+        if (value) {
+            [self setValue:value forKey:attributeKey];
+        }
     }
 }
 
-- (id)lg_transformedRawValue:(id)rawValue forKey:(NSString *)key {
-    NSDictionary *attributes = self.entity.attributesByName;
+- (BOOL)lg_isUpdateDataValid:(NSDictionary *)updateData {
+    return YES;
+}
 
+- (id)lg_transformedRawValue:(id)rawValue forKey:(NSString *)key withAttributes:(NSDictionary *)attributes {
     NSAttributeDescription *attributeDescription = [attributes valueForKey:key];
     NSAttributeType attributeType = attributeDescription.attributeType;
 
@@ -37,7 +45,7 @@
     
     if ([rawValue isKindOfClass:[NSString class]]) {
         if (attributeType == NSDateAttributeType) {
-            value = [[self class] lg_dateFromString:rawValue];
+            value = [[self class] lg_dateForKey:key fromString:rawValue];
         }
         else if (attributeType == NSInteger16AttributeType ||
                  attributeType == NSInteger32AttributeType ||
@@ -67,7 +75,7 @@
     return dateFormatter;
 }
 
-+ (NSDate *)lg_dateFromString:(NSString *)dateString {
++ (NSDate *)lg_dateForKey:(NSString *)key fromString:(NSString *)dateString {
     NSDateFormatter *formatter = [self lg_dateFormatter];
     return [formatter dateFromString:dateString];
 }
