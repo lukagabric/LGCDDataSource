@@ -80,6 +80,40 @@
     return [formatter dateFromString:dateString];
 }
 
++ (NSString *)entityName {
+    return nil;
+}
+
++ (NSArray *)existingObjectsOrStubsWithGuids:(NSString *)guids
+                                     guidKey:(NSString *)guidKey
+                                   inContext:(NSManagedObjectContext *)context {
+    NSString *entityName = [self entityName];
+    NSAssert(entityName != nil, @"Entity name must be provided");
+    if (!entityName) return nil;
+
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:entityName];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(%K IN %@)", guidKey, guids];
+    
+    NSError *error;
+    NSArray *existingObjects = [context executeFetchRequest:fetchRequest error:&error];
+    if (error) return nil;
+    
+    NSArray *existingObjectsGuids = [existingObjects valueForKey:guidKey];
+    
+    NSMutableArray *newObjectsGuids = [guids mutableCopy];
+    [newObjectsGuids removeObjectsInArray:existingObjectsGuids];
+    
+    NSMutableArray *results = [NSMutableArray arrayWithArray:existingObjects];
+
+    for (NSString *guid in newObjectsGuids) {
+        NSManagedObject *newObject = [NSEntityDescription insertNewObjectForEntityForName:entityName inManagedObjectContext:context];
+        [newObject setValue:guid forKey:guidKey];
+        [results addObject:newObject];
+    }
+    
+    return results;
+}
+
 #pragma mark -
 
 @end

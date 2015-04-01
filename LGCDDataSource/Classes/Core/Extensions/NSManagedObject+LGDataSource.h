@@ -13,6 +13,10 @@
 + (NSDictionary *)lg_dataUpdateMappings;
 + (NSDateFormatter *)lg_dateFormatter;
 + (NSDate *)lg_dateForKey:(NSString *)key fromString:(NSString *)dateString;
++ (NSString *)entityName;
++ (NSArray *)existingObjectsOrStubsWithGuids:(NSString *)guids
+                                     guidKey:(NSString *)guidKey
+                                   inContext:(NSManagedObjectContext *)context;
 
 - (id)lg_transformedRawValue:(id)rawValue forKey:(NSString *)key withAttributes:(NSDictionary *)attributes;
 - (void)lg_mergeWithDictionary:(NSDictionary *)dictionary;
