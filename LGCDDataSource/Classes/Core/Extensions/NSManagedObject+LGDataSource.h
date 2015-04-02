@@ -15,7 +15,7 @@
 + (NSDateFormatter *)lg_dateFormatter;
 + (NSDate *)lg_dateForKey:(NSString *)key fromString:(NSString *)dateString;
 + (NSString *)entityName;
-+ (NSArray *)existingObjectsOrStubsWithGuids:(NSString *)guids
++ (NSArray *)existingObjectsOrStubsWithGuids:(NSArray *)guids
                                      guidKey:(NSString *)guidKey
                                    inContext:(NSManagedObjectContext *)context;
 + (NSArray *)objectsWithData:(NSArray *)data

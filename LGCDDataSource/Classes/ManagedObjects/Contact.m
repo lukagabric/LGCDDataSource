@@ -34,9 +34,25 @@
         Contact *contact = contactsById[guid];
         contact.weightValue = LGContentWeightHeavy;
         [contact lg_mergeWithDictionary:dictionary];
+        [self processRelatedContactGuids:dictionary[@"relatedContacts"]
+                              forContact:contact
+                               inContext:context];
     }
     
     return contacts;
+}
+
++ (NSArray *)processRelatedContactGuids:(NSArray *)relatedContactGuids forContact:(Contact *)contact inContext:(NSManagedObjectContext *)context {
+    if (!relatedContactGuids) return nil;
+    
+    NSArray *relatedContacts = [self existingObjectsOrStubsWithGuids:relatedContactGuids
+                                                             guidKey:@"guid"
+                                                           inContext:context];
+    if (relatedContacts) {
+        [contact addChildContacts:[NSSet setWithArray:relatedContacts]];
+    }
+    
+    return relatedContactGuids;
 }
 
 #pragma mark - Mappings

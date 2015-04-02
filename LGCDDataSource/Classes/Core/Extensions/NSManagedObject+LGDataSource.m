@@ -85,7 +85,7 @@
     return nil;
 }
 
-+ (NSArray *)existingObjectsOrStubsWithGuids:(NSString *)guids
++ (NSArray *)existingObjectsOrStubsWithGuids:(NSArray *)guids
                                      guidKey:(NSString *)guidKey
                                    inContext:(NSManagedObjectContext *)context {
     NSString *entityName = [self entityName];
@@ -112,7 +112,7 @@
         [results addObject:newObject];
     }
     
-    return results;
+    return [results count] > 0 ? results : nil;
 }
 
 + (NSArray *)objectsWithData:(NSArray *)data
