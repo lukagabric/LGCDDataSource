@@ -13,6 +13,16 @@
 #pragma mark - Parsing
 
 + (NSArray *)parseHeavyContactsData:(NSArray *)data inContext:(NSManagedObjectContext *)context {
+    /*
+    NSArray *contacts = [self objectsWithData:data
+                                  dataGuidKey:@"id"
+                                objectGuidKey:@"guid"
+                                       weight:LGContentWeightHeavy
+                                      context:context];
+    
+    return contacts;
+     */
+    
     NSArray *contacts = [self existingObjectsOrStubsWithGuids:[data valueForKey:@"id"]
                                                       guidKey:@"guid"
                                                     inContext:context];

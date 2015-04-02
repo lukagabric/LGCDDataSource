@@ -7,6 +7,7 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "LGDataSource.h"
 
 @interface NSManagedObject (LGDataSource)
 
@@ -17,6 +18,11 @@
 + (NSArray *)existingObjectsOrStubsWithGuids:(NSString *)guids
                                      guidKey:(NSString *)guidKey
                                    inContext:(NSManagedObjectContext *)context;
++ (NSArray *)objectsWithData:(NSArray *)data
+                 dataGuidKey:(NSString *)dataGuidKey
+               objectGuidKey:(NSString *)objectGuidKey
+                      weight:(LGContentWeight)weight
+                     context:(NSManagedObjectContext *)context;
 
 - (id)lg_transformedRawValue:(id)rawValue forKey:(NSString *)key withAttributes:(NSDictionary *)attributes;
 - (void)lg_mergeWithDictionary:(NSDictionary *)dictionary;

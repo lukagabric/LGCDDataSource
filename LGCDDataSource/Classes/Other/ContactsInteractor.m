@@ -7,6 +7,7 @@
 //
 
 #import "ContactsInteractor.h"
+#import <CoreData+MagicalRecord.h>
 #import "Contact.h"
 
 @interface ContactsInteractor ()
@@ -31,10 +32,13 @@
                                                    requestId:@"ContactsJSON"
                                                staleInterval:10
                                                   dataUpdate:^id(NSArray *data, NSURLResponse *response, NSManagedObjectContext *context) {
-                                                      
                                                       return [Contact parseHeavyContactsData:data inContext:context];
                                                   }];
-    return nil;
+    return [Contact MR_fetchAllSortedBy:@"lastName"
+                              ascending:YES
+                          withPredicate:nil
+                                groupBy:nil
+                               delegate:nil];
 }
 
 @end

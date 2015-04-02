@@ -7,6 +7,7 @@
 //
 
 #import "NSManagedObject+LGDataSource.h"
+#import "NSArray+LGDataSource.h"
 
 @implementation NSManagedObject (LGDataSource)
 
@@ -112,6 +113,27 @@
     }
     
     return results;
+}
+
++ (NSArray *)objectsWithData:(NSArray *)data
+                 dataGuidKey:(NSString *)dataGuidKey
+               objectGuidKey:(NSString *)objectGuidKey
+                      weight:(LGContentWeight)weight
+                     context:(NSManagedObjectContext *)context {
+    NSArray *objects = [self existingObjectsOrStubsWithGuids:[data valueForKey:dataGuidKey]
+                                                     guidKey:objectGuidKey
+                                                   inContext:context];
+    
+    NSDictionary *objectsById = [objects lg_indexedByKeyPath:objectGuidKey];
+    
+    for (NSDictionary *dictionary in data) {
+        NSString *guid = dictionary[@"id"];
+        NSManagedObject *object = objectsById[guid];
+        [object setValue:@(weight) forKey:@"weight"];
+        [object lg_mergeWithDictionary:dictionary];
+    }
+    
+    return objects;
 }
 
 #pragma mark -

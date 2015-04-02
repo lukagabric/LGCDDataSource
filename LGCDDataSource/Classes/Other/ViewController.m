@@ -8,9 +8,10 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) ContactsInteractor *interactor;
+@property (strong, nonatomic) NSFetchedResultsController *contactsFrc;
 
 @end
 
@@ -28,13 +29,24 @@
     [super viewDidLoad];
     
     PMKPromise *updatePromise;
-    [self.interactor contactsWithUpdatePromise:&updatePromise];
+    self.contactsFrc = [self.interactor contactsWithUpdatePromise:&updatePromise];
+    self.contactsFrc.delegate = self;
+    
+    [self logContacts];
     
     if (updatePromise) {
         updatePromise.then(^(id result) {
             NSLog(@"%@", result);
         });
     }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self logContacts];
+}
+
+- (void)logContacts {
+    NSLog(@"Contacts: %@", self.contactsFrc.fetchedObjects);
 }
 
 @end
