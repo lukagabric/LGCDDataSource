@@ -19,7 +19,6 @@
 @property (strong, nonatomic) NSManagedObjectContext *bgContext;
 @property (strong, nonatomic) NSOperationQueue *dataDownloadQueue;
 @property (strong, nonatomic) NSCache *lastUpdateDateCache;
-@property (strong, nonatomic) NSCache *fingerprintCache;
 @property (strong, nonatomic) NSMutableDictionary *activeDataUpdates;
 
 @end
@@ -46,9 +45,6 @@
         
         self.lastUpdateDateCache = [NSCache new];
         self.lastUpdateDateCache.countLimit = 100;
-
-        self.fingerprintCache = [NSCache new];
-        self.fingerprintCache.countLimit = 100;
     }
     return self;
 }
@@ -73,29 +69,27 @@
     
     PMKPromise *downloadPromise = downloadOperation.promise;
     
-    __weak id weakSelf = self;
-    PMKPromise *dataUpdatePromise = downloadPromise.then(^id(LGResponse *response) {
+    __weak LGDataSource *weakSelf = self;
+    dispatch_queue_t bgQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    PMKPromise *dataUpdatePromise = downloadPromise.thenOn(bgQueue, ^id(LGResponse *response) {
         return [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
-            LGDataSource *strongSelf = weakSelf;
-            if (!strongSelf) {
-                fulfill(nil);
-                return;
-            }
-            
-            NSError *responseValidationError = [strongSelf validateResponse:response];
-            if (responseValidationError) {
-                reject(responseValidationError);
-                return;
-            }
-            
-            if (![strongSelf isDataNewForRequestId:requestId response:response]) {
-                fulfill(nil);
-                return;
-            }
-            
-            [strongSelf.bgContext performBlock:^{
+            [weakSelf.bgContext performBlock:^{
                 LGDataSource *strongSelf = weakSelf;
-                if (!strongSelf) return fulfill(nil);
+                if (!strongSelf) return;
+
+                NSError *responseValidationError = [strongSelf validateResponse:response];
+                if (responseValidationError) {
+                    reject(responseValidationError);
+                    return;
+                }
+                
+                if (![strongSelf isDataNewForRequestId:requestId response:response context:strongSelf.bgContext]) {
+                    [strongSelf updateInfoForRequestId:requestId response:response context:strongSelf.bgContext];
+                    [strongSelf saveDataWithCompletionBlock:^{
+                        fulfill(nil);
+                    }];
+                    return;
+                }
                 
                 NSError *serializationError;
                 id responseObject = [strongSelf serializedResponseDataForResponse:response error:&serializationError];
@@ -107,20 +101,13 @@
                 
                 id <LGContextTransferable> dataUpdateResult = dataUpdate(responseObject, response, strongSelf.bgContext);
                 
-                LGDataUpdateInfo *info = [self existingUpdateInfoForRequestId:requestId context:strongSelf.bgContext];
-                if (!info) info = [self newUpdateInfoForRequestId:requestId context:strongSelf.bgContext];
+                [strongSelf updateInfoForRequestId:requestId response:response context:strongSelf.bgContext];
                 
-                info.lastUpdateDate = [NSDate date];
-                info.responseFingerprint = [strongSelf fingerprintForResponse:response];
-
                 [strongSelf saveDataWithCompletionBlock:^{
                     LGDataSource *strongSelf = weakSelf;
                     if (!strongSelf) return;
                     
                     id transferredResult = [dataUpdateResult transferredToContext:self.mainContext];
-
-                    [strongSelf.lastUpdateDateCache setObject:info.lastUpdateDate forKey:requestId];
-                    [strongSelf.fingerprintCache setObject:info.responseFingerprint forKey:requestId];
 
                     fulfill(transferredResult);
                 }];
@@ -128,11 +115,14 @@
         }];
     });
     
+    dataUpdatePromise.then(^{
+        [self.activeDataUpdates removeObjectForKey:requestId];
+    });
+    
     self.activeDataUpdates[requestId] = dataUpdatePromise;
 
     return dataUpdatePromise;
 }
-
 
 #pragma mark - Convenience
 
@@ -162,14 +152,11 @@
     return info.lastUpdateDate;
 }
 
-- (BOOL)isDataNewForRequestId:(NSString *)requestId response:(LGResponse *)response {
+- (BOOL)isDataNewForRequestId:(NSString *)requestId response:(LGResponse *)response context:(NSManagedObjectContext *)context {
     NSString *currentFingerprint = [self fingerprintForResponse:response];
 
-    NSString *previousFingerprint = [self.fingerprintCache objectForKey:requestId];
-    if (!previousFingerprint) {
-        LGDataUpdateInfo *info = [self existingUpdateInfoForRequestId:requestId context:self.mainContext];
-        previousFingerprint = info.responseFingerprint;
-    }
+    LGDataUpdateInfo *info = [self existingUpdateInfoForRequestId:requestId context:context];
+    NSString *previousFingerprint = info.responseFingerprint;
     
     BOOL isDataNew = !previousFingerprint || !currentFingerprint || ![previousFingerprint isEqualToString:currentFingerprint];
     
@@ -178,6 +165,25 @@
 #endif
     
     return isDataNew;
+}
+
+- (void)updateInfoForRequestId:(NSString *)requestId response:(LGResponse *)response context:(NSManagedObjectContext *)context {
+    LGDataUpdateInfo *info = [self existingUpdateInfoForRequestId:requestId context:context];
+    if (!info) info = [self newUpdateInfoForRequestId:requestId context:context];
+    
+    info.lastUpdateDate = [NSDate date];
+    info.responseFingerprint = [self fingerprintForResponse:response];
+    
+    void(^updateCache)() = ^{
+        [self.lastUpdateDateCache setObject:info.lastUpdateDate forKey:requestId];
+    };
+    
+    if ([NSThread isMainThread]) {
+        updateCache();
+    }
+    else {
+        dispatch_sync(dispatch_get_main_queue(), updateCache);
+    }
 }
 
 - (NSString *)fingerprintForResponse:(LGResponse *)response {

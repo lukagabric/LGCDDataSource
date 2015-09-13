@@ -34,23 +34,18 @@
         
         self.session = session;
         
-        __weak id weakSelf = self;
+        __weak LGDataDownloadOperation *weakSelf = self;
         self.promise = [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
-            LGDataDownloadOperation *strongSelf = weakSelf;
-            if (!strongSelf) return;
-
-            strongSelf.fulfill = fulfill;
-            strongSelf.reject = reject;
+            weakSelf.fulfill = fulfill;
+            weakSelf.reject = reject;
         }];
         
         self.task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                LGDataDownloadOperation *strongSelf = weakSelf;
-                if (!strongSelf) return;
-                
-                LGResponse *resp = [[LGResponse alloc] initWithHTTPResponse:(NSHTTPURLResponse *)response andResponseData:data];
-                [strongSelf taskDidFinishWithResponse:resp error:error];
-            });
+            LGDataDownloadOperation *strongSelf = weakSelf;
+            if (!strongSelf) return;
+            
+            LGResponse *resp = [[LGResponse alloc] initWithHTTPResponse:(NSHTTPURLResponse *)response andResponseData:data];
+            [strongSelf taskDidFinishWithResponse:resp error:error];
         }];
     }
     return self;
@@ -81,9 +76,7 @@
     [self.task resume];
 }
 
-- (void)taskDidFinishWithResponse:(LGResponse *)response error:(NSError *)error {
-    NSAssert([NSThread isMainThread], @"Must be executed on main thread");
-    
+- (void)taskDidFinishWithResponse:(LGResponse *)response error:(NSError *)error {    
     [self willChangeValueForKey:@"isFinished"];
     [self willChangeValueForKey:@"isExecuting"];
     
