@@ -84,9 +84,10 @@
                 }
                 
                 if (![strongSelf isDataNewForRequestId:requestId response:response context:strongSelf.bgContext]) {
-                    [strongSelf updateInfoForRequestId:requestId response:response context:strongSelf.bgContext];
+                    LGDataUpdateInfo *info = [strongSelf updatedInfoForSuccessfulRequestId:requestId response:response context:strongSelf.bgContext];
                     [strongSelf saveDataWithCompletionBlock:^{
-                        fulfill(nil);
+                        [self.lastUpdateDateCache setObject:info.lastUpdateDate forKey:requestId];
+                        fulfill(info.lastUpdateDate);
                     }];
                     return;
                 }
@@ -101,11 +102,13 @@
                 
                 id <LGContextTransferable> dataUpdateResult = dataUpdate(responseObject, response, strongSelf.bgContext);
                 
-                [strongSelf updateInfoForRequestId:requestId response:response context:strongSelf.bgContext];
+                LGDataUpdateInfo *info = [strongSelf updatedInfoForSuccessfulRequestId:requestId response:response context:strongSelf.bgContext];
                 
                 [strongSelf saveDataWithCompletionBlock:^{
                     LGDataSource *strongSelf = weakSelf;
                     if (!strongSelf) return;
+
+                    [self.lastUpdateDateCache setObject:info.lastUpdateDate forKey:requestId];
                     
                     id transferredResult = [dataUpdateResult transferredToContext:self.mainContext];
 
@@ -167,23 +170,16 @@
     return isDataNew;
 }
 
-- (void)updateInfoForRequestId:(NSString *)requestId response:(LGResponse *)response context:(NSManagedObjectContext *)context {
+- (LGDataUpdateInfo *)updatedInfoForSuccessfulRequestId:(NSString *)requestId
+                                               response:(LGResponse *)response
+                                                context:(NSManagedObjectContext *)context {
     LGDataUpdateInfo *info = [self existingUpdateInfoForRequestId:requestId context:context];
     if (!info) info = [self newUpdateInfoForRequestId:requestId context:context];
     
     info.lastUpdateDate = [NSDate date];
     info.responseFingerprint = [self fingerprintForResponse:response];
     
-    void(^updateCache)() = ^{
-        [self.lastUpdateDateCache setObject:info.lastUpdateDate forKey:requestId];
-    };
-    
-    if ([NSThread isMainThread]) {
-        updateCache();
-    }
-    else {
-        dispatch_sync(dispatch_get_main_queue(), updateCache);
-    }
+    return info;
 }
 
 - (NSString *)fingerprintForResponse:(LGResponse *)response {
