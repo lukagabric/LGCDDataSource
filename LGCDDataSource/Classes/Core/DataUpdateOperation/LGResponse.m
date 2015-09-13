@@ -17,6 +17,8 @@
 
 @implementation LGResponse
 
+#pragma mark - Init
+
 - (instancetype)initWithHTTPResponse:(NSHTTPURLResponse *)httpResponse andResponseData:(NSData *)responseData {
     self = [super init];
     if (self) {
@@ -25,5 +27,21 @@
     }
     return self;
 }
+
+#pragma mark - Getters
+
+- (NSString *)etag {
+    return self.httpResponse.allHeaderFields[@"Etag"];
+}
+
+- (NSString *)lastModified {
+    return self.httpResponse.allHeaderFields[@"Last-Modified"];
+}
+
+- (NSInteger)statusCode {
+    return self.httpResponse.statusCode;
+}
+
+#pragma mark -
 
 @end

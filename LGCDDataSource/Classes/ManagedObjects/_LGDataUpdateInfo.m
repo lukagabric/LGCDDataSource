@@ -4,9 +4,10 @@
 #import "_LGDataUpdateInfo.h"
 
 const struct LGDataUpdateInfoAttributes LGDataUpdateInfoAttributes = {
+	.etag = @"etag",
+	.lastModified = @"lastModified",
 	.lastUpdateDate = @"lastUpdateDate",
 	.requestId = @"requestId",
-	.responseFingerprint = @"responseFingerprint",
 };
 
 const struct LGDataUpdateInfoRelationships LGDataUpdateInfoRelationships = {
@@ -48,6 +49,20 @@ const struct LGDataUpdateInfoFetchedProperties LGDataUpdateInfoFetchedProperties
 
 
 
+@dynamic etag;
+
+
+
+
+
+
+@dynamic lastModified;
+
+
+
+
+
+
 @dynamic lastUpdateDate;
 
 
@@ -56,13 +71,6 @@ const struct LGDataUpdateInfoFetchedProperties LGDataUpdateInfoFetchedProperties
 
 
 @dynamic requestId;
-
-
-
-
-
-
-@dynamic responseFingerprint;
 
 
 

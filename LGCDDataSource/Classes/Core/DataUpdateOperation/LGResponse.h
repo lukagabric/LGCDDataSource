@@ -15,4 +15,8 @@
 @property (readonly, nonatomic) NSHTTPURLResponse *httpResponse;
 @property (readonly, nonatomic) NSData *responseData;
 
+@property (readonly, nonatomic) NSString *etag;
+@property (readonly, nonatomic) NSString *lastModified;
+@property (readonly, nonatomic) NSInteger statusCode;
+
 @end

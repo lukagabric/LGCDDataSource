@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1514" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Contact" representedClassName="Contact" syncable="YES">
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -11,12 +11,13 @@
         <relationship name="parentContact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Contact" inverseName="childContacts" inverseEntity="Contact" syncable="YES"/>
     </entity>
     <entity name="LGDataUpdateInfo" representedClassName="LGDataUpdateInfo" syncable="YES">
+        <attribute name="etag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastModified" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastUpdateDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="requestId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="responseFingerprint" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Contact" positionX="0" positionY="0" width="128" height="165"/>
-        <element name="LGDataUpdateInfo" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="LGDataUpdateInfo" positionX="0" positionY="0" width="128" height="105"/>
     </elements>
 </model>

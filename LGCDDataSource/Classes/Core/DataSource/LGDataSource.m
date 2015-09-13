@@ -51,10 +51,12 @@
 
 #pragma mark - Update Promise
 
-- (PMKPromise *)updateDataPromiseWithRequest:(NSURLRequest *)request
-                                   requestId:(NSString *)requestId
-                               staleInterval:(NSTimeInterval)staleInterval
-                                  dataUpdate:(LGDataUpdate)dataUpdate {
+- (PMKPromise *)updateDataPromiseWithUrl:(NSString *)url
+                              methodName:(NSString *)methodName
+                              parameters:(NSDictionary *)parameters
+                               requestId:(NSString *)requestId
+                           staleInterval:(NSTimeInterval)staleInterval
+                              dataUpdate:(LGDataUpdate)dataUpdate {
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     
     if (![self isDataStaleForRequestId:requestId andStaleInterval:staleInterval]) return nil;
@@ -63,6 +65,8 @@
     if (activeDataUpdatePromise) {
         return activeDataUpdatePromise;
     }
+    
+    NSURLRequest *request = [self requestWithRequestId:requestId url:url methodName:methodName parameters:parameters];
     
     LGDataDownloadOperation *downloadOperation = [[LGDataDownloadOperation alloc] initWithSession:self.session request:request];
     [self.dataDownloadQueue addOperation:downloadOperation];
@@ -129,6 +133,49 @@
 
 #pragma mark - Convenience
 
+- (NSURLRequest *)requestWithRequestId:(NSString *)requestId
+                                   url:(NSString *)url
+                            methodName:(NSString *)methodName
+                            parameters:(NSDictionary *)parameters {
+    if (parameters && [methodName isEqualToString:@"GET"]) {
+        NSString *paramsString = [self queryStringFromParameters:parameters];
+        url = [url stringByAppendingFormat:@"?%@", paramsString];
+    }
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    request.HTTPMethod = methodName;
+    
+    if (parameters && [methodName isEqualToString:@"POST"]) {
+        NSData *data = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+        [request setHTTPBody:data];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    }
+    
+    if ([methodName isEqualToString:@"GET"]) {
+        LGDataUpdateInfo *info = [self existingUpdateInfoForRequestId:requestId context:self.mainContext];
+        if (info.etag)
+            [request setValue:info.etag forHTTPHeaderField:@"If-None-Match"];
+        else if (info.lastModified)
+            [request setValue:info.lastModified forHTTPHeaderField:@"Last-Modified"];
+    }
+    
+    return request;
+}
+
+- (NSString *)queryStringFromParameters:(NSDictionary *)parameters {
+    if (parameters.count == 0) return nil;
+    
+    NSMutableString *query = [NSMutableString string];
+    
+    for (NSString *parameter in parameters.allKeys) {
+        NSString *param = [parameter stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        NSString *value = [parameters[parameter] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+        [query appendFormat:@"&%@=%@", param, value];
+    }
+    
+    return [NSString stringWithFormat:@"%@", [query substringFromIndex:1]];
+}
+
 - (BOOL)isDataStaleForRequestId:(NSString *)requestId andStaleInterval:(NSTimeInterval)staleInterval {
     NSDate *lastUpdateDate = [self lastUpdateDateForRequestId:requestId];
     NSTimeInterval lastUpdateInterval = [lastUpdateDate timeIntervalSinceReferenceDate];
@@ -156,13 +203,24 @@
 }
 
 - (BOOL)isDataNewForRequestId:(NSString *)requestId response:(LGResponse *)response context:(NSManagedObjectContext *)context {
-    NSString *currentFingerprint = [self fingerprintForResponse:response];
-
+    if (!response.etag && !response.lastModified) {
+#if DEBUG
+        NSLog(@"No response etag or last modified for request with id: '%@', url: '%@'. Request needs to have a fingerprint (e.g. ETag or Last-Modified) for caching.", requestId, response.httpResponse.URL.absoluteString);
+#endif
+        return YES;
+    }
+    
     LGDataUpdateInfo *info = [self existingUpdateInfoForRequestId:requestId context:context];
-    NSString *previousFingerprint = info.responseFingerprint;
     
-    BOOL isDataNew = !previousFingerprint || !currentFingerprint || ![previousFingerprint isEqualToString:currentFingerprint];
+    if (!info) {
+#if DEBUG
+        NSLog(@"First time data request with request id: '%@'", requestId);
+#endif
+        return YES;
+    }
     
+    BOOL isDataNew = ![response.etag isEqualToString:info.etag] || ![response.lastModified isEqualToString:info.lastModified];
+
 #if DEBUG
     NSLog(@"Data is %@new for this request.", isDataNew ? @"" : @"NOT ");
 #endif
@@ -177,27 +235,10 @@
     if (!info) info = [self newUpdateInfoForRequestId:requestId context:context];
     
     info.lastUpdateDate = [NSDate date];
-    info.responseFingerprint = [self fingerprintForResponse:response];
+    info.etag = response.etag;
+    info.lastModified = response.lastModified;
     
     return info;
-}
-
-- (NSString *)fingerprintForResponse:(LGResponse *)response {
-    NSDictionary *headers = response.httpResponse.allHeaderFields;
-    
-    NSString *etagOrLastModified = headers[@"Etag"];
-    
-    if (!etagOrLastModified) {
-        etagOrLastModified = headers[@"Last-Modified"];
-    }
-    
-#if DEBUG
-    if (!etagOrLastModified) {
-        NSLog(@"No response fingerprint for request with url: '%@'. Request needs to have a fingerprint (e.g. ETag or Last-Modified) for caching.", response.httpResponse.URL.absoluteString);
-    }
-#endif
-    
-    return etagOrLastModified;
 }
 
 - (NSError *)validateResponse:(LGResponse *)response {

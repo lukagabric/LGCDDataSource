@@ -27,13 +27,14 @@
 }
 
 - (NSFetchedResultsController *)contactsWithUpdatePromise:(PMKPromise **)promise {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://lukagabric.com/wp-content/contacts-api/contacts"]];
-    *promise = [self.dataSource updateDataPromiseWithRequest:request
-                                                   requestId:@"ContactsJSON"
-                                               staleInterval:10
-                                                  dataUpdate:^id(NSArray *data, LGResponse *response, NSManagedObjectContext *context) {
-                                                      return [Contact parseHeavyContactsData:data inContext:context];
-                                                  }];
+    *promise = [self.dataSource updateDataPromiseWithUrl:@"http://lukagabric.com/wp-content/contacts-api/contacts"
+                                              methodName:@"GET"
+                                              parameters:nil
+                                               requestId:@"ContactsJSON"
+                                           staleInterval:10
+                                              dataUpdate:^id(NSArray *data, LGResponse *response, NSManagedObjectContext *context) {
+                                                  return [Contact parseHeavyContactsData:data inContext:context];
+                                              }];
     return [Contact MR_fetchAllSortedBy:@"lastName"
                               ascending:YES
                           withPredicate:nil

@@ -24,9 +24,10 @@ typedef id(^LGDataUpdate)(id data, LGResponse *response, NSManagedObjectContext 
 - (instancetype)initWithSession:(NSURLSession *)session
                     mainContext:(NSManagedObjectContext *)mainContext NS_DESIGNATED_INITIALIZER;
 
-- (PMKPromise *)updateDataPromiseWithRequest:(NSURLRequest *)request
-                                   requestId:(NSString *)requestId
-                               staleInterval:(NSTimeInterval)staleInterval
-                                  dataUpdate:(LGDataUpdate)dataUpdate;
-
+- (PMKPromise *)updateDataPromiseWithUrl:(NSString *)url
+                              methodName:(NSString *)methodName
+                              parameters:(NSDictionary *)parameters
+                               requestId:(NSString *)requestId
+                           staleInterval:(NSTimeInterval)staleInterval
+                              dataUpdate:(LGDataUpdate)dataUpdate;
 @end

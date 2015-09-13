@@ -32,21 +32,27 @@
     self.contactsFrc = [self.interactor contactsWithUpdatePromise:&updatePromise];
     self.contactsFrc.delegate = self;
     
-    [self logContacts];
+    [self logContactsCount];
     
     if (updatePromise) {
         updatePromise.then(^(id result) {
-            NSLog(@"%@", result);
+            if ([result isKindOfClass:[NSDate class]]) {
+                NSLog(@"Last refreshed at: %@", result);
+            }
+            else if ([result isKindOfClass:[NSArray class]]) {
+                NSArray *results = result;
+                NSLog(@"Updated items, count = %ld", results.count);
+            }
         });
     }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self logContacts];
+    [self logContactsCount];
 }
 
-- (void)logContacts {
-    NSLog(@"Contacts: %@", self.contactsFrc.fetchedObjects);
+- (void)logContactsCount {
+    NSLog(@"Contacts count: %ld", self.contactsFrc.fetchedObjects.count);
 }
 
 @end

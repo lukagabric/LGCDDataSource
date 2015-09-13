@@ -5,9 +5,10 @@
 
 
 extern const struct LGDataUpdateInfoAttributes {
+	__unsafe_unretained NSString *etag;
+	__unsafe_unretained NSString *lastModified;
 	__unsafe_unretained NSString *lastUpdateDate;
 	__unsafe_unretained NSString *requestId;
-	__unsafe_unretained NSString *responseFingerprint;
 } LGDataUpdateInfoAttributes;
 
 extern const struct LGDataUpdateInfoRelationships {
@@ -15,6 +16,7 @@ extern const struct LGDataUpdateInfoRelationships {
 
 extern const struct LGDataUpdateInfoFetchedProperties {
 } LGDataUpdateInfoFetchedProperties;
+
 
 
 
@@ -29,6 +31,26 @@ extern const struct LGDataUpdateInfoFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (LGDataUpdateInfoID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSString* etag;
+
+
+
+//- (BOOL)validateEtag:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* lastModified;
+
+
+
+//- (BOOL)validateLastModified:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -54,16 +76,6 @@ extern const struct LGDataUpdateInfoFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* responseFingerprint;
-
-
-
-//- (BOOL)validateResponseFingerprint:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 
 @end
 
@@ -74,6 +86,18 @@ extern const struct LGDataUpdateInfoFetchedProperties {
 @interface _LGDataUpdateInfo (CoreDataGeneratedPrimitiveAccessors)
 
 
+- (NSString*)primitiveEtag;
+- (void)setPrimitiveEtag:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveLastModified;
+- (void)setPrimitiveLastModified:(NSString*)value;
+
+
+
+
 - (NSDate*)primitiveLastUpdateDate;
 - (void)setPrimitiveLastUpdateDate:(NSDate*)value;
 
@@ -82,12 +106,6 @@ extern const struct LGDataUpdateInfoFetchedProperties {
 
 - (NSString*)primitiveRequestId;
 - (void)setPrimitiveRequestId:(NSString*)value;
-
-
-
-
-- (NSString*)primitiveResponseFingerprint;
-- (void)setPrimitiveResponseFingerprint:(NSString*)value;
 
 
 
