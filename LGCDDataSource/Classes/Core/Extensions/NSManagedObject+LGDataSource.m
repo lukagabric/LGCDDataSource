@@ -11,6 +11,14 @@
 
 @implementation NSManagedObject (LGDataSource)
 
+#pragma mark - LGContextTransferable
+
+- (id)transferredToContext:(NSManagedObjectContext *)context {
+    return [context objectWithID:self.objectID];
+}
+
+#pragma mark - Parsing
+
 - (void)lg_mergeWithDictionary:(NSDictionary *)dictionary {
     if (![self lg_isUpdateDataValid:dictionary]) return;
     

@@ -1,6 +1,6 @@
 #import "Contact.h"
 #import "NSManagedObject+LGDataSource.h"
-#import <CoreData+MagicalRecord.h>
+#import "CoreData+MagicalRecord.h"
 #import "LGDataSource.h"
 #import "NSArray+LGDataSource.h"
 

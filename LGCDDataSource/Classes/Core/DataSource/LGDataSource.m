@@ -9,14 +9,18 @@
 #import "LGDataSource.h"
 #import <CoreData/CoreData.h>
 #import "LGDataUpdateInfo.h"
-#import "LGDataUpdateOperation.h"
+#import "LGDataDownloadOperation.h"
+#import "LGResponse.h"
 
 @interface LGDataSource ()
 
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) NSManagedObjectContext *mainContext;
 @property (strong, nonatomic) NSManagedObjectContext *bgContext;
-@property (strong, nonatomic) NSOperationQueue *dataUpdateQueue;
+@property (strong, nonatomic) NSOperationQueue *dataDownloadQueue;
+@property (strong, nonatomic) NSCache *lastUpdateDateCache;
+@property (strong, nonatomic) NSCache *fingerprintCache;
+@property (strong, nonatomic) NSMutableDictionary *activeDataUpdates;
 
 @end
 
@@ -33,11 +37,18 @@
         self.mainContext = mainContext;
         self.bgContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         self.bgContext.parentContext = self.mainContext;
-        [self configureBgContextNotifications];
         
-        self.dataUpdateQueue = [NSOperationQueue new];
-        self.dataUpdateQueue.maxConcurrentOperationCount = 1;
-        self.dataUpdateQueue.suspended = NO;
+        self.dataDownloadQueue = [NSOperationQueue new];
+        self.dataDownloadQueue.maxConcurrentOperationCount = 1;
+        self.dataDownloadQueue.suspended = NO;
+        
+        self.activeDataUpdates = [NSMutableDictionary new];
+        
+        self.lastUpdateDateCache = [NSCache new];
+        self.lastUpdateDateCache.countLimit = 100;
+
+        self.fingerprintCache = [NSCache new];
+        self.fingerprintCache.countLimit = 100;
     }
     return self;
 }
@@ -50,44 +61,80 @@
                                   dataUpdate:(LGDataUpdate)dataUpdate {
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     
-    if ([self isDataStaleForRequestId:requestId andStaleInterval:staleInterval]) {
-        LGDataUpdateOperation *operation = [self operationWithRequest:request
-                                                            requestId:requestId
-                                                           dataUpdate:dataUpdate];
-        return operation.promise;
+    if (![self isDataStaleForRequestId:requestId andStaleInterval:staleInterval]) return nil;
+
+    PMKPromise *activeDataUpdatePromise = self.activeDataUpdates[requestId];
+    if (activeDataUpdatePromise) {
+        return activeDataUpdatePromise;
     }
     
-    return nil;
+    LGDataDownloadOperation *downloadOperation = [[LGDataDownloadOperation alloc] initWithSession:self.session request:request];
+    [self.dataDownloadQueue addOperation:downloadOperation];
+    
+    PMKPromise *downloadPromise = downloadOperation.promise;
+    
+    __weak id weakSelf = self;
+    PMKPromise *dataUpdatePromise = downloadPromise.then(^id(LGResponse *response) {
+        return [PMKPromise new:^(PMKFulfiller fulfill, PMKRejecter reject) {
+            LGDataSource *strongSelf = weakSelf;
+            if (!strongSelf) {
+                fulfill(nil);
+                return;
+            }
+            
+            NSError *responseValidationError = [strongSelf validateResponse:response];
+            if (responseValidationError) {
+                reject(responseValidationError);
+                return;
+            }
+            
+            if (![strongSelf isDataNewForRequestId:requestId response:response]) {
+                fulfill(nil);
+                return;
+            }
+            
+            [strongSelf.bgContext performBlock:^{
+                LGDataSource *strongSelf = weakSelf;
+                if (!strongSelf) return fulfill(nil);
+                
+                NSError *serializationError;
+                id responseObject = [strongSelf serializedResponseDataForResponse:response error:&serializationError];
+                
+                if (responseObject == nil || serializationError) {
+                    reject(serializationError);
+                    return;
+                }
+                
+                id <LGContextTransferable> dataUpdateResult = dataUpdate(responseObject, response, strongSelf.bgContext);
+                
+                LGDataUpdateInfo *info = [self existingUpdateInfoForRequestId:requestId context:strongSelf.bgContext];
+                if (!info) info = [self newUpdateInfoForRequestId:requestId context:strongSelf.bgContext];
+                
+                info.lastUpdateDate = [NSDate date];
+                info.responseFingerprint = [strongSelf fingerprintForResponse:response];
+
+                [strongSelf saveDataWithCompletionBlock:^{
+                    LGDataSource *strongSelf = weakSelf;
+                    if (!strongSelf) return;
+                    
+                    id transferredResult = [dataUpdateResult transferredToContext:self.mainContext];
+
+                    [strongSelf.lastUpdateDateCache setObject:info.lastUpdateDate forKey:requestId];
+                    [strongSelf.fingerprintCache setObject:info.responseFingerprint forKey:requestId];
+
+                    fulfill(transferredResult);
+                }];
+            }];
+        }];
+    });
+    
+    self.activeDataUpdates[requestId] = dataUpdatePromise;
+
+    return dataUpdatePromise;
 }
 
-#pragma mark - Update Operation
 
-- (LGDataUpdateOperation *)operationWithRequest:(NSURLRequest *)request
-                                  requestId:(NSString *)requestId
-                                 dataUpdate:(LGDataUpdate)dataUpdate {
-    LGDataUpdateOperation *operation;
-    
-    for (LGDataUpdateOperation *existingOperation in self.dataUpdateQueue.operations) {
-        if ([existingOperation.requestId isEqualToString:requestId]) {
-            operation = existingOperation;
-            break;
-        }
-    }
-    
-    if (!operation) {
-        operation = [[LGDataUpdateOperation alloc] initWithSession:self.session
-                                                           request:request
-                                                         requestId:requestId
-                                                       mainContext:self.mainContext
-                                                         bgContext:self.bgContext
-                                                        dataUpdate:dataUpdate];
-        [self.dataUpdateQueue addOperation:operation];
-    }
-    
-    return operation;
-}
-
-#pragma mark - Update date
+#pragma mark - Convenience
 
 - (BOOL)isDataStaleForRequestId:(NSString *)requestId andStaleInterval:(NSTimeInterval)staleInterval {
     NSDate *lastUpdateDate = [self lastUpdateDateForRequestId:requestId];
@@ -108,44 +155,96 @@
 }
 
 - (NSDate *)lastUpdateDateForRequestId:(NSString *)requestId {
-    __block NSDate *lastUpdateDate;
+    NSDate *cachedLastUpdateDate = [self.lastUpdateDateCache objectForKey:requestId];
+    if (cachedLastUpdateDate) return cachedLastUpdateDate;
     
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[LGDataUpdateInfo entityName]];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"requestId = %@", requestId];
-    
-    [self.bgContext performBlockAndWait:^{
-        NSError *error;
-        NSArray *results = [self.bgContext executeFetchRequest:fetchRequest error:&error];
-        
-        if (error) return;
-        
-        LGDataUpdateInfo *info = [results firstObject];
-        lastUpdateDate = info.lastUpdateDate;
-    }];
-    
-    return lastUpdateDate;
+    LGDataUpdateInfo *info = [self existingUpdateInfoForRequestId:requestId context:self.mainContext];
+    return info.lastUpdateDate;
 }
 
-#pragma mark - Bg Context Notifications
+- (BOOL)isDataNewForRequestId:(NSString *)requestId response:(LGResponse *)response {
+    NSString *currentFingerprint = [self fingerprintForResponse:response];
 
-- (void)configureBgContextNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(bgContextWillSave)
-                                                 name:NSManagedObjectContextWillSaveNotification
-                                               object:self.bgContext];
-}
-
-- (void)bgContextWillSave {
-    NSSet *insertedObjects = [self.bgContext insertedObjects];
+    NSString *previousFingerprint = [self.fingerprintCache objectForKey:requestId];
+    if (!previousFingerprint) {
+        LGDataUpdateInfo *info = [self existingUpdateInfoForRequestId:requestId context:self.mainContext];
+        previousFingerprint = info.responseFingerprint;
+    }
     
-    if ([insertedObjects count] == 0) return;
+    BOOL isDataNew = !previousFingerprint || !currentFingerprint || ![previousFingerprint isEqualToString:currentFingerprint];
     
 #if DEBUG
-    NSLog(@"Obtaining permanent object IDs");
+    NSLog(@"Data is %@new for this request.", isDataNew ? @"" : @"NOT ");
 #endif
+    
+    return isDataNew;
+}
 
-    NSError *error = nil;
-    [self.bgContext obtainPermanentIDsForObjects:[insertedObjects allObjects] error:&error];
+- (NSString *)fingerprintForResponse:(LGResponse *)response {
+    NSDictionary *headers = response.httpResponse.allHeaderFields;
+    
+    NSString *etagOrLastModified = headers[@"Etag"];
+    
+    if (!etagOrLastModified) {
+        etagOrLastModified = headers[@"Last-Modified"];
+    }
+    
+#if DEBUG
+    if (!etagOrLastModified) {
+        NSLog(@"No response fingerprint for request with url: '%@'. Request needs to have a fingerprint (e.g. ETag or Last-Modified) for caching.", response.httpResponse.URL.absoluteString);
+    }
+#endif
+    
+    return etagOrLastModified;
+}
+
+- (NSError *)validateResponse:(LGResponse *)response {
+    return nil;
+}
+
+- (id)serializedResponseDataForResponse:(LGResponse *)response error:(NSError **)error {
+    return [NSJSONSerialization JSONObjectWithData:response.responseData
+                                           options:kNilOptions
+                                             error:error];
+}
+
+#pragma mark - Data Update Info
+
+- (LGDataUpdateInfo *)existingUpdateInfoForRequestId:(NSString *)requestId context:(NSManagedObjectContext *)context {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LGDataUpdateInfo"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"requestId == %@", requestId];
+    
+    NSError *error;
+    NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+    
+    NSAssert(error == nil, @"Error fetching data update info");
+    if (error) return nil;
+    
+    return [results firstObject];
+}
+
+- (LGDataUpdateInfo *)newUpdateInfoForRequestId:(NSString *)requestId context:(NSManagedObjectContext *)context {
+    LGDataUpdateInfo *info = [NSEntityDescription insertNewObjectForEntityForName:@"LGDataUpdateInfo" inManagedObjectContext:context];
+    info.requestId = requestId;
+    return info;
+}
+
+#pragma mark - Save
+
+- (void)saveDataWithCompletionBlock:(void (^)(void))completionBlock {
+    [self.bgContext save:nil];
+    
+    [self.mainContext performBlockAndWait:^{
+        [self.mainContext save:nil];
+        if (completionBlock) completionBlock();
+        
+        NSManagedObjectContext *rootContext = self.mainContext.parentContext;
+        if (rootContext) {
+            [rootContext performBlock:^{
+                [rootContext save:nil];
+            }];
+        }
+    }];
 }
 
 #pragma mark -

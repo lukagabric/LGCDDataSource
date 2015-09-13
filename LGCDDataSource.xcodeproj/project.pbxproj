@@ -22,40 +22,39 @@
 
 /* Begin PBXBuildFile section */
 		412687CB1AB32E2F00CB8AB6 /* LGDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 412687BA1AB32E2F00CB8AB6 /* LGDataSource.m */; };
-		412687CC1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 412687BE1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m */; };
+		412687CC1AB32E2F00CB8AB6 /* LGDataDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 412687BE1AB32E2F00CB8AB6 /* LGDataDownloadOperation.m */; };
 		413008B21AC7F26C008D6D1A /* NSManagedObject+LGDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 413008B11AC7F26C008D6D1A /* NSManagedObject+LGDataSource.m */; };
 		413DD7E21AC7E47F00055312 /* NSArray+LGDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 413DD7E11AC7E47F00055312 /* NSArray+LGDataSource.m */; };
+		4149C9F8FAB717BC8229B99E /* Pods_LGCDSwiftDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2065572882BF4DEE1BB35238 /* Pods_LGCDSwiftDataSource.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		418130E21AB5555900DACA1D /* _Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 418130DB1AB5555900DACA1D /* _Contact.m */; };
 		418130E31AB5555900DACA1D /* _LGDataUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 418130DD1AB5555900DACA1D /* _LGDataUpdateInfo.m */; };
 		418130E41AB5555900DACA1D /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 418130DF1AB5555900DACA1D /* Contact.m */; };
 		418130E51AB5555900DACA1D /* LGDataUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 418130E11AB5555900DACA1D /* LGDataUpdateInfo.m */; };
 		41874DCF19D75EDA00CED9D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DCE19D75EDA00CED9D6 /* main.m */; };
-		41874DE919D75EDA00CED9D6 /* LGCDDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874DE819D75EDA00CED9D6 /* LGCDDataSourceTests.m */; };
 		41874E0C19D75FC000CED9D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0419D75FC000CED9D6 /* AppDelegate.m */; };
 		41874E0D19D75FC000CED9D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0619D75FC000CED9D6 /* ViewController.m */; };
 		41874E1019D761F700CED9D6 /* LGModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41874E0E19D761F700CED9D6 /* LGModel.xcdatamodeld */; };
+		41BBC36C1BA5708B000597B0 /* LGResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 41BBC36B1BA5708B000597B0 /* LGResponse.m */; };
+		41DEB8E11AF4E507001A6ED4 /* LGDataUpdateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DEB8E01AF4E507001A6ED4 /* LGDataUpdateOperation.swift */; };
+		41E72D951AF39CCB001B76D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E72D941AF39CCB001B76D1 /* AppDelegate.swift */; };
+		41E72D981AF39CCB001B76D1 /* LGCDSwiftDataSource.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41E72D961AF39CCB001B76D1 /* LGCDSwiftDataSource.xcdatamodeld */; };
+		41E72D9A1AF39CCB001B76D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E72D991AF39CCB001B76D1 /* ViewController.swift */; };
+		41E72D9D1AF39CCB001B76D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41E72D9B1AF39CCB001B76D1 /* Main.storyboard */; };
+		41E72D9F1AF39CCB001B76D1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41E72D9E1AF39CCB001B76D1 /* Images.xcassets */; };
+		41E72DA21AF39CCB001B76D1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41E72DA01AF39CCB001B76D1 /* LaunchScreen.xib */; };
+		41E72DB61AF39F97001B76D1 /* LGDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E72DB51AF39F97001B76D1 /* LGDataSource.swift */; };
 		41EA912A1AB6C0B6001AF28E /* ContactsInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 41EA91291AB6C0B6001AF28E /* ContactsInteractor.m */; };
-		E121F651CBD5FC1E5ED4630D /* libPods-LGCDDataSource.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB43F640B1178ACEDB4D98C7 /* libPods-LGCDDataSource.a */; };
+		86BE0924D9D59CB0148C8A10 /* Pods_LGCDDataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC84E6E86EE280C0E543E23 /* Pods_LGCDDataSource.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		41874DE319D75EDA00CED9D6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 41874DC119D75EDA00CED9D6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 41874DC819D75EDA00CED9D6;
-			remoteInfo = LGCDDataSource;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1ECEC14D83A6CBCA1DF2271A /* Pods-LGCDDataSource.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGCDDataSource.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGCDDataSource/Pods-LGCDDataSource.debug.xcconfig"; sourceTree = "<group>"; };
+		2065572882BF4DEE1BB35238 /* Pods_LGCDSwiftDataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LGCDSwiftDataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20ADC1AC969473D390D6953D /* Pods-LGCDDataSource.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGCDDataSource.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGCDDataSource/Pods-LGCDDataSource.release.xcconfig"; sourceTree = "<group>"; };
 		412687B91AB32E2F00CB8AB6 /* LGDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataSource.h; sourceTree = "<group>"; };
 		412687BA1AB32E2F00CB8AB6 /* LGDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataSource.m; sourceTree = "<group>"; };
-		412687BD1AB32E2F00CB8AB6 /* LGDataUpdateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateOperation.h; sourceTree = "<group>"; };
-		412687BE1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataUpdateOperation.m; sourceTree = "<group>"; };
-		412687BF1AB32E2F00CB8AB6 /* LGDataUpdateOperation_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataUpdateOperation_Internal.h; sourceTree = "<group>"; };
+		412687BD1AB32E2F00CB8AB6 /* LGDataDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGDataDownloadOperation.h; sourceTree = "<group>"; };
+		412687BE1AB32E2F00CB8AB6 /* LGDataDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGDataDownloadOperation.m; sourceTree = "<group>"; };
 		412C7AFF1AB0072200CC0206 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		413008B01AC7F26C008D6D1A /* NSManagedObject+LGDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+LGDataSource.h"; sourceTree = "<group>"; };
 		413008B11AC7F26C008D6D1A /* NSManagedObject+LGDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+LGDataSource.m"; sourceTree = "<group>"; };
@@ -73,17 +72,28 @@
 		41874DC919D75EDA00CED9D6 /* LGCDDataSource.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGCDDataSource.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41874DCD19D75EDA00CED9D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41874DCE19D75EDA00CED9D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		41874DE219D75EDA00CED9D6 /* LGCDDataSourceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LGCDDataSourceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		41874DE719D75EDA00CED9D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		41874DE819D75EDA00CED9D6 /* LGCDDataSourceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGCDDataSourceTests.m; sourceTree = "<group>"; };
 		41874E0319D75FC000CED9D6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		41874E0419D75FC000CED9D6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		41874E0519D75FC000CED9D6 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		41874E0619D75FC000CED9D6 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		41874E0F19D761F700CED9D6 /* LGModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LGModel.xcdatamodel; sourceTree = "<group>"; };
+		41BBC36A1BA5708B000597B0 /* LGResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGResponse.h; sourceTree = "<group>"; };
+		41BBC36B1BA5708B000597B0 /* LGResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGResponse.m; sourceTree = "<group>"; };
+		41DEB8E01AF4E507001A6ED4 /* LGDataUpdateOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGDataUpdateOperation.swift; sourceTree = "<group>"; };
+		41E72D901AF39CCB001B76D1 /* LGCDSwiftDataSource.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGCDSwiftDataSource.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		41E72D931AF39CCB001B76D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41E72D941AF39CCB001B76D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		41E72D971AF39CCB001B76D1 /* LGCDSwiftDataSource.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LGCDSwiftDataSource.xcdatamodel; sourceTree = "<group>"; };
+		41E72D991AF39CCB001B76D1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		41E72D9C1AF39CCB001B76D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		41E72D9E1AF39CCB001B76D1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		41E72DA11AF39CCB001B76D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		41E72DB51AF39F97001B76D1 /* LGDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGDataSource.swift; sourceTree = "<group>"; };
 		41EA91281AB6C0B6001AF28E /* ContactsInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsInteractor.h; sourceTree = "<group>"; };
 		41EA91291AB6C0B6001AF28E /* ContactsInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsInteractor.m; sourceTree = "<group>"; };
-		EB43F640B1178ACEDB4D98C7 /* libPods-LGCDDataSource.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LGCDDataSource.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEC6D36AF00400303BCA2D76 /* Pods-LGCDSwiftDataSource.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGCDSwiftDataSource.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGCDSwiftDataSource/Pods-LGCDSwiftDataSource.debug.xcconfig"; sourceTree = "<group>"; };
+		EEC84E6E86EE280C0E543E23 /* Pods_LGCDDataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LGCDDataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9C9628DADC2A3F7CCBF5215 /* Pods-LGCDSwiftDataSource.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGCDSwiftDataSource.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGCDSwiftDataSource/Pods-LGCDSwiftDataSource.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,14 +101,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E121F651CBD5FC1E5ED4630D /* libPods-LGCDDataSource.a in Frameworks */,
+				86BE0924D9D59CB0148C8A10 /* Pods_LGCDDataSource.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		41874DDF19D75EDA00CED9D6 /* Frameworks */ = {
+		41E72D8D1AF39CCB001B76D1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4149C9F8FAB717BC8229B99E /* Pods_LGCDSwiftDataSource.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +121,8 @@
 			children = (
 				1ECEC14D83A6CBCA1DF2271A /* Pods-LGCDDataSource.debug.xcconfig */,
 				20ADC1AC969473D390D6953D /* Pods-LGCDDataSource.release.xcconfig */,
+				BEC6D36AF00400303BCA2D76 /* Pods-LGCDSwiftDataSource.debug.xcconfig */,
+				F9C9628DADC2A3F7CCBF5215 /* Pods-LGCDSwiftDataSource.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -142,9 +155,10 @@
 		412687BC1AB32E2F00CB8AB6 /* DataUpdateOperation */ = {
 			isa = PBXGroup;
 			children = (
-				412687BD1AB32E2F00CB8AB6 /* LGDataUpdateOperation.h */,
-				412687BE1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m */,
-				412687BF1AB32E2F00CB8AB6 /* LGDataUpdateOperation_Internal.h */,
+				41BBC36A1BA5708B000597B0 /* LGResponse.h */,
+				41BBC36B1BA5708B000597B0 /* LGResponse.m */,
+				412687BD1AB32E2F00CB8AB6 /* LGDataDownloadOperation.h */,
+				412687BE1AB32E2F00CB8AB6 /* LGDataDownloadOperation.m */,
 			);
 			path = DataUpdateOperation;
 			sourceTree = "<group>";
@@ -172,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				41874DCB19D75EDA00CED9D6 /* LGCDDataSource */,
-				41874DE519D75EDA00CED9D6 /* LGCDDataSourceTests */,
+				41E72D911AF39CCB001B76D1 /* LGCDSwiftDataSource */,
 				41874DCA19D75EDA00CED9D6 /* Products */,
 				253105260AD98227616A610F /* Pods */,
 				83ED1AA63FC1C9C4495DEA0B /* Frameworks */,
@@ -183,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				41874DC919D75EDA00CED9D6 /* LGCDDataSource.app */,
-				41874DE219D75EDA00CED9D6 /* LGCDDataSourceTests.xctest */,
+				41E72D901AF39CCB001B76D1 /* LGCDSwiftDataSource.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,23 +219,6 @@
 				41874E0E19D761F700CED9D6 /* LGModel.xcdatamodeld */,
 				41874DCD19D75EDA00CED9D6 /* Info.plist */,
 				41874DCE19D75EDA00CED9D6 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		41874DE519D75EDA00CED9D6 /* LGCDDataSourceTests */ = {
-			isa = PBXGroup;
-			children = (
-				41874DE819D75EDA00CED9D6 /* LGCDDataSourceTests.m */,
-				41874DE619D75EDA00CED9D6 /* Supporting Files */,
-			);
-			path = LGCDDataSourceTests;
-			sourceTree = "<group>";
-		};
-		41874DE619D75EDA00CED9D6 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				41874DE719D75EDA00CED9D6 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -259,10 +256,35 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		41E72D911AF39CCB001B76D1 /* LGCDSwiftDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				41E72D941AF39CCB001B76D1 /* AppDelegate.swift */,
+				41E72D991AF39CCB001B76D1 /* ViewController.swift */,
+				41E72D9B1AF39CCB001B76D1 /* Main.storyboard */,
+				41E72D9E1AF39CCB001B76D1 /* Images.xcassets */,
+				41E72DA01AF39CCB001B76D1 /* LaunchScreen.xib */,
+				41E72D961AF39CCB001B76D1 /* LGCDSwiftDataSource.xcdatamodeld */,
+				41E72D921AF39CCB001B76D1 /* Supporting Files */,
+				41E72DB51AF39F97001B76D1 /* LGDataSource.swift */,
+				41DEB8E01AF4E507001A6ED4 /* LGDataUpdateOperation.swift */,
+			);
+			path = LGCDSwiftDataSource;
+			sourceTree = "<group>";
+		};
+		41E72D921AF39CCB001B76D1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				41E72D931AF39CCB001B76D1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		83ED1AA63FC1C9C4495DEA0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EB43F640B1178ACEDB4D98C7 /* libPods-LGCDDataSource.a */,
+				EEC84E6E86EE280C0E543E23 /* Pods_LGCDDataSource.framework */,
+				2065572882BF4DEE1BB35238 /* Pods_LGCDSwiftDataSource.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -279,6 +301,7 @@
 				41874DC619D75EDA00CED9D6 /* Frameworks */,
 				41874DC719D75EDA00CED9D6 /* Resources */,
 				27BE7D544C8A80C5A4688CC9 /* Copy Pods Resources */,
+				0DD56B43876C2F4AC762365C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -289,23 +312,25 @@
 			productReference = 41874DC919D75EDA00CED9D6 /* LGCDDataSource.app */;
 			productType = "com.apple.product-type.application";
 		};
-		41874DE119D75EDA00CED9D6 /* LGCDDataSourceTests */ = {
+		41E72D8F1AF39CCB001B76D1 /* LGCDSwiftDataSource */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 41874DEF19D75EDA00CED9D6 /* Build configuration list for PBXNativeTarget "LGCDDataSourceTests" */;
+			buildConfigurationList = 41E72DB31AF39CCB001B76D1 /* Build configuration list for PBXNativeTarget "LGCDSwiftDataSource" */;
 			buildPhases = (
-				41874DDE19D75EDA00CED9D6 /* Sources */,
-				41874DDF19D75EDA00CED9D6 /* Frameworks */,
-				41874DE019D75EDA00CED9D6 /* Resources */,
+				9F47F71A04F56A9E81B061B0 /* Check Pods Manifest.lock */,
+				41E72D8C1AF39CCB001B76D1 /* Sources */,
+				41E72D8D1AF39CCB001B76D1 /* Frameworks */,
+				41E72D8E1AF39CCB001B76D1 /* Resources */,
+				F98FCE4C8B2F1FCD8F10354D /* Embed Pods Frameworks */,
+				6E8D71DEA336E1DCEF4392CC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				41874DE419D75EDA00CED9D6 /* PBXTargetDependency */,
 			);
-			name = LGCDDataSourceTests;
-			productName = LGCDDataSourceTests;
-			productReference = 41874DE219D75EDA00CED9D6 /* LGCDDataSourceTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = LGCDSwiftDataSource;
+			productName = LGCDSwiftDataSource;
+			productReference = 41E72D901AF39CCB001B76D1 /* LGCDSwiftDataSource.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -322,9 +347,8 @@
 					41874DC819D75EDA00CED9D6 = {
 						CreatedOnToolsVersion = 6.0.1;
 					};
-					41874DE119D75EDA00CED9D6 = {
-						CreatedOnToolsVersion = 6.0.1;
-						TestTargetID = 41874DC819D75EDA00CED9D6;
+					41E72D8F1AF39CCB001B76D1 = {
+						CreatedOnToolsVersion = 6.3.1;
 					};
 				};
 			};
@@ -342,8 +366,8 @@
 			projectRoot = "";
 			targets = (
 				41874DC819D75EDA00CED9D6 /* LGCDDataSource */,
-				41874DE119D75EDA00CED9D6 /* LGCDDataSourceTests */,
 				411EE27F19D76AAE00A4622A /* Mogenerator */,
+				41E72D8F1AF39CCB001B76D1 /* LGCDSwiftDataSource */,
 			);
 		};
 /* End PBXProject section */
@@ -356,16 +380,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		41874DE019D75EDA00CED9D6 /* Resources */ = {
+		41E72D8E1AF39CCB001B76D1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41E72D9D1AF39CCB001B76D1 /* Main.storyboard in Resources */,
+				41E72DA21AF39CCB001B76D1 /* LaunchScreen.xib in Resources */,
+				41E72D9F1AF39CCB001B76D1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0DD56B43876C2F4AC762365C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGCDDataSource/Pods-LGCDDataSource-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		27BE7D544C8A80C5A4688CC9 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,6 +436,36 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/mogenerator -m LGCDDataSource/LGModel.xcdatamodeld/LGModel.xcdatamodel -O LGCDDataSource/Classes/ManagedObjects --template-var arc=true";
 		};
+		6E8D71DEA336E1DCEF4392CC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGCDSwiftDataSource/Pods-LGCDSwiftDataSource-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F47F71A04F56A9E81B061B0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		B4F221AAC91CB03B5204DD8E /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -407,6 +479,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F98FCE4C8B2F1FCD8F10354D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGCDSwiftDataSource/Pods-LGCDSwiftDataSource-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -424,31 +511,47 @@
 				418130E31AB5555900DACA1D /* _LGDataUpdateInfo.m in Sources */,
 				412687CB1AB32E2F00CB8AB6 /* LGDataSource.m in Sources */,
 				418130E21AB5555900DACA1D /* _Contact.m in Sources */,
-				412687CC1AB32E2F00CB8AB6 /* LGDataUpdateOperation.m in Sources */,
+				412687CC1AB32E2F00CB8AB6 /* LGDataDownloadOperation.m in Sources */,
 				41874DCF19D75EDA00CED9D6 /* main.m in Sources */,
 				41874E0C19D75FC000CED9D6 /* AppDelegate.m in Sources */,
 				413DD7E21AC7E47F00055312 /* NSArray+LGDataSource.m in Sources */,
 				41EA912A1AB6C0B6001AF28E /* ContactsInteractor.m in Sources */,
+				41BBC36C1BA5708B000597B0 /* LGResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		41874DDE19D75EDA00CED9D6 /* Sources */ = {
+		41E72D8C1AF39CCB001B76D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41874DE919D75EDA00CED9D6 /* LGCDDataSourceTests.m in Sources */,
+				41E72D9A1AF39CCB001B76D1 /* ViewController.swift in Sources */,
+				41E72D981AF39CCB001B76D1 /* LGCDSwiftDataSource.xcdatamodeld in Sources */,
+				41E72D951AF39CCB001B76D1 /* AppDelegate.swift in Sources */,
+				41E72DB61AF39F97001B76D1 /* LGDataSource.swift in Sources */,
+				41DEB8E11AF4E507001A6ED4 /* LGDataUpdateOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		41874DE419D75EDA00CED9D6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 41874DC819D75EDA00CED9D6 /* LGCDDataSource */;
-			targetProxy = 41874DE319D75EDA00CED9D6 /* PBXContainerItemProxy */;
+/* Begin PBXVariantGroup section */
+		41E72D9B1AF39CCB001B76D1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				41E72D9C1AF39CCB001B76D1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
 		};
-/* End PBXTargetDependency section */
+		41E72DA01AF39CCB001B76D1 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				41E72DA11AF39CCB001B76D1 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		411EE28119D76AAE00A4622A /* Debug */ = {
@@ -547,7 +650,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LGCDDataSource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -559,43 +662,43 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LGCDDataSource/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
-		41874DF019D75EDA00CED9D6 /* Debug */ = {
+		41E72DAF1AF39CCB001B76D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEC6D36AF00400303BCA2D76 /* Pods-LGCDSwiftDataSource.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = LGCDDataSourceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				INFOPLIST_FILE = LGCDSwiftDataSource/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LGCDDataSource.app/LGCDDataSource";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		41874DF119D75EDA00CED9D6 /* Release */ = {
+		41E72DB01AF39CCB001B76D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9C9628DADC2A3F7CCBF5215 /* Pods-LGCDSwiftDataSource.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LGCDDataSourceTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = LGCDSwiftDataSource/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LGCDDataSource.app/LGCDDataSource";
 			};
 			name = Release;
 		};
@@ -629,11 +732,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		41874DEF19D75EDA00CED9D6 /* Build configuration list for PBXNativeTarget "LGCDDataSourceTests" */ = {
+		41E72DB31AF39CCB001B76D1 /* Build configuration list for PBXNativeTarget "LGCDSwiftDataSource" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				41874DF019D75EDA00CED9D6 /* Debug */,
-				41874DF119D75EDA00CED9D6 /* Release */,
+				41E72DAF1AF39CCB001B76D1 /* Debug */,
+				41E72DB01AF39CCB001B76D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -648,6 +751,16 @@
 			);
 			currentVersion = 41874E0F19D761F700CED9D6 /* LGModel.xcdatamodel */;
 			path = LGModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		41E72D961AF39CCB001B76D1 /* LGCDSwiftDataSource.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				41E72D971AF39CCB001B76D1 /* LGCDSwiftDataSource.xcdatamodel */,
+			);
+			currentVersion = 41E72D971AF39CCB001B76D1 /* LGCDSwiftDataSource.xcdatamodel */;
+			path = LGCDSwiftDataSource.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -24,25 +24,55 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-LGCDSwiftDataSource-OMGHTTPURLRQ.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-LGCDSwiftDataSource-PromiseKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-LGCDSwiftDataSource.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>087B1AD8AAF3180D8629A729</key>
+		<key>0C4196005E0660D23C15050D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0BADBC128A4A0D7B149B8A4B</key>
+		<key>19756ABFD66931DCCD313898</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>31956C8FE1B34877E377C71C</key>
+		<key>4180304D3E0E3024F826A2E8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BAAF6F1F91C869535D1F8C71</key>
+		<key>6058ABCAF6DD9D85D24FDF44</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8D4F4482E2747286C679D7E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B0F8DF191213FC5BEBCE7AEB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B7958C42CA02F05227F014D0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

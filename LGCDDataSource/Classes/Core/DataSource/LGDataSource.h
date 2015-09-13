@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LGContextTransferable.h"
 #import "PromiseKit.h"
+#import "LGResponse.h"
 
 typedef NS_ENUM(NSUInteger, LGContentWeight) {
     LGContentWeightStub,
@@ -16,7 +17,7 @@ typedef NS_ENUM(NSUInteger, LGContentWeight) {
     LGContentWeightHeavy,
 };
 
-typedef id(^LGDataUpdate)(id data, NSURLResponse *response, NSManagedObjectContext *context);
+typedef id(^LGDataUpdate)(id data, LGResponse *response, NSManagedObjectContext *context);
 
 @interface LGDataSource : NSObject
 

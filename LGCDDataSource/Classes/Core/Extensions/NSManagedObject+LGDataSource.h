@@ -9,7 +9,7 @@
 #import <CoreData/CoreData.h>
 #import "LGDataSource.h"
 
-@interface NSManagedObject (LGDataSource)
+@interface NSManagedObject (LGDataSource) <LGContextTransferable>
 
 + (NSDictionary *)lg_dataUpdateMappings;
 + (NSDateFormatter *)lg_dateFormatter;

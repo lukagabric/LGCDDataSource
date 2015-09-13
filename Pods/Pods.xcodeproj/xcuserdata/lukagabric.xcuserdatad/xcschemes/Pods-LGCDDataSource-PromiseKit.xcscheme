@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "087B1AD8AAF3180D8629A729"
-               BuildableName = "libPods-LGCDDataSource-PromiseKit.a"
+               BlueprintIdentifier = "B7958C42CA02F05227F014D0"
+               BuildableName = "PromiseKit.framework"
                BlueprintName = "Pods-LGCDDataSource-PromiseKit"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

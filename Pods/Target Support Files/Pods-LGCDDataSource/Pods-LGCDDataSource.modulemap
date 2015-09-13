@@ -1,0 +1,6 @@
+framework module Pods_LGCDDataSource {
+  umbrella header "Pods-LGCDDataSource-umbrella.h"
+
+  export *
+  module * { export * }
+}

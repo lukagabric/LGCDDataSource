@@ -16,16 +16,9 @@
     NSMutableArray *transferredObjects = [NSMutableArray new];
     
     for (NSManagedObject *mo in self) {
-        NSAssert([mo isKindOfClass:[NSManagedObject class]], @"Must be managed object");
-        [mo.managedObjectContext performBlockAndWait:^{
-            NSManagedObjectID *objectID = mo.objectID;
-            
-            [context performBlockAndWait:^{
-                [transferredObjects addObject:[context objectWithID:objectID]];
-            }];
-        }];
+        [transferredObjects addObject:[context objectWithID:mo.objectID]];
     }
-    
+
     return transferredObjects;
 }
 
