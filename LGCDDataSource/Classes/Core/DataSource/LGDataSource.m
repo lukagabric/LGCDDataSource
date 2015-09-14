@@ -90,7 +90,10 @@
                 if (![strongSelf isDataNewForRequestId:requestId response:response context:strongSelf.bgContext]) {
                     LGDataUpdateInfo *info = [strongSelf updatedInfoForSuccessfulRequestId:requestId response:response context:strongSelf.bgContext];
                     [strongSelf saveDataWithCompletionBlock:^{
-                        [self.lastUpdateDateCache setObject:info.lastUpdateDate forKey:requestId];
+                        LGDataSource *strongSelf = weakSelf;
+                        if (!strongSelf) return;
+
+                        [strongSelf.lastUpdateDateCache setObject:info.lastUpdateDate forKey:requestId];
                         fulfill(info.lastUpdateDate);
                     }];
                     return;
@@ -112,7 +115,7 @@
                     LGDataSource *strongSelf = weakSelf;
                     if (!strongSelf) return;
 
-                    [self.lastUpdateDateCache setObject:info.lastUpdateDate forKey:requestId];
+                    [strongSelf.lastUpdateDateCache setObject:info.lastUpdateDate forKey:requestId];
                     
                     id transferredResult = [dataUpdateResult transferredToContext:self.mainContext];
 
@@ -122,8 +125,12 @@
         }];
     });
     
+    
     dataUpdatePromise.then(^{
-        [self.activeDataUpdates removeObjectForKey:requestId];
+        LGDataSource *strongSelf = weakSelf;
+        if (!strongSelf) return;
+
+        [strongSelf.activeDataUpdates removeObjectForKey:requestId];
     });
     
     self.activeDataUpdates[requestId] = dataUpdatePromise;
