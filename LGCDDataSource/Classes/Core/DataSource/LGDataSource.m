@@ -117,7 +117,7 @@
 
                     [strongSelf.lastUpdateDateCache setObject:info.lastUpdateDate forKey:requestId];
                     
-                    id transferredResult = [dataUpdateResult transferredToContext:self.mainContext];
+                    id transferredResult = [dataUpdateResult transferredToContext:strongSelf.mainContext];
 
                     fulfill(transferredResult);
                 }];
