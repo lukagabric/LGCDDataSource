@@ -54,7 +54,7 @@
     
     if ([rawValue isKindOfClass:[NSString class]]) {
         if (attributeType == NSDateAttributeType) {
-            value = [[self class] lg_dateForKey:key fromString:rawValue];
+            value = [[[self class] lg_dateFormatter] dateFromString:rawValue];
         }
         else if (attributeType == NSInteger16AttributeType ||
                  attributeType == NSInteger32AttributeType ||
@@ -82,11 +82,6 @@
     }
     
     return dateFormatter;
-}
-
-+ (NSDate *)lg_dateForKey:(NSString *)key fromString:(NSString *)dateString {
-    NSDateFormatter *formatter = [self lg_dateFormatter];
-    return [formatter dateFromString:dateString];
 }
 
 + (NSString *)entityName {

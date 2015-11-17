@@ -13,7 +13,6 @@
 
 + (NSDictionary *)lg_dataUpdateMappings;
 + (NSDateFormatter *)lg_dateFormatter;
-+ (NSDate *)lg_dateForKey:(NSString *)key fromString:(NSString *)dateString;
 + (NSString *)entityName;
 + (NSArray *)existingObjectsOrStubsWithGuids:(NSArray *)guids
                                      guidKey:(NSString *)guidKey
